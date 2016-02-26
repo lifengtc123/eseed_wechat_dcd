@@ -9,6 +9,7 @@ GET     /public/                                staticDir:public
 
 # Catch all
 *       /phone/{controller}/{action}             phone.{controller}.{action}
+*       /weixin/{controller}/{action}             weixin.{controller}.{action}
 *       /{controller}/{action}                  {controller}.{action}
 *       /client/{controller}/{action}          client.{controller}.{action}
 *      /checkInfo								weixin.Application.checkInfo

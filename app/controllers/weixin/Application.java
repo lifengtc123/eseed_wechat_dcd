@@ -215,4 +215,9 @@ public class Application extends Controller{
 		}
 		return nickname;
 	}
+	
+	public static void index(){
+		WxJSApi wxJSApi=new WxJSApi("http://vvbox.wicp.net/weixin/Application/index");
+		render(wxJSApi);
+	}
 }

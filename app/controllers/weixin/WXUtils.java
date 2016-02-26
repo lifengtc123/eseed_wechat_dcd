@@ -104,15 +104,6 @@ public class WXUtils {
 		return sb.toString();
 	}
 
-	/**
-	 * 使用JS-SDK时需要用的签名
-	 * 
-	 * @return
-	 */
-	public static final String getsignature(String jsapi_ticket, String nonce_str, String timestamp, String url) {
-		String initpaySign = "jsapi_ticket=" + jsapi_ticket + "&noncestr=" + nonce_str + "&timestamp=" + timestamp + "&url=" + url;
-		return new controllers.phone.SHA1().getDigestOfString(initpaySign.getBytes());
-	}
 
 	/**
 	 * 菜单触发返回消息 文本消息

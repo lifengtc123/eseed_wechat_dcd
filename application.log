@@ -6185,3 +6185,160 @@ Caused by: groovy.lang.MissingPropertyException: No such property: companyName f
 	at /app/views/Customerinfos/list.html.(line:51)
 	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:247)
 	... 13 more
+2016-02-26 12:08:11 ERROR ~ 
+
+@6p8jan2bd
+Internal Server Error (500) for request GET /
+
+Oops: UnsupportedClassVersionError
+An unexpected error occured caused by exception UnsupportedClassVersionError: DocViewerPlugin : Unsupported major.minor version 51.0
+
+play.exceptions.UnexpectedException: Unexpected Error
+	at play.Invoker$Invocation.onException(Invoker.java:244)
+	at play.Invoker$Invocation.run(Invoker.java:286)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.UnsupportedClassVersionError: DocViewerPlugin : Unsupported major.minor version 51.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClassCond(ClassLoader.java:637)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:621)
+	at play.classloading.ApplicationClassloader.loadApplicationClass(ApplicationClassloader.java:154)
+	at play.classloading.ApplicationClassloader.loadClass(ApplicationClassloader.java:84)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+	at play.plugins.PluginCollection.reloadApplicationPlugins(PluginCollection.java:206)
+	at play.Play.start(Play.java:478)
+	at play.Play.detectChanges(Play.java:637)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	... 1 more
+2016-02-26 12:08:11 ERROR ~ 
+
+@6p8jan2be
+Error during the 500 response generation
+
+Template execution error (In /app/views/tags/monitor_error.html around line 8)
+Execution error occured in template /app/views/tags/monitor_error.html. Exception raised was MissingPropertyException : No such property: source for class: play.exceptions.UnexpectedException.
+
+play.exceptions.TemplateExecutionException: No such property: source for class: play.exceptions.UnexpectedException
+	at play.templates.BaseTemplate.throwException(BaseTemplate.java:86)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:272)
+	at play.templates.GroovyTemplate$ExecutableTemplate.invokeTag(GroovyTemplate.java:401)
+	at /app/views/errors/500.html.(line:11)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:247)
+	at play.templates.Template.render(Template.java:26)
+	at play.templates.GroovyTemplate.render(GroovyTemplate.java:202)
+	at play.server.PlayHandler.serve500(PlayHandler.java:784)
+	at Invocation.HTTP Request(Play!)
+Caused by: groovy.lang.MissingPropertyException: No such property: source for class: play.exceptions.UnexpectedException
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:247)
+	... 7 more
+2016-02-26 12:08:14 ERROR ~ 
+
+@6p8jan2bf
+Internal Server Error (500) for request GET /favicon.ico
+
+Oops: UnsupportedClassVersionError
+An unexpected error occured caused by exception UnsupportedClassVersionError: DocViewerPlugin : Unsupported major.minor version 51.0
+
+play.exceptions.UnexpectedException: Unexpected Error
+	at play.Invoker$Invocation.onException(Invoker.java:244)
+	at play.Invoker$Invocation.run(Invoker.java:286)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.UnsupportedClassVersionError: DocViewerPlugin : Unsupported major.minor version 51.0
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClassCond(ClassLoader.java:637)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:621)
+	at play.classloading.ApplicationClassloader.loadApplicationClass(ApplicationClassloader.java:154)
+	at play.classloading.ApplicationClassloader.loadClass(ApplicationClassloader.java:84)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:247)
+	at play.plugins.PluginCollection.reloadApplicationPlugins(PluginCollection.java:206)
+	at play.Play.start(Play.java:478)
+	at play.Play.detectChanges(Play.java:637)
+	at play.Invoker$Invocation.init(Invoker.java:198)
+	... 1 more
+2016-02-26 12:08:15 ERROR ~ 
+
+@6p8jan2bg
+Error during the 500 response generation
+
+Template execution error (In /app/views/tags/monitor_error.html around line 8)
+Execution error occured in template /app/views/tags/monitor_error.html. Exception raised was MissingPropertyException : No such property: source for class: play.exceptions.UnexpectedException.
+
+play.exceptions.TemplateExecutionException: No such property: source for class: play.exceptions.UnexpectedException
+	at play.templates.BaseTemplate.throwException(BaseTemplate.java:86)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:272)
+	at play.templates.GroovyTemplate$ExecutableTemplate.invokeTag(GroovyTemplate.java:401)
+	at /app/views/errors/500.html.(line:11)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:247)
+	at play.templates.Template.render(Template.java:26)
+	at play.templates.GroovyTemplate.render(GroovyTemplate.java:202)
+	at play.server.PlayHandler.serve500(PlayHandler.java:784)
+	at Invocation.HTTP Request(Play!)
+Caused by: groovy.lang.MissingPropertyException: No such property: source for class: play.exceptions.UnexpectedException
+	at /app/views/tags/monitor_error.html.(line:8)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:247)
+	... 7 more
+2016-02-26 14:06:22 ERROR ~ 
+
+@6p8jb4cfi
+Error during job execution (jobs.WXConfigJob)
+
+Execution exception (In /app/jobs/WXConfigJob.java around line 18)
+ClassCastException occured : models.WXConfig cannot be cast to models.WXConfig
+
+play.exceptions.JavaExecutionException: models.WXConfig cannot be cast to models.WXConfig
+	at play.jobs.Job.call(Job.java:155)
+	at Invocation.Job(Play!)
+Caused by: java.lang.ClassCastException: models.WXConfig cannot be cast to models.WXConfig
+	at jobs.WXConfigJob.doJob(WXConfigJob.java:18)
+	at play.jobs.Job.doJobWithResult(Job.java:50)
+	at play.jobs.Job.call(Job.java:146)
+	... 1 more
+2016-02-26 14:39:47 ERROR ~ 
+
+@6p8jb4cfj
+Internal Server Error (500) for request GET /weixin/Application/index
+
+Template compilation error (In /app/views/weixin/Application/index.html around line 18)
+The template /app/views/weixin/Application/index.html does not compile : illegal colon after argument expression;    solution: a complex label expression before a colon must be parenthesized 
+
+play.exceptions.TemplateCompilationException: illegal colon after argument expression;
+   solution: a complex label expression before a colon must be parenthesized 
+	at play.templates.GroovyTemplate.compile(GroovyTemplate.java:189)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:210)
+	at play.templates.Template.render(Template.java:26)
+	at play.templates.GroovyTemplate.render(GroovyTemplate.java:202)
+	at play.mvc.results.RenderTemplate.<init>(RenderTemplate.java:24)
+	at play.mvc.Controller.renderTemplate(Controller.java:662)
+	at play.mvc.Controller.renderTemplate(Controller.java:642)
+	at play.mvc.Controller.render(Controller.java:699)
+	at controllers.weixin.Application.index(Application.java:221)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	at Invocation.HTTP Request(Play!)
+2016-02-26 14:40:27 ERROR ~ 
+
+@6p8jb4cfk
+Internal Server Error (500) for request GET /weixin/Application/index
+
+Template compilation error (In /app/views/weixin/Application/index.html around line 18)
+The template /app/views/weixin/Application/index.html does not compile : illegal colon after argument expression;    solution: a complex label expression before a colon must be parenthesized 
+
+play.exceptions.TemplateCompilationException: illegal colon after argument expression;
+   solution: a complex label expression before a colon must be parenthesized 
+	at play.templates.GroovyTemplate.compile(GroovyTemplate.java:189)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:210)
+	at play.templates.Template.render(Template.java:26)
+	at play.templates.GroovyTemplate.render(GroovyTemplate.java:202)
+	at play.mvc.results.RenderTemplate.<init>(RenderTemplate.java:24)
+	at play.mvc.Controller.renderTemplate(Controller.java:662)
+	at play.mvc.Controller.renderTemplate(Controller.java:642)
+	at play.mvc.Controller.render(Controller.java:699)
+	at controllers.weixin.Application.index(Application.java:221)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
+	at Invocation.HTTP Request(Play!)
