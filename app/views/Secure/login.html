@@ -1,0 +1,49 @@
+#{extends '/Secure/layout.html' /}
+<div id="login">
+	
+	<h1>宁海住建局微信考勤查询系统</h1>
+		
+	#{form @authenticate()}
+		
+		#{if flash.error}
+			<p class="error">
+				&{flash.error}
+			</p>
+		#{/if}`
+		#{if flash.success}
+			<p class="success">
+				&{flash.success}
+			</p>
+		#{/if}
+		<input type="hidden" id="screen_height" name="screen.height">
+        <input type="hidden" id="screen_width" name="screen.width">
+		<p id="username-field">
+			<label for="username">用户名</label>
+			<input type="text" name="username" id="username" value="${flash.username}" />
+		</p>
+		<p id="password-field">
+			<label for="password">密码</label>
+			<input type="password" name="password" id="password" value="" />
+		</p>
+		<p id="captcha-field">
+			<label for="captcha">验证码</label>
+			#{captcha/}
+		</p>
+		<p id="remember-field">
+			<input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
+			<label for="remember">记住密码</label>
+		</p>
+		<p id="signin-field">
+			<input type="submit" id="signin" value="登录" />
+		</p>
+	#{/form}
+</div>
+<script>
+$(function(){
+    var screen_height = window.screen.height;
+    var screen_width = window.screen.width;
+    $("#screen_height").val(screen_height);
+    $("#screen_width").val(screen_width);
+});
+
+</script>

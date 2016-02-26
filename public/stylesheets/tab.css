@@ -1,0 +1,18 @@
+.tabs{
+	margin-top: 1px;
+	float: left;
+}
+.tabs p span{
+  background-color: #fff;
+  border: 1px solid #CCCCCC;
+  cursor: pointer;
+  margin-right: 6px;
+  padding:5px 10px;
+}
+.tabs p span.current{
+	background-color: #FF8300;
+	color: #fff;
+}
+.tabs p{
+	font-weight: bold;
+}

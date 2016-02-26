@@ -1,0 +1,104 @@
+#{extends "main_list.html"/}
+<form>
+<table cellspacing="0" cellpadding="0" class="t0">
+<tbody><tr><td valign="top" width="100%">
+<table cellspacing="0" cellpadding="0" width="100%"><tr>
+</tr><tr height="22">
+<td valign="middle" align="left" style="padding:5px;">
+#{select "searchField",value:params.searchField}
+#{option}全部#{/option}
+#{option 'truename'}真实姓名#{/option}
+#{/select}#{select "condition",value:params.condition}
+#{option 'like'}包含#{/option}
+#{option '='}=#{/option}
+#{option '>'}>#{/option}
+#{option '<'}<#{/option}
+#{/select}
+<input type="text" name="search" value="${params.search}" id="obj_keyword" class="txt01" size="40"/>
+<input type="submit" value="搜索" class="btn01"/>
+</td>
+</tr>
+</table>
+</td></tr></tbody></table>
+</form>
+<form action="@@{delete()}" method="post" onsubmit="return chk_arrayid();" id="listform">
+<table id="listTable" cellspacing="0" cellpadding="0" class="t0">
+<tbody><tr><td valign="top" align="middle" width="100%" height="100%">
+<div style="height:${session.get("tableHeight")}px;overflow: auto;">
+<table class="t1" cellspacing="0" cellpadding="0">
+<thead>
+<tr><td colspan="26" class="title">用户信息</td></tr>
+<tr height="22">
+<td width="3%"><input type="checkbox" id="chkall"/></td>
+<td width="12%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','truename').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+真实姓名</a></td>
+<td width="12%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','username').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+用户名</a></td>
+<td width="12%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','tel').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+联系电话</a></td>
+<td width="12%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','mobile').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+移动电话</a></td>
+<td width="6%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','login').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+登入次数</a></td>
+<td width="10%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','status').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+状态</a></td>
+<td width="8%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','role.name').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+用户组</a></td>
+<td width="12%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','row.useIp').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+IP绑定</a></td>
+<td width="13%">&{'option.title'}</td>
+</tr></thead>
+<tbody>
+#{list pagedList.list,as:'row'}
+<tr id="tr_${row.id}" class="row">
+<td><input type="checkbox" name="arrayid" value="${row.id}"/></td>
+<td>${row.truename}&nbsp;</td>
+<td>${row.username}&nbsp;</td>
+<td>${row.tel}&nbsp;</td>
+<td>${row.mobile}&nbsp;</td>
+<td>${row.login}&nbsp;</td>
+<td>#{if row.status==0}停用#{/if}#{else}使用#{/else}</td>
+<td>${row.role.name}&nbsp;</td>
+<td>#{if row.useIp != true}<font color="red" style="font-weight: bolder">未绑定</font>#{/if}#{if row.useIp == true}<font color="green" style="font-weight: bolder">已绑定</font>#{/if}</td>
+<td>
+#{if roleMap['detail']!=0}
+<a href="javascript:void(0);" onclick="open_dialog('@@{detail(row.id)}',1200,500)">查看</a>
+#{/if}
+#{if roleMap['show']!=0}
+<a href="javascript:void(0);" onclick="open_dialog('@@{show(row.id)}',1200,500)">修改</a>
+#{/if}
+#{if roleMap['delete']!=0}
+<a href="javascript:void(0);" class="option_delete" url="@@{delete(row.id)}">删除</a>
+#{/if}
+&nbsp;
+</td>
+</tr>
+#{/list}
+#{list 0..Integer.parseInt(session.get("pageSize"))-pagedList.list.size()+10,as:'i'}
+<tr id="tr0" class="row">
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+#{/list}
+</tbody>
+</table>
+</div>
+</td></tr></tbody></table>
+<div id="toolbar">
+#{if roleMap['blank']!=0}
+<input type="button" class="btn01" value="添加" onclick="open_dialog('@@{blank()}${params.pid?"?pid="+params.pid:""}',1200,500)"/>
+#{/if}
+#{if roleMap['delete']!=0}
+<input type="submit" class="btn01" value="删除"/>
+#{/if}
+#{page pagedList /}
+</div>
+</form>

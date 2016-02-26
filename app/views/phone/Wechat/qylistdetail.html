@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<title>到岗详情</title>
+<link href="/public/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/public/js/jquery-1.8.0.min.js"></script><script src="/public/js/myjq.js" type="text/javascript"></script>
+<script src="/public/js/loading.js"></script>
+    <script src="/public/javascripts/fancybox2/jquery.fancybox.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/public/javascripts/fancybox2/jquery.fancybox.css">
+</head>
+<style>
+.state_select{
+	position: inherit;
+	left: 0;
+	right: 0;
+	top: 0;
+	overflow: hidden;
+	z-index: 10000;
+}
+</style>
+<div class="state_select" >
+	<div class="tit2" id="stateInput"><span>${yearMonth}-${companyName}到岗详情</span></div>
+</div>
+	<div class="warning_history_box clear ">
+		<div class="warning_history_time clear " id="table1" style="overflow-y: scroll;">
+	    	<ul><span>姓名</span></ul>
+	    	 #{list pagedList.list,as:'row'}
+	    	<ul><li><a onclick="open_url_custom('/phone/wechat/index?employeeName=${row.employeeName}&yearMonth=${row.yearMonth}&projectItemName=${row.projectItemName}')">${row.employeeName}</a></li></ul>
+	    	#{/list} 
+	        <!-- <ul><li><em>2015/07/16<br />14:29:56</em></li></ul>
+	        <ul><li><em>2015/07/16<br />14:29:56</em></li></ul> -->
+	    </div>
+	    <div class="warning_history_con clear " id="sourceDiv" onscroll="document.getElementById('targetDiv').scrollLeft = this.scrollLeft;">
+	    	<div class="warning_history_table clear " id="table2" style="overflow-x: scroll;">
+	        	<ul><span><i></i>所在项目/标段</span><span><i></i>岗位</span><span><i></i>时间</span><span><i></i>请假天数</span><span><i></i>停工天数</span><span><i></i>实际到岗天数</span><span><i></i>要求到岗天数</span><span><i></i>缺勤天数</span><span><i></i>月度扣分</span><span><i></i>年度扣分</span></ul>
+	        	#{list pagedList.list,as:'row'}
+					<ul><li><a onclick="open_url_custom('/phone/wechat/detailproject?projectItemName=${row.projectItemName}')" >${row.projectItemName}</a></li><li>${row.jobName}</li><li>${row.yearMonth}</li><li>${row.leaveDay}</li><li>${row.pauseDay}</li><li>${row.attendanceRate}</li><li>${row.requireAttendanceRate}</li><li>${row.absenceDay}</li><li>${row.deductionMonthScore}</li>
+	            	<li><a onclick="open_url_custom('/phone/wechat/rylistdetail?employeeName=${row.employeeName}&yearMonth=${row.yearMonth}')">${row.deductionYearScore}</a></li>
+	            	</ul>	
+	            	            #{/list} 
+	            <!-- <ul><li>打开</li><li>报警ER02</li><li>打开</li><li>描述</li></ul>
+	            <ul><li>打开</li><li>报警ER02</li><li>打开</li><li>描述</li></ul> -->
+	        </div>
+	    </div>
+	    	 
+	</div>
+	<!--顶部浮动-->
+<div class="warning_history_tit clear ">
+	<div class="warning_history_time clear ">
+    	<ul><span>姓名</span></ul>
+    </div>
+    <div class="warning_history_con clear " id="targetDiv"  onscroll="document.getElementById('sourceDiv').scrollLeft = this.scrollLeft;">
+    	<div class="warning_history_table clear " style="overflow-x: auto;">
+	        	<ul><span><i></i>所在项目/标段</span><span><i></i>岗位</span><span><i></i>时间</span><span><i></i>请假天数</span><span><i></i>停工天数</span><span><i></i>实际到岗天数</span><span><i></i>要求到岗天数</span><span><i></i>缺勤天数</span><span><i></i>月度扣分</span><span><i></i>年度扣分</span></ul>
+        </div>
+    </div>
+</div>
+
+
+<!--nav-->
+
+<div class="mask"></div>
+</body>
+</html>
+<script>
+	//刚进入页面
+	$(function(){
+		loadingcontent();
+		setTimeout('$("#loading").remove();',1000);
+		
+	})
+	
+	function open_url_custom(url){
+    $.fancybox.open({
+        href: url,
+		type: 'iframe',
+		fitToView	: true,
+		width		: '92%',
+		height		: '78%',
+		autoSize	: false,
+		closeClick	: false,
+		closeBtn    : true,
+		openEffect	: 'none',
+		closeEffect	: 'none',
+		helpers:  {
+	        overlay : {
+				closeClick : false
+	    	}
+    	},
+    	 padding : 1,
+    	 tpl:{
+    	 	closeBtn : '<a title="Close" class="fancybox-item fancybox-close" href="javascript:;" id="fancyCloseBtn"></a>'
+    	 }
+    });
+}
+</script>

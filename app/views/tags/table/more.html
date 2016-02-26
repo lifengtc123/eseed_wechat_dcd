@@ -1,0 +1,127 @@
+%{
+	width = _arg.width?_arg.width+"px":"100%"
+	height= _arg.height?_arg.height:200
+	def fieldsHandler = [:]
+	if(_body) {
+		_body.setProperty('fieldsHandler', fieldsHandler);
+}%
+		#{doBody as:'skip' /}
+%{
+	}
+}%
+<fieldset style="border: 1px solid #808080;">
+	<legend>&{_arg.object + '.form'}</legend>
+	<div style="height:${height}px;width:${width};overflow: auto;">
+	<table width="95%" align="center" id="${_arg.object}_table">
+	<thead>
+	<tr>
+		<td width="80">编号</td>
+		%{ _arg.fields.eachWithIndex(){row,i -> }%
+		<td>&{_arg.object+'.' + row}</td>
+		%{ } }%
+		#{if !_arg.show}
+		<td><a href="javascript:void('0')" onclick="add_${_arg.object}();"><img src="/public/images/add.jpg"/></a></td>
+		#{/if}
+	</tr>
+	</thead>
+	<tbody id="${_arg.object}_tbody" class="${_arg.object}s">
+	%{ if (_arg.list){ 
+		_arg.list.eachWithIndex(){row,i->
+	}%
+	<tr>
+		<td>${i+1}</td>
+		%{ _arg.fields.eachWithIndex(){field,j -> }%
+		<td>
+		%{ if(fieldsHandler[field]) { }%
+		%{
+			def handler = fieldsHandler[field];
+			handler.setProperty('field', object);
+			handler.setProperty('row', row);
+		}%
+		#{doBody body:handler /}
+		%{
+			handler.setProperty('field', null);
+			handler.setProperty('row', null);
+		}%
+		%{ } else { }%
+		#{table.input _arg,i:j,objectName:_arg.object,field:field,label:false,o:_arg.object,currentObject:row/}
+		%{ } }%
+		</td>
+		%{ } }%
+		#{if !_arg.show}
+		<td>
+		<a href="javascript:void(0)" onclick="del_${_arg.object}(this,'${row['id']}');"><img src="/public/images/del.jpg"/></a></td>
+		#{/if}
+		<input type="hidden" name="${_arg.object}.id" value="${row['id']}"/>
+	</tr>
+	%{ }}else{ }%
+	<tr>
+		<td>1</td>
+		%{ _arg.fields.eachWithIndex(){field,i -> }%
+		<td>
+		%{ if(fieldsHandler[field]) { }%
+		%{
+			def handler = fieldsHandler[field];
+			handler.setProperty('field', object);
+			handler.setProperty('row', row);
+		}%
+		#{doBody body:handler /}
+		%{
+			handler.setProperty('field', null);
+			handler.setProperty('row', null);
+		}%
+		%{ } else { }%
+		#{table.input _arg,i:i,objectName:_arg.object,field:field,label:false/}
+		%{ } }%
+		</td>
+		%{ } }%
+		#{if !_arg.show}
+		<td><input type="hidden" value="" name="${_arg.object}.id"/>
+		<a href="javascript:void(0)" onclick="del_${_arg.object}(this,0);"><img src="/public/images/del.jpg"/></a></td>
+		#{/if}
+	</tr>
+	%{}}%
+	</tbody>
+	</table>
+	</div>
+</fieldset>
+<script type="text/html" id="${_arg.object}_tmpl">
+<tr>
+	<td>2</td>
+	%{ _arg.fields.eachWithIndex(){field,i -> }%
+	<td>
+	#{table.input _arg,i:i,objectName:_arg.object,field:field,label:false/}	
+	</td>
+	%{ } }%
+	<td><input type="hidden" value="" name="${_arg.object}.id"/>
+	<a href="javascript:void(0)" onclick="del_${_arg.object}(this,0);"><img src="/public/images/del.jpg"/></a></td>
+</tr>
+</script>
+<script>
+var url = '${_arg.delete}';
+function add_${_arg.object}(){
+	$('#${_arg.object}_tbody').append(tmpl('${_arg.object}_tmpl'));
+	func_table_sort("${_arg.object}_tbody");
+	try{
+		callback_add_${_arg.object}();
+	}catch(e){}
+}
+
+function del_${_arg.object}(obj,id){
+	if(id>0&&url!=""){
+		if(!confirm("确定删除你选择的数据,删除之后将不能恢复?")) return false;
+		var result = delete_form(url,id);
+		$(obj).parent().parent().remove();
+		if($("#${_arg.object}_tbody>tr").length==0){
+			add_${_arg.object}();
+		}
+	}else{
+		if($("#${_arg.object}_tbody>tr").length==1){
+			alert("最后一行不能删除!");
+    		return;
+		}
+		$(obj).parent().parent().remove();
+	}
+	func_table_sort("${_arg.object}_tbody");
+}
+</script>

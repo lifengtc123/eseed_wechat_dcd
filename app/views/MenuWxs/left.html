@@ -1,0 +1,15 @@
+#{extends 'main_tree.html'/}
+<script> 
+d = new dTree('d');
+d.init("/public/images");
+d.add("0","ROOT",'菜单列表');
+#{list list,as:'menu'}
+#{if menu.parent.id==1}
+	d.add('${menu.id}','0','${menu.name}','/MenuWxs/list_pid?pid=${menu.id}','','listframe');
+#{/if}
+#{else}
+	d.add('${menu.id}','${menu.parent.id}','${menu.name}','/MenuWxs/list_pid?pid=${menu.id}','','listframe');
+#{/else}
+#{/list}
+document.write(d);
+</script> 

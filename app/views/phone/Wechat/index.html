@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="/public/weiwang/css/style2.css" />
+    <script type="text/javascript" src="/public/js/jquery-1.10.2.min.js"></script>
+
+    <script src="/public/js/loading2.js"></script>
+
+    <title>出勤明细</title>
+</head>
+<body>
+<header>
+    <div class="back">${employeeName}</div>
+</header>
+
+<div class="box">
+    <a class="date">${year}年${month}月</a>
+    <div class="table">
+        <ul class="tit">
+            <li>日</li>
+            <li>一</li>
+            <li>二</li>
+            <li>三</li>
+            <li>四</li>
+            <li>五</li>
+            <li>六</li>
+        </ul>
+        %{
+        	for(int i=0;i<amount;i++){
+        }%
+        <ul>
+        	#{list attList,as:'row'}
+        	#{if row_index>=(1+i*7)&&row_index<=(7+i*7)}
+        	#{if row.status==0}
+        	<li class="work"><span>${row.day}</span></li>
+        	#{/if}
+        	#{elseif row.status==1}
+        	<li class="work half"><span>${row.day}</span></li>
+        	#{/elseif}
+        	#{elseif row.status==2}
+        	<li class="work half2"><span>${row.day}</span></li>
+        	#{/elseif}
+        	#{elseif row.status==3}
+        	<li class="holiday"><span>${row.day}</span></li>
+        	#{/elseif}
+        	#{elseif row.status==4}
+        	<li class="holiday half"><span>${row.day}</span></li>
+        	#{/elseif}
+        	#{elseif row.status==5}
+        	<li class="holiday half2"><span>${row.day}</span></li>
+        	#{/elseif}
+        	#{elseif row.status==6}
+        	<li class="stop"><span>${row.day}</span></li>
+        	#{/elseif}
+        	#{else}
+        	<li class="stip"><span>${row.day}</span></li>
+        	#{/else}
+        	#{/if}
+            #{/list}
+        </ul>
+        %{
+        	}
+        }%
+    </div>
+    <div class="mark">
+        <ul>
+            <li><span class="stop"></span>停工</li>
+            <li><span class="holiday"></span>请假</li>
+            <li><span class="work"></span>上班</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
+<script>
+	//刚进入页面
+	$(function(){
+		loadingcontent();
+		setTimeout('$("#loading").remove();',1000);
+		
+	})
+</script>

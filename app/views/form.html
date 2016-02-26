@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>#{get 'title'/}</title>
+    <base target="_self"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/mainNew.css'}" />
+    <script src="@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
+    <script src="@{'/public/javascripts/My97DatePicker/WdatePicker.js'}" type="text/javascript" charset="utf-8"></script>
+    <script src="/public/javascripts/fast.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="@{'/public/javascripts/jquery.autocomplete.js'}" type="text/javascript" charset="utf-8"></script>
+	<script src="/public/javascripts/editor/kindeditor.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="@{'/public/stylesheets/jquery.autocompleteNew.css'}" type="text/css"></link>
+    <script src="@{'/public/javascripts/ejohn-templating.js'}" type="text/javascript" charset="utf-8"></script>
+    <script src="@{'/public/javascripts/region.js'}" type="text/javascript" charset="utf-8"></script>
+	<script src="@{'/public/javascripts/PCASClass.js'}" type="text/javascript" charset="utf-8"></script>
+    <script src="@{'/public/javascripts/jquery.itemdetail.js'}" type="text/javascript" charset="utf-8"></script>
+    <script src="@{'/public/javascripts/jquery.itemgrid.js'}" type="text/javascript" charset="utf-8"></script>
+    <script src="@{'/public/javascripts/lhgdialog.min.js'}" type="text/javascript" charset="utf-8"></script>
+    <script src="@{'/public/javascripts/jquery.form.js'}" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="/public/javascripts/jquery.uploadify.v2.1.4.min.js"></script>
+    <script type="text/javascript" src="/public/javascripts/jquery.uploadify.v2.1.4.js"></script>
+    <link rel="stylesheet" href="@{'/public/stylesheets/163UploadNew.css'}" type="text/css"></link>
+    <link rel="stylesheet" href="/public/stylesheets/css/jquery.autocomplete.css" type="text/css"></link>
+    <script src="/public/javascripts/fast.js" type="text/javascript" charset="UTF-8"></script>
+    #{get 'moreStyles' /}
+    #{get 'moreScripts' /}
+    
+    <style>
+    fieldset {background-color:#ececec;}
+    </style>
+</head>
+<body style="background-color:#f6f6f6;">
+<!--
+<table cellpadding=0 cellspacing=0 width=100%><tr><td class="formTitle">#{get 'title' /}</td></tr>
+<tr><td background="../public/images/win_top_line.gif" height="2"></td></tr><div id="message" style="display: none;">
+</table>
+-->
+<div style="padding:8px;">
+#{doLayout /}
+</div>
+</body>
+</html>

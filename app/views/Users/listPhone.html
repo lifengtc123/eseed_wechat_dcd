@@ -1,0 +1,110 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>通讯录</title>
+<link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/listStyle.css">
+</head>
+
+<body style="overflow-x: hidden">
+ <!-- 最外层的table -->
+      <table height="100%" cellspacing="4" cellpadding="0" width="100%">
+        <tbody>
+          <tr>
+            <td valign="top" align="middle" width="100%" height="100%">
+              <table style="BORDER-COLLAPSE: collapse" bordercolor="#a5b6cc" height="100%" cellspacing="0" cellpadding="0" width="100%" border="1">
+                <tbody>
+                  <tr>
+                    <td valign="top" width="100%" height="100%"><!-- 内容 -->
+                      <table cellspacing="0" cellpadding="0" width="100%">
+                        <thead>
+                          <tr>
+                            <td  height="100%">
+                              <table cellspacing="0" cellpadding="0" width="100%">
+                  <!-- 标题 -->
+                  <tr height="22">
+                    <td valign="top">
+                        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                          <tr height="22">
+                            <td class="mainUp" valign="middle" align="center" width="12%">部门</td>
+                            <td class="mainUp" valign="middle" align="center" width="8%">人 员</td>
+                            <td class="mainUp" valign="middle" align="center" width="10%">手机</td>
+                            <td class="mainUp" valign="middle" align="center" width="8%">电话</td>
+                            <td class="mainUp" valign="middle" align="center" width="6%">短号</td>
+                            <td class="mainUp" valign="middle" align="center" width="12%">Email</td>
+                            <td class="mainUp" valign="middle" align="center" width="8%">人 员</td>
+                            <td class="mainUp" valign="middle" align="center" width="10%">手机</td>
+                            <td class="mainUp" valign="middle" align="center" width="8%">电话</td>
+                            <td class="mainUp" valign="middle" align="center" width="6%">短号</td>
+							<td class="mainUp" valign="middle" align="center" width="12%">Email</td>
+                          </tr>
+                         
+						  <!-- 数据 -->
+                          #{list departList,as:'depart'}
+                          #{set n = 1 /}
+                          <tr>
+                            <td id="userData" class="outdiv" width="12%" style="border-right-color:red;"><div align="center">${depart.name}</div></td>
+                            <td colspan="12">
+							<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" >
+							
+							#{list userList,as:'user'}                   
+                            #{if depart.id == user.depart.id}                          
+                            #{if n%2==1}
+		                     <tr onMouseOver="this.bgColor='#FFF5DC'" onMouseOut="this.bgColor='#ffffff'" height=20>		                   
+		                    #{/if}  
+		                          <td class="outdiv" width="8%" id="tr${user.id}">${user.truename}&nbsp;</td>
+		                          <td id="userData" class="outdiv" width="10%">${user.mobile}&nbsp;</td>
+		                          <td id="userData" class="outdiv" width="8%">${user.tel}&nbsp;</td>
+		                          <td id="userData" class="outdiv" width="6%">${user.cornet}&nbsp;</td>
+								  <td id="userData" class="outdiv" #{if n%2!=0} style="border-right-color:red; "<#{/if} width="12%">${user.email}&nbsp;</td>
+								  
+							 #{if n%2==0}
+                              </tr>
+                             #{/if}
+                             
+                             #{set n = n+1 /} 
+							 #{/if}
+							 #{/list}
+							 
+								#{if n%2==0}
+                                  <td id="userData" class="outdiv" width="8%">&nbsp;</td>
+		                          <td id="userData" class="outdiv" width="10%">&nbsp;</td>
+		                          <td id="userData" class="outdiv" width="8%">&nbsp;</td>
+		                          <td id="userData" class="outdiv" width="6%">&nbsp;</td>
+								  <td id="userData" class="outdiv" width="12%">&nbsp;</td>
+								  </tr>
+								#{/if}
+								#{if n%2==1} 
+								<tr>
+								  <td id="userData" class="outdiv" width="8%">&nbsp;</td>
+		                          <td id="userData" class="outdiv" width="10%">&nbsp;</td>
+		                          <td id="userData" class="outdiv" width="8%">&nbsp;</td>
+		                          <td id="userData" class="outdiv" width="6%">&nbsp;</td>
+								  <td id="userData" class="outdiv" style="border-right-color:red; " width="12%">&nbsp;</td>
+								  <td id="userData" class="outdiv" width="8%">&nbsp;</td>
+		                          <td id="userData" class="outdiv" width="10%">&nbsp;</td>
+		                          <td id="userData" class="outdiv" width="8%">&nbsp;</td>
+		                          <td id="userData" class="outdiv" width="6%">&nbsp;</td>
+								  <td id="userData" class="outdiv" width="12%">&nbsp;</td>
+								</tr>
+								#{/if}
+                              </table>
+                            </td>
+                          </tr>       
+						  #{/list}
+                   
+                              </table>
+                                  <!-- 底部 --></td>
+                          </tr>                 
+                        </thead>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+                <!-- 最外层的table -->
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</body>
+</html>

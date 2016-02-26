@@ -1,0 +1,40 @@
+* { margin: 0; padding: 0; list-style: none; }
+
+body, button, input, select, textarea { font-family: "Microsoft YaHei", "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif; font-size: 16px; line-height: 20px; }
+
+header { height: 2.77em;  background: #12c2e8; position: relative; color: #fff; }
+header .back { font-size: 1em;
+height: 2.77em;
+line-height: 2.77em;
+background: rgb(18,194,232);
+color: #FFFFFF;
+display: block;
+margin: 0 2.46em;
+background-size: 0.6154em auto; }
+header .back span { padding: 0 16px; }
+
+.box { overflow: hidden; margin: 20px; }
+.box .date { display: block; overflow: hidden; height: 2.5em; line-height: 2.5em; background: #12c2e8; color: #fff; text-align: center; position: relative; }
+.box .date .arrow-down { position: absolute; right: 0.625em; top: 50%; margin-top: -0.1875em; z-index: 1; width: 0; height: 0; border-left: 0.375em solid transparent; border-right: 0.375em solid transparent; border-top: 0.375em solid #fff; }
+.box .table { display: table; width: 100%; }
+.box .table ul { display: table-row; }
+.box .table li { box-sizing: border-box;padding-left:0em; display: table-cell; width: 14.28571%; text-align: center; font-size: 0.8125em; height: 2.5em; line-height: 2.5em; border-bottom: solid 1px #acacac; border-right: solid 1px #acacac; color: #000; position: relative; }
+.box .table li:after { float: left; width: 100%; height: 100%; content: ""; }
+.box .table li.work:after { background: #bcf3f2; }
+.box .table li.holiday:after { background: #fcdaa5; }
+.box .table li.stop:after { background: #f8845b; }
+.box .table li.half:after { width: 50%; }
+.box .table li.half2:after { width: 50%; float:right;}
+.box .table li span { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; font-size: 1em;}
+.box .table li:first-child { border-left: solid 1px #acacac; }
+.box .table .tit { background: #f0f0f0; }
+.box .table .tit li { border-right: none; border-left: none; }
+.box .mark { margin: 20px 0; overflow: hidden; }
+.box .mark ul{ display: block; }
+.box .mark li { float: left; width: 33.33333%;padding-left:0em; font-size: 1em; overflow: hidden; }
+.box .mark span { display: inline-block; width: 1.5em; height: 1.5em; vertical-align: middle; margin-top: -0.125em; margin-right: 0.3125em; }
+.box .mark span.work { background: #bcf3f2; }
+.box .mark span.holiday { background: #fcdaa5; }
+.box .mark span.stop { background: #f8845b; }
+
+/*# sourceMappingURL=style.css.map */

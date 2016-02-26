@@ -1,0 +1,56 @@
+%{
+	if(_object)currentObject = _object
+    else currentObject = _caller.object
+    objectName = currentObject.getClass().getSimpleName()
+    objectName = objectName[0].toLowerCase() + objectName[1..-1]
+	def fieldsHandler = [:]
+	if(_body) {
+		_body.setProperty('fieldsHandler', fieldsHandler);
+}%
+		#{doBody as:'skip' /}
+%{
+	}
+}%
+<div class="form">
+%{j=1}%
+%{ _arg.fields.eachWithIndex(){field,i -> }%
+#{if field=="form_s"}
+#{if j>1}<br/>#{/if}
+<fieldset style="border: 1px solid #808080;">
+	<legend>&{objectName+'.form'+j}</legend>
+%{j=j+1}%
+#{/if}
+#{elseif field=="form_e"}
+</fieldset>
+#{/elseif}
+#{else}
+	%{ if(fieldsHandler[field]) { }%
+		%{
+			def handler = fieldsHandler[field];
+			handler.setProperty('field', object);
+		}%
+		#{doBody body:handler /}
+		%{
+			handler.setProperty('field', null);
+		}%
+	%{ } else { }%
+		<div class="field" style="width: ${_arg.widths[i]}%;">
+		#{table.input _arg,i:i,objectName:"object",field:field,currentObject:currentObject,inputName:objectName/}
+		</div>
+	%{}}%
+	%{ } }%
+#{/else}
+%{ 
+if(fieldsHandler['moretable']) { 
+def handler = fieldsHandler['moretable'];
+}%
+#{doBody body:handler/}
+%{ } }%
+<p class="buttons">
+	#{ifnot _arg.show}
+	<input type="hidden" name="${objectName+".id"}" value="${currentObject ? currentObject['id'] : ''}"/>
+	<input type="submit" name="_save" value="&{'option.save'}" class="btn01"/>
+	#{/ifnot}
+	<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/> 
+</p>
+</div>

@@ -1,0 +1,12 @@
+#{field _object + '.' + _name}
+	#{if _label}
+	<label for="${field.id}">
+		&{_inputName + "." + _name}
+	</label>
+	#{/if}
+	<input id="${field.id}" class="${field.errorClass} txt01" type="checkbox" name="${field.name}" value="true"${_value?'checked="true"'.raw():""}/>
+	<input type="hidden" name="${field.name}" value="false" />
+	#{ifError field.name}
+		<span class="error">${field.error}</span>
+	#{/ifError}
+#{/field}

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<!-- saved from url=(0124)https://mp.weixin.qq.com/cgi-bin/appmsg?begin=0&count=10&t=media/appmsg_list&type=10&action=list&lang=zh_CN&token=1515587834 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="renderer" content="webkit"><meta charset="utf-8">
+<title></title>
+<style type="text/css" media="screen">
+body {
+	overflow-y: auto;
+}
+</style>
+	  <script src="@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
+<link onerror="wx_loaderror(this)" rel="stylesheet" type="text/css"
+	href="/public/weixin/css/base25404f.css">
+<link onerror="wx_loaderror(this)" rel="stylesheet" type="text/css"
+	href="/public/weixin/css/media_list238f6d.css">
+<link rel="stylesheet" type="text/css"
+	href="/public/weixin/css/media2567db.css">
+<link onerror="wx_loaderror(this)" rel="stylesheet" type="text/css"
+	href="/public/weixin/css/lib22f1a9.css">
+<style>
+</style>
+</head>
+
+<div id="body" class="body page_media_list page_appmsg_list">
+
+	<div id="js_container_box" class="container_box cell_layout side_l">
+
+		<div class="col_main">
+			<div class="main_hd">
+				<h2>素材管理</h2>
+				<div class="title_tab" id="topTab">
+					<ul class="tab_navs title_tab" data-index="0">
+
+
+
+
+						<li data-index="0" class="tab_nav first js_top selected"
+							data-id="media10"><a href="@@{listblank()}">图文消息</a></li>
+
+
+
+						<li data-index="1" class="tab_nav  js_top" data-id="media2"><a
+							href="@@{ImgStocks.listimg()}">图片库</a></li>
+
+
+
+						<!--  <li data-index="2" class="tab_nav  js_top" data-id="media3"><a href="">语音</a></li>
+    <li data-index="3" class="tab_nav  js_top" data-id="media15"><a href="">视频</a></li>-->
+
+
+					</ul>
+				</div>
+			</div>
+			<form action="@@{listblank()}" method="post" id="form1">
+				<div class="main_bd ">
+					<div class="search_bar dn" id="searchDiv" style="display: block;">
+						<span class="frm_input_box search with_del append "> <a
+							class="del_btn" href="javascript:" id="searchCloseBt" onclick="clearseach()"><i
+								class="icon_search_del"></i>&nbsp;
+						</a> 
+						<a id="searchBt" href="javascript:" class="frm_input_append" onclick="subseach()"><i
+								class="icon16_common search_gray">搜索</i>&nbsp;</a> 
+								<input id="keyInput" name="search" type="text" placeholder="标题/作者/摘要" value=""
+							class="frm_input">
+						</span>
+					</div>
+				</form>
+				<div class="sub_title_bar">
+					<div class="info">
+						<h3 id="page_title">
+							<span id="query_tips">图文消息列表</span>(共<span id="js_listCount">${newsinfos!=null?"${newsinfos?.size()}":"0"}</span>个)
+						</h3>
+					</div>
+				</div>
+				%{
+				 i = newsinfos.size()/3;
+				 c=0;
+				}%
+				<div class="appmsg_list" id="appmsgList">
+					<div class="appmsg_col tj_item">
+						<div class="inner" id="appmsgList1">
+							<span class="create_access jsCreate"><i
+								class="icon36_common add_gray"></i> <a
+								href="@@{blankOne()}"><i
+									class="icon_appmsg_create"></i><strong>单图文消息</strong></a> <a
+								href="@@{blankMany()}"><i
+									class="icon_appmsg_create multi"></i><strong>多图文消息</strong></a></span>
+							
+							
+							
+							#{list newsinfos,as:'newsinfos1'}
+									#{if newsinfos1_index<i+1}
+										%{
+										 c+=1;
+										}%
+										#{if newsinfos1.type==0}
+										#{list newsinfos1.imagetext,as:'row'}
+										<div id="appmsg200010472">
+											<div class="appmsg " data-id="200010472" data-fileid="200010471">
+												<div class="appmsg_content">
+			
+													<h4 class="appmsg_title">
+														<a href="@@{detailNews(row.id)}" target="_blank">${row?.title}</a>
+													</h4>
+													<div class="appmsg_info">
+														<em class="appmsg_date">${newsinfos1?.updated?.format("yyyy-MM-dd HH:mm")}</em>
+													</div>
+													<div class="appmsg_thumb_wrp">
+														<img src="${row?.imgStock?.path}" alt=""  class="appmsg_thumb">
+													</div>
+													<p class="appmsg_desc">${row?.summary}</p>
+			
+												</div>
+			
+												<div class="appmsg_opr">
+													<ul>
+														<li class="appmsg_opr_item grid_item size1of2"><a
+															class="js_tooltip" href="@@{blankOne(row?.newsinfo?.id)}" data-tooltip="编辑">&nbsp;<i
+																class="icon18_common edit_gray">编辑</i></a></li>
+														<li class="appmsg_opr_item grid_item size1of2 no_extra">
+															<a class="js_del no_extra js_tooltip" onclick="ondelect(this)" data-id="${newsinfos1.id}"
+															href="javascript:void(0);" data-tooltip="删除">&nbsp;<i
+																class="icon18_common del_gray">删除</i></a>
+														</li>
+													</ul>
+												</div>
+			
+			
+											</div>
+										</div>
+										#{/list}
+										#{/if}
+										#{if newsinfos1.type==1}
+											<div id="appmsg10000006">
+												<div class="appmsg multi" data-id="10000006"
+													data-fileid="10000003">
+													<div class="appmsg_content">
+				
+														<div class="appmsg_info">
+															<em class="appmsg_date">${newsinfos1?.updated?.format("yyyy-MM-dd HH:mm")}</em>
+														</div>
+														#{list newsinfos1.imagetext,as:'row'}
+														#{if row_index==1}
+														<div class="cover_appmsg_item">
+															<h4 class="appmsg_title">
+																<a href="@@{detailNews(row.id)}" target="_blank">${row?.title}</a>
+															</h4>
+															<div class="appmsg_thumb_wrp">
+																<img src="${row?.imgStock?.path}"  alt=""
+																	class="appmsg_thumb">
+															</div>
+														</div>
+														#{/if}
+														#{else}
+														<div class="appmsg_item">
+															<img src="${row?.imgStock?.path}" " alt=""
+																class="appmsg_thumb">
+															<h4 class="appmsg_title">
+																<a href="@@{detailNews(row.id)}" target="_blank">${row?.title}</a>
+															</h4>
+														</div>
+														#{/else}
+													#{/list}
+				
+													</div>
+				
+													<div class="appmsg_opr">
+														<ul>
+															<li class="appmsg_opr_item grid_item size1of2"><a
+																class="js_tooltip" href="@@{blankMany(row?.newsinfo?.id)}" data-tooltip="编辑">&nbsp;<i
+																	class="icon18_common edit_gray">编辑</i></a></li>
+															<li class="appmsg_opr_item grid_item size1of2 no_extra">
+																<a class="js_del no_extra js_tooltip" onclick="ondelect(this)" data-id="${newsinfos1.id}"
+																href="javascript:void(0);" data-tooltip="删除">&nbsp;<i
+																	class="icon18_common del_gray">删除</i></a>
+															</li>
+														</ul>
+													</div>
+				
+				
+												</div>
+											</div>
+										#{/if}
+									#{/if}
+							#{/list}
+							
+							
+						</div>
+					</div>
+					&nbsp;
+					<div class="appmsg_col tj_item">
+						<div class="inner" id="appmsgList2">
+							#{list newsinfos,as:'newsinfos2'}
+									#{if (2*i)+1>newsinfos2_index&&newsinfos2_index>(c)}
+										%{
+										 c+=1;
+										}%
+										#{if newsinfos2.type==0}
+										#{list newsinfos2.imagetext,as:'row'}
+										<div id="appmsg200010472">
+											<div class="appmsg " data-id="200010472" data-fileid="200010471">
+												<div class="appmsg_content">
+			
+													<h4 class="appmsg_title">
+														<a href="@@{detailNews(row.id)}" target="_blank">${row?.title}</a>
+													</h4>
+													<div class="appmsg_info">
+														<em class="appmsg_date">${newsinfos2?.updated?.format("yyyy-MM-dd HH:mm")}</em>
+													</div>
+													<div class="appmsg_thumb_wrp">
+														<img src="${row?.imgStock?.path}" " alt="" class="appmsg_thumb">
+													</div>
+													<p class="appmsg_desc">${row?.summary}</p>
+			
+												</div>
+			
+												<div class="appmsg_opr">
+													<ul>
+														<li class="appmsg_opr_item grid_item size1of2"><a
+															class="js_tooltip" href="@@{blankOne(row?.newsinfo?.id)}" data-tooltip="编辑">&nbsp;<i
+																class="icon18_common edit_gray">编辑</i></a></li>
+														<li class="appmsg_opr_item grid_item size1of2 no_extra">
+															<a class="js_del no_extra js_tooltip" onclick="ondelect(this)" data-id="${newsinfos2.id}"
+															href="javascript:void(0);" data-tooltip="删除">&nbsp;<i
+																class="icon18_common del_gray">删除</i></a>
+														</li>
+													</ul>
+												</div>
+			
+			
+											</div>
+										</div>
+										#{/list}
+										#{/if}
+										#{if newsinfos2.type==1}
+											<div id="appmsg10000006">
+												<div class="appmsg multi" data-id="10000006"
+													data-fileid="10000003">
+													<div class="appmsg_content">
+				
+														<div class="appmsg_info">
+															<em class="appmsg_date">${newsinfos2?.updated?.format("yyyy-MM-dd HH:mm")}</em>
+														</div>
+														#{list newsinfos2.imagetext,as:'row'}
+														#{if row_index==1}
+														<div class="cover_appmsg_item">
+															<h4 class="appmsg_title">
+																<a href="@@{detailNews(row.id)}" target="_blank">${row?.title}</a>
+															</h4>
+															<div class="appmsg_thumb_wrp">
+																<a href="@@{detailreport(row.id)}" target="blank"><img src="${row?.imgStock?.path}" title="点击查看报表-总分享数：${row?.shareNumber} 总浏览数：${row?.browseNumber}" alt=""
+																	class="appmsg_thumb"></a>
+															</div>
+														</div>
+														#{/if}
+														#{else}
+														<div class="appmsg_item">
+															<a href="@@{detailreport(row.id)}" target="blank"><img src="${row?.imgStock?.path}" title="点击查看报表-总分享数：${row?.shareNumber} 总浏览数：${row?.browseNumber}" alt=""
+																class="appmsg_thumb"></a>
+															<h4 class="appmsg_title">
+																<a href="@@{detailNews(row.id)}" target="_blank">${row?.title}</a>
+															</h4>
+														</div>
+														#{/else}
+													#{/list}
+				
+													</div>
+				
+													<div class="appmsg_opr">
+														<ul>
+															<li class="appmsg_opr_item grid_item size1of2"><a
+																class="js_tooltip" href="@@{blankMany(row?.newsinfo?.id)}" data-tooltip="编辑">&nbsp;<i
+																	class="icon18_common edit_gray">编辑</i></a></li>
+															<li class="appmsg_opr_item grid_item size1of2 no_extra">
+																<a class="js_del no_extra js_tooltip" onclick="ondelect(this)" data-id="${newsinfos2.id}"
+																href="javascript:void(0);" data-tooltip="删除">&nbsp;<i
+																	class="icon18_common del_gray">删除</i></a>
+															</li>
+														</ul>
+													</div>
+				
+				
+												</div>
+											</div>
+										#{/if}
+									#{/if}
+							#{/list}
+						</div>
+					</div>
+					&nbsp;
+					<div class="appmsg_col">
+						<div class="inner" id="appmsgList3">
+							#{list newsinfos,as:'newsinfos3'}
+									#{if newsinfos3_index>(newsinfos.size()-c)+2}
+										#{if newsinfos3.type==0}
+										#{list newsinfos3.imagetext,as:'row'}
+										<div id="appmsg200010472">
+											<div class="appmsg " data-id="200010472" data-fileid="200010471">
+												<div class="appmsg_content">
+			
+													<h4 class="appmsg_title">
+														<a href="@@{detailNews(row.id)}" target="_blank">${row?.title}</a>
+													</h4>
+													<div class="appmsg_info">
+														<em class="appmsg_date">${newsinfos3?.updated?.format("yyyy-MM-dd HH:mm")}</em>
+													</div>
+													<div class="appmsg_thumb_wrp">
+														<img src="${row?.imgStock?.path}"  alt="" class="appmsg_thumb">
+													</div>
+													<p class="appmsg_desc">${row?.summary}</p>
+			
+												</div>
+			
+												<div class="appmsg_opr">
+													<ul>
+														<li class="appmsg_opr_item grid_item size1of2"><a
+															class="js_tooltip" href="@@{blankOne(row?.newsinfo?.id)}" data-tooltip="编辑">&nbsp;<i
+																class="icon18_common edit_gray">编辑</i></a></li>
+														<li class="appmsg_opr_item grid_item size1of2 no_extra">
+															<a class="js_del no_extra js_tooltip" onclick="ondelect(this)" data-id="${newsinfos3.id}"
+															href="javascript:void(0);" data-tooltip="删除">&nbsp;<i
+																class="icon18_common del_gray">删除</i></a>
+														</li>
+													</ul>
+												</div>
+			
+			
+											</div>
+										</div>
+										#{/list}
+										#{/if}
+										#{if newsinfos3.type==1}
+											<div id="appmsg10000006">
+												<div class="appmsg multi" data-id="10000006"
+													data-fileid="10000003">
+													<div class="appmsg_content">
+				
+														<div class="appmsg_info">
+															<em class="appmsg_date">${newsinfos3?.updated?.format("yyyy-MM-dd HH:mm")}</em>
+														</div>
+														#{list newsinfos3.imagetext,as:'row'}
+														#{if row_index==1}
+														<div class="cover_appmsg_item">
+															<h4 class="appmsg_title">
+																<a href="@@{detailNews(row.id)}" target="_blank">${row?.title}</a>
+															</h4>
+															<div class="appmsg_thumb_wrp">
+																<a href="@@{detailreport(row.id)}" target="blank"><img src="${row?.imgStock?.path}" title="点击查看报表-总分享数：${row?.shareNumber} 总浏览数：${row?.browseNumber}" alt=""
+																	class="appmsg_thumb"></a>
+															</div>
+														</div>
+														#{/if}
+														#{else}
+														<div class="appmsg_item">
+															<a href="@@{detailreport(row.id)}" target="blank"><img src="${row?.imgStock?.path}" title="点击查看报表-总分享数：${row?.shareNumber} 总浏览数：${row?.browseNumber}" alt=""
+																class="appmsg_thumb"></a>
+															<h4 class="appmsg_title">
+																<a href="@@{detailNews(row.id)}" target="_blank">${row?.title}</a>
+															</h4>
+														</div>
+														#{/else}
+													#{/list}
+				
+													</div>
+				
+													<div class="appmsg_opr">
+														<ul>
+															<li class="appmsg_opr_item grid_item size1of2"><a
+																class="js_tooltip" href="@@{blankMany(row?.newsinfo?.id)}" data-tooltip="编辑">&nbsp;<i
+																	class="icon18_common edit_gray">编辑</i></a></li>
+															<li class="appmsg_opr_item grid_item size1of2 no_extra">
+																<a class="js_del no_extra js_tooltip" onclick="ondelect(this)" data-id="${newsinfos3.id}"
+																href="javascript:void(0);" data-tooltip="删除">&nbsp;<i
+																	class="icon18_common del_gray">删除</i></a>
+															</li>
+														</ul>
+													</div>
+				
+				
+												</div>
+											</div>
+										#{/if}
+									#{/if}
+							#{/list}
+							</div>
+						</div>
+					</div>
+					
+					
+				</div>
+				<div class="empty_tips dn jsNoData">
+					无结果，请重新搜索或者查看<a href="javascript:;" id="reload">全部消息</a>
+				</div>
+				<div class="empty_tips dn jsInitEmpty">
+					<p>暂无素材</p>
+					<p>素材来源：通过微信用户上传给公众帐号</p>
+				</div>
+				<div class="tool_area">
+					<div class="pagination_wrp pageNavigator" style="display: none;">
+						<div class="pagination" id="wxPagebar_1430876152711">
+							<span class="page_nav_area"> <a href="javascript:void(0);"
+								class="btn page_first" style="display: none;"></a> <a
+								href="javascript:void(0);" class="btn page_prev"
+								style="display: none;"><i class="arrow"></i></a> <span
+								class="page_num"> <label>1</label> <span class="num_gap">/</span>
+									<label>1</label>
+							</span> <a href="javascript:void(0);" class="btn page_next"
+								style="display: none;"><i class="arrow"></i></a> <a
+								href="javascript:void(0);" class="btn page_last"
+								style="display: none;"></a>
+							</span>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="JS_TIPS page_tips " id="wxTips" style="opacity: 0.950727558556123;"><div class="inner"></div></div>
+<script type="text/html" id="js_editHtml">
+        <div><p>编辑名称</p><div class="frm_controls"><span class="frm_input_box frm_input_mid"><input type="text" class="frm_input"></span></div></div>
+    </script>
+<script type="text/html" id="js_deleteHtml">
+        确定删除此素材？    </script>
+<div class="scale_tips" id="zoom_tips" style="display:none;">
+	<div class="scale_tips_inner">
+		<i class="icon_scale_tips"></i>
+		<p class="scale_tips_content">
+			<span id="zoom_msg"></span><a href="javascript:;" id="zoom_prompt">不再提示</a>
+		</p>
+	</div>
+</div>
+<div
+	style="position: absolute; right: 0px; bottom: 0px; visibility: visible;">
+	<object type="application/x-shockwave-flash"
+		data="https://res.wx.qq.com/mpres/zh_CN/htmledition/plprecorder/biz_web/zoom230dc3.swf"
+		width="10" height="10" id="ZoomFlash">
+		<param name="movie"
+			value="https://res.wx.qq.com/mpres/zh_CN/htmledition/plprecorder/biz_web/zoom230dc3.swf">
+		<param name="allowscriptaccess" value="always">
+		<param name="wmode" value="transparent">
+		<param name="scale" value="noScale">
+	</object>
+</div>
+<div class="tooltip" style="display: none;">
+	<div class="tooltip_inner">编辑</div>
+	<i class="tooltip_arrow"></i>
+</div>
+<div class="tooltip" style="display: none;">
+	<div class="tooltip_inner">删除</div>
+	<i class="tooltip_arrow"></i>
+</div>
+<div class="tooltip" style="display: none;">
+	<div class="tooltip_inner">编辑</div>
+	<i class="tooltip_arrow"></i>
+</div>
+<div class="tooltip" style="display: none;">
+	<div class="tooltip_inner">删除</div>
+	<i class="tooltip_arrow"></i>
+</div>
+<div class="tooltip" style="display: none;">
+	<div class="tooltip_inner">编辑</div>
+	<i class="tooltip_arrow"></i>
+</div>
+<div class="tooltip" style="display: none;">
+	<div class="tooltip_inner">删除</div>
+	<i class="tooltip_arrow"></i>
+</div>
+<div class="tooltip" style="display: none;">
+	<div class="tooltip_inner">编辑</div>
+	<i class="tooltip_arrow"></i>
+</div>
+<div class="tooltip" style="display: none;">
+	<div class="tooltip_inner">删除</div>
+	<i class="tooltip_arrow"></i>
+</div>
+<script type="text/javascript">
+var b='${b}';
+$(function(){
+	if(b!=null&&b=='1'){
+		showWarn("保存成功！",1);
+	}
+});
+//停止提示  str:提示的文字； yesNo：2 error 警告 ，1 success 成功
+function showWarn(str,yesNo){
+	$("#wxTips").find(".inner").html(str);
+	if(yesNo==2)	$("#wxTips").addClass("error");
+	else $("#wxTips").addClass("success");
+	setTimeout(function(){
+		$("#wxTips").find(".inner").html("");
+		if(yesNo==2)	$("#wxTips").removeClass("error");
+		else $("#wxTips").removeClass("success");
+		},4000);
+}
+
+function clearseach(){
+	$("input[name='search']").val("");
+}
+function subseach(){
+	form1.submit();
+}
+
+function ondelect(obj){
+	var dataid=$(obj).attr("data-id");
+	if(!confirm("确定执行操作?")) return false;
+	$.ajax({url:"/Newsinfos/delectNewsinfo",data:{id:dataid},async:false,success:function(data){
+		 if(data==1){
+			 $(obj).parent().parent().parent().parent().parent().remove();
+			 showWarn("删除成功！",1);
+		 }else if(data==3){
+			 showWarn("删除失败，没找到该数据！",2);
+		 }else {
+			 showWarn("删除失败，有关联的数据！",2);
+		 }
+		}});	
+}
+</script>

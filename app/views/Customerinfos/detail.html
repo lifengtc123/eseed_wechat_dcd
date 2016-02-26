@@ -1,0 +1,50 @@
+#{extends "main_list.html"/}
+#{set title:"查看客户信息"/}
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+<legend>客户信息</legend>
+<div class="field" style="width: 49%;">
+#{field "customerinfo.nikename"}
+<label for="${field.id}">客户昵称</label>
+<input type="text" id="${field.id}" name="${field.name}" readonly="readonly" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "customerinfo.buildType"}
+<label for="${field.id}">用户类型</label>
+<select id="${field.id}" name="${field.name}" disabled="disabled">
+	<option value="0" #{if field.value==0}selected="selected"#{/if}>企业帐号</option>
+	<option value="1" #{if field.value==1}selected="selected"#{/if}>监管帐号</option>
+	<option value="2" #{if field.value==2}selected="selected"#{/if}>未绑定</option>
+</select>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "customerinfo.companyName"}
+<label for="${field.id}">单位名称</label>
+<input type="text" id="${field.id}" name="${field.name}" readonly="readonly" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "customerinfo.userNo"}
+<label for="${field.id}">登录帐号</label>
+<input type="text" id="${field.id}" name="${field.name}" readonly="readonly" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+
+<div class="field" style="width: 99%;">
+#{field "customerinfo.openid"}
+<label for="${field.id}">openid</label>
+<textarea id="${field.id}" name="${field.name}" readonly="readonly" cols="30" rows="5">${field.value}</textarea>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+</fieldset>
+<p class="buttons">
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>

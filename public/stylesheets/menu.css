@@ -1,0 +1,134 @@
+body {
+	margin: 0px
+}
+img{
+	border:0;
+}
+a{
+	color: #3d507b; text-decoration: none
+}
+a:visited {
+	color: #335ca7; text-decoration: none
+}
+a:hover {
+	color: #093b67; text-decoration: none
+}
+#logo {
+	WIDTH: 118px; HEIGHT: 21px
+}
+.menu {
+	TABLE-LAYOUT: fixed; PADDING-LEFT: 30px; FONT-SIZE: 12px; MARGIN: 0px; WIDTH: 100%; HEIGHT: 40px
+}
+.menu_sub{
+	cursor:pointer;
+}
+.menu_tiao {
+	FLOAT: left; WIDTH: 2px
+}
+.menu_leftimg {
+	MARGIN-RIGHT: 8px
+}
+.menuitem0_default {
+	PADDING-RIGHT: 10px; BACKGROUND-POSITION: right 50%; PADDING-LEFT: 0px; COLOR: #e5f6fc; PADDING-TOP: 0px;
+	cursor:pointer;
+}
+.menuitem0_selected {
+	PADDING-RIGHT: 10px; BACKGROUND-POSITION: right 50%; PADDING-LEFT: 0px; COLOR: #000000; PADDING-TOP: 0px;
+	cursor:pointer;
+}
+.menuitem0_hover {
+	PADDING-RIGHT: 10px; BACKGROUND-POSITION: right 50%; PADDING-LEFT: 0px; COLOR: #ffffff; PADDING-TOP: 0px;
+	cursor:pointer;
+}
+#menuitem0_left {
+	WIDTH: 9px; HEIGHT: 39px
+}
+#menuitem0_right {
+	WIDTH: 9px; HEIGHT: 39px; align: right
+}
+.menu2 {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; WIDTH: 100%; PADDING-TOP: 2px; HEIGHT: 40px
+}
+.menu2_img {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px
+}
+.menu2_tiao {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px
+}
+.menuitem1_default {
+	PADDING-RIGHT: 8px; PADDING-LEFT: 0px; COLOR: #336699; PADDING-TOP: 0px;
+	cursor:pointer;
+}
+.menuitem1_selected {
+	PADDING-RIGHT: 8px; BACKGROUND-POSITION: right 50%; PADDING-LEFT: 0px; COLOR: #000000; PADDING-TOP: 0px;
+	cursor:pointer;
+}
+.menuitem1_hover {
+	PADDING-RIGHT: 8px; BACKGROUND-POSITION: right 50%; PADDING-LEFT: 0px; COLOR: #000000; PADDING-TOP: 0px;
+	cursor:pointer;
+}
+#mi1_l {
+	WIDTH: 9px; HEIGHT: 34px;BACKGROUND: url(/public/images/m1l.gif);
+}
+#menuitem1_right {
+	WIDTH: 9px; HEIGHT: 34px; align: right;BACKGROUND: url(/public/images/menuitem1_right.gif);
+}
+.toolbar {
+	MARGIN-TOP: -40px; FONT-SIZE: 12px; FLOAT: right; MARGIN-RIGHT: 6px; HEIGHT: 22px
+}
+.toolbar_img {
+	PADDING-RIGHT: 8px; PADDING-LEFT: 3px
+}
+.toolbar_tiao {
+	PADDING-RIGHT: 4px; PADDING-LEFT: 4px
+}
+.menuitem2_default {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 0px; COLOR: #000000
+}
+.menuitem2_hover {
+	PADDING-RIGHT: 6px; BACKGROUND-POSITION: right 50%; PADDING-LEFT: 0px; COLOR: #ff3300; PADDING-TOP: 0px
+}
+#toplinebg {
+	MARGIN-LEFT: 0px; WIDTH: 100%; BACKGROUND-REPEAT: repeat-x; HEIGHT: 58px
+}
+#headline_left {
+	WIDTH: 16px; HEIGHT: 58px
+}
+#headline_right {
+	WIDTH: 18px; HEIGHT: 58px; align: right
+}
+#customlogo {
+	WIDTH: 50px; HEIGHT: 35px; align: left
+}
+#companymanecn {
+	MARGIN-TOP: 14px; FONT-WEIGHT: bolder; FONT-SIZE: 14px; MARGIN-LEFT: 10px
+}
+#companymaneen {
+	MARGIN-TOP: 3px; FONT-SIZE: 12px; MARGIN-LEFT: 10px
+}
+#headline A:link {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+#headline A:visited {
+	COLOR: #ffffff; TEXT-DECORATION: none
+}
+#headline A:hover {
+	COLOR: #ffe5a8; TEXT-DECORATION: none
+}
+#shezhi {
+	MARGIN-TOP: -25px; FONT-SIZE: 12px; FLOAT: right; COLOR: #cbf4ff; MARGIN-RIGHT: 0px
+}
+#user {
+	MARGIN-TOP: -25px; FONT-SIZE: 12px; FLOAT: right; COLOR: #ffffff; MARGIN-RIGHT: 20px
+}
+#time2 {
+	MARGIN-TOP: -25px; FONT-SIZE: 12px; FLOAT: right; COLOR: #ffffff; MARGIN-RIGHT: 5px
+}
+.theme {
+	MARGIN-TOP: -26px; FONT-SIZE: 12px; FLOAT: right; COLOR: #ffffff; MARGIN-RIGHT: 15px
+}
+.t2 {
+	MARGIN-TOP: -2px;  
+	BACKGROUND: url(/public/images/7.gif);
+	border:0px;
+}

@@ -1,0 +1,48 @@
+#{list list,as:"imgStock"}
+<li class="img_item js_imageitem" data-id="${imgStock.id}" data-url="${imgStock.path}" data-format="png">
+	<label class="frm_checkbox_label img_item_bd " id="imgList_${imgStock.id}" val="${imgStock.id}">
+		<img src="${imgStock.path}" alt="${imgStock.name}" class="pic" /> 
+		<span class="lbl_content">${imgStock.name}</span>
+		<div class="selected_mask">
+			<div class="selected_mask_inner"></div>
+			<div class="selected_mask_icon"></div>
+		</div>
+	</label>
+</li>
+#{/list}
+<script>
+$('.frm_checkbox_label').click(function(){
+	var flag;
+	
+	$this = $(this);
+	if($this.hasClass("selected")){
+		flag=true;
+	}else{
+		flag=false;
+	}
+	
+	$('.frm_checkbox_label').each(function(){
+		$(this).removeClass('selected');
+	});
+	
+	if(flag){
+		$(this).removeClass('selected');
+	}else{
+		$(this).addClass('selected');
+	}
+	
+	var selectedNode = $("#imgList").find(".selected").length;
+	if(selectedNode>0){
+		if($("#okBtn").hasClass("disabled")){
+			$("#okBtn").removeClass("disabled");
+		}else{
+			
+		}
+	}else{
+		if($("#okBtn").hasClass("disabled")){
+		}else{
+			$("#okBtn").addClass("disabled");
+		}
+	}
+});
+</script>

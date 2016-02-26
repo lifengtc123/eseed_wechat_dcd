@@ -1,0 +1,106 @@
+#{extends "main_list.html"/}
+#{set title:"查看用户"/}
+<style type="text/css" media="screen">
+	body{overflow-y: auto;}
+</style>
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+	<legend>员工信息</legend>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_username">
+		用户名:
+	</label>
+	<input type="text" value="${user.username}" class="txt01" readonly="readonly"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_truename">
+		真实姓名:
+	</label>
+	<input type="text" value="${user.truename}" class="txt01" readonly="readonly"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_sex">
+		性别:
+	</label>
+	<input type="text" value="${user.sex}" class="txt01" readonly="readonly"/>
+		</div>
+
+
+
+		<div class="field" style="width: 49%;">
+	<label for="user_email">
+		电子邮件:
+	</label>
+	<input type="text" value="${user.email}" class="txt01" readonly="readonly"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_tel">
+		联系电话:
+	</label>
+	<input type="text" value="${user.tel}" class="txt01" readonly="readonly"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_mobile">
+		移动电话:
+	</label>
+	<input type="text" value="${user.mobile}" class="txt01" readonly="readonly"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_cornet">
+		短号:
+	</label>
+	<input type="text" value="${user.cornet}" class="txt01" readonly="readonly"/>
+		</div>
+		<div class="field" style="width: 49%;">
+	<label for="user_login">
+		登入次数:
+	</label>
+	<input type="text" value="${user.login}" class="txt01" readonly="readonly"/>
+		</div>
+		
+	<div class="field" style="width: 49%;">
+		<label>部门:</label>
+		<input type="text" value="${user.depart.name}" class="txt01" readonly="readonly"/>
+	</div>
+	
+	<div class="field" style="width: 49%;">
+	<label for="user_sex">
+		职位:
+	</label>
+	<input type="text" value="${user.post}" class="txt01" readonly="readonly"/>
+		</div>
+	
+	<div class="field" style="width: 49%;">
+	<label for="user_status">
+		状态:
+	</label>
+	<input type="text" #{if user.status==1}value="使用"#{/if}#{else}value="停用"#{/else} class="txt01" readonly="readonly"/>
+		</div>
+	<div class="field" style="width: 49%;">
+	<label for="user_remark"> 备注:</label>
+	<textarea id="user_remark" cols="30" rows="5" class="txt01 " name="user.remark" readonly="readonly">${user.remark}</textarea>
+	<span class="info"></span>
+	</div>
+	
+</fieldset>
+<br />
+<fieldset>
+	<legend>权限信息</legend>
+
+<div class="field" style="width: 49%;">
+	<label for="user_role">
+		权限:
+	</label>
+	<input type="text" value="${user.role.name}" class="txt01" readonly="readonly"/>
+</div>
+</fieldset>
+<p class="buttons">
+	<input type="button" name="_close" value="关闭" class="btn01 option_close"/> 
+</p>
+</div>

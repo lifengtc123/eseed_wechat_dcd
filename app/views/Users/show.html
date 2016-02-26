@@ -1,0 +1,136 @@
+#{extends "main_list.html"/}
+#{set title:"添加生产计划单"/}
+<style type="text/css" media="screen">
+	body{overflow-y: auto;}
+</style>
+<script src="/public/javascripts/common.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/loading.js" type="text/javascript" charset="utf-8"></script>
+<form id="form1" name="form1" action="/users/save" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" >
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+	<legend>用户信息</legend>
+<div class="field" style="width: 49%;">
+	<label for="user_username">
+		用户名
+	</label>
+	<input id="user_username" class="txt01 emptyInfo" type="text" name="user.username" value="${user.username}"/>
+</div>
+		
+<input  type="hidden" name="user.password" value="${user.password}"/>
+<div class="field" style="width: 45%;">
+	<label for="user_password">
+		密码
+	</label>
+	<input id="user_password" style="width:148" class="txt01" type="password" name="user.password2" value=""/><span></span><font color="red">&nbsp;&nbsp;&nbsp;不修改密码此处为空</font>
+</div>
+
+		
+<div class="field" style="width: 49%;">
+	<label for="user_truename">
+		真实姓名
+	</label>
+	<input id="user_truename" class="txt01 emptyInfo" type="text" name="user.truename" value="${user.truename}"/>
+</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_sex">
+		性别
+	</label>
+	<select id="user_sex" name="user.sex" class="txt01">
+	<option value="男" #{if user.sex == "男"} selected="selected" #{/if}>男</option>
+	<option value="女" #{if user.sex == "女"} selected="selected" #{/if}>女</option>
+	</select>
+		</div>
+		
+		<div class="field" style="width: 49%;">
+	<label for="user_email">
+		电子邮件
+	</label>
+	<input id="user_email" class="txt01 " type="text" name="user.email" value="${user.email}"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_tel">
+		联系电话
+	</label>
+	<input id="user_tel" class="txt01 " type="text" name="user.tel" value="${user.tel}"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_mobile">
+		移动电话
+	</label>
+	<input id="user_mobile" class="txt01 " type="text" name="user.mobile" value="${user.mobile}"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_cornet">
+		短号
+	</label>
+	<input id="user_cornet" class="txt01 " type="text" name="user.cornet" value="${user.cornet}"/>
+		</div>
+	<div class="field" style="width: 49%;">
+		#{field "user.depart"}
+		<label for="${field.id}">部门:</label>
+		#{relation_tree oid:field.id,oname:field.name,ovalue:field.value ,sql:'from Depart where flag=1 order by id' /}
+		#{/field}
+	</div>
+		
+		<div class="field" style="width: 49%;">
+			#{field "user.post"}
+			<label for="${field.id}">职位</label>
+			<select name="${field.name}" class="txt01 emptyInfo">
+			<option value="">--请选择--</option>
+			#{list posts,as:'post'}
+			<option value="${post.name}" #{if user.post==post.name}selected="selected"#{/if}>${post.name}</option>
+			#{/list}
+			</select>
+			#{/field}
+		</div>
+		
+		<div class="field" style="width: 49%;">
+	<label for="user_status">
+		状态
+	</label>
+	<select id="user_status" name="user.status" class="txt01">
+	<option value="1" #{if user.status == 1} selected="selected" #{/if}>启用</option>
+	<option value="2" #{if user.status == 2} selected="selected" #{/if}>停用</option>
+	</select>
+		</div>
+		<div class="field" style="width: 49%;">
+	<label for="user_remark"> 备注:</label>
+	<textarea id="user_remark" cols="30" rows="5" class="txt01 " name="user.remark"></textarea>
+	<span class="info"></span>
+	</div>
+
+</fieldset>
+<br />
+<fieldset style="border: 1px solid #808080;">
+	<legend>权限信息</legend>
+
+<div class="field" style="width: 49%;">
+	<label for="user_role">
+		权限
+	</label>
+	<select id="user_role" name="user.role.id" class="txt01">
+	#{list role,as:'row'}
+	<option value="${row.id}" #{if user.role.id == row.id} selected="selected" #{/if}>${row.name}</option>
+	#{/list}
+	</select>
+</div>
+</fieldset>
+<p class="buttons">
+	<input type="hidden" name="id" value="${user.id}"/>
+	<input type="button" name="_save" onclick="check()" value="保存" class="btn01"/>
+	<input type="button" name="_close" value="关闭" class="btn01 option_close"/> 
+</p>
+</div>
+</form>
+<script type="text/javascript"> 
+function check(){
+	if(checkEmptyInfo()){
+		loadingcontent();
+		$("#form1").submit();
+	} 
+}
+</script>

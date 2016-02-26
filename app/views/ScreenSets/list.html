@@ -1,0 +1,60 @@
+#{extends "main_list.html"/}
+<form action="@@{delete()}" method="post" onsubmit="return chk_arrayid();" id="listform">
+<table height="100%" cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" align="middle" width="100%" height="100%">
+<div style="height:${session.get("tableHeight")}px;overflow: auto;">
+<table class="t1" cellspacing="0" cellpadding="0">
+<thead>
+<tr><td colspan="8" class="title">列表显示设置</td></tr>
+<tr height="22">
+<td width="3%"><input type="checkbox" id="chkall"/></td>
+<td width="12%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="#">
+用户</a></td>
+<td width="15%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="#">
+屏幕宽度</a></td>
+<td width="15%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="#">
+屏幕高度</a></td>
+<td width="15%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="#">
+列表显示高度</a></td>
+<td width="15%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="#">
+每页条数</a></td>
+<td width="15%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="#">
+菜单显示</a></td>
+<td width="10%">&{'option.title'}</td>
+</tr></thead>
+<tbody>
+#{list list,as:'row'}
+<tr id="tr_${row.id}" class="row">
+<td><input type="checkbox" name="arrayid" value="${row.id}"/></td>
+<td>${row.user?.truename}&nbsp;</td>
+<td>${row.widthSize?.format("#")}&nbsp;</td>
+<td>${row.heightSize?.format("#")}&nbsp;</td>
+<td>${row.tableHeight?.format("#.##")}&nbsp;</td>
+<td>${row.pageSize?.format("#.##")}&nbsp;</td>
+<td>${row.menuNum?.format("#.##")}&nbsp;</td>
+<td>
+#{if roleMap['detail']!=0}
+<a href="javascript:void(0);" onclick="open_dialog('@@{detail(row.id)}',400,300)">查看</a>
+#{/if}
+#{if roleMap['show']!=0}
+<a href="javascript:void(0);" onclick="open_dialog('@@{show(row.id)}',400,300)">修改</a>
+#{/if}
+#{if roleMap['delete']!=0}
+<a href="javascript:void(0);" class="option_delete" url="@@{delete(row.id)}">删除</a>
+#{/if}
+</td>
+</tr>
+#{/list}
+</tbody>
+</table>
+</div>
+</td></tr></tbody></table>
+<div id="toolbar">
+#{if roleMap['blank']!=0}
+<input type="button" class="btn01" value="添加" onclick="open_dialog('@@{blank()}${params.pid?"?pid="+params.pid:""}',400,300)"/>
+#{/if}
+#{if roleMap['delete']!=0}
+<input type="submit" class="btn01" value="删除"/>
+#{/if}
+</div>
+</form>

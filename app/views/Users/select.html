@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<base target="_self"/>
+<title>选择人员</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/list_style.css'}">
+<link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+<script src="@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
+<script src="@{'/public/javascripts/fast.js'}" type="text/javascript" charset="utf-8"></script>
+</head>
+<body style="overflow-x:hidden;overflow-y:hidden" onload="begin_set();">
+<style> 
+body{
+	overflow: hidden;
+}
+.user_div{
+	float: left;
+	width:80px;
+}
+.table_title{
+	border-top:1px solid #CCCCCA;
+	border-left:1px solid #CCCCCA;
+	border-right:1px solid #CCCCCA;
+	border-collapse:collapse;
+}
+.table_user{
+	border: 1px solid #CCCCCA;
+}
+.table_div{
+	height: 350px;
+	overflow: auto;
+}
+.table_div table{
+	border:1px solid #D0D0CE;
+ 	border-collapse:collapse;
+}
+.table_div td{
+	height:20px;
+	background-color:#fff;
+	line-height:20px;
+	border:1px solid #D0D0CE;
+}
+</style>
+
+<script>
+var userAgent = navigator.userAgent.toLowerCase();
+var is_opera = userAgent.indexOf('opera') != -1 && opera.version();
+var is_moz = (navigator.product == 'Gecko') && userAgent.substr(userAgent.indexOf('firefox') + 8, 3);
+var is_ie = (userAgent.indexOf('msie') != -1 && !is_opera) && userAgent.substr(userAgent.indexOf('msie') + 5, 3);
+
+var parent_window = parent.dialogArguments.document;
+var to_id = parent_window.getElementById('${params.to_id}');
+var to_name = parent_window.getElementById('${params.to_name}');
+var flag = "${params.flag}";
+
+function click_depart(obj){
+	var $obj = $(obj);
+	$("input[name='user']").each(function(){
+		if($(this).attr("depart")==$obj.val()){
+			$(this).attr("checked",$obj.attr("checked"));
+		}
+	});
+}
+
+function click_user(obj){
+	if($(obj).attr("checked")){
+		if("only"==flag){
+			$("input[name='user']").each(function(){
+				$(this).attr("checked",false);
+			});
+		}
+		$(obj).attr("checked",true);
+	}
+}
+
+function click_ok(){
+	var id = "";
+	var name = "";
+	$("input[name='user']").each(function(){
+		if($(this).attr("checked")){
+			id = id + $(this).attr("value")+",";
+			name = name + $(this).attr("truename") +",";
+		}
+	});
+	
+	if(id.length>0){
+		id = id.substring(0,id.length-1);
+		name = name.substring(0,name.length-1);
+	}
+	to_id.value = id;
+	to_name.value=name;
+	window.close();
+}
+
+function begin_set(){
+  TO_VAL=to_name.value;
+  $("input[name='user']").each(function(){
+  	user_id = $(this).attr("truename");
+	if((","+TO_VAL+",").indexOf(","+user_id+",")>=0){
+		$(this).attr("checked",true);
+	}
+  });
+}
+
+function click_all(obj){
+	$("input[name='user']").each(function(){
+		$(this).attr("checked",obj);
+	});
+}
+
+</script>
+<table width="100%" border="0" bgcolor="#F3F3F3" cellpadding="0" cellspacing="0" class="table_title">
+<tr>
+<td height="30">&nbsp;请选择人员：#{if params.flag=="more"}<a href="javascript:;" onclick="click_all(true);">全选</a> <a href="javascript:;" onclick="click_all(false);">不选</a>#{/if}</td>
+<td>&nbsp;</td>
+<td width="40%">&nbsp;</td>
+</tr>
+</table>
+<div class="table_div">
+<table width="100%" bgcolor="#FFFFFF">
+#{list departs,as:'depart'}
+<tr>
+<td width="150" style="padding-left:10px;">
+#{if params.flag=="more"}
+<input type="checkbox" onclick="click_depart(this);" value="${depart.id}"/>
+#{/if}
+${depart.selectTree.raw()}
+</td>
+<td align="left">
+%{
+users = models.User.findByDepart(depart.id);
+users.eachWithIndex(){object,k ->
+}%
+<div class="user_div">
+<input type="checkbox" onclick="click_user(this);" name="user" depart="${depart.id}" name="user" value="${object.id}" truename="${object.truename}"/>${object.truename}
+</div>
+%{}}%
+</td>
+</tr>
+#{/list}
+</table>
+</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td height="50">&nbsp;</td>
+<td align="right" style="padding-right:20px;">
+<input type="button" value="确定" class="btn01" onclick="click_ok();"/>
+<input type="button" value="关闭" class="btn01 option_close"/></td>
+</tr>
+</table>
+</body>
+</html>

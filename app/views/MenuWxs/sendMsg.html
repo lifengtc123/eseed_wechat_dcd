@@ -1,0 +1,187 @@
+<div class="sub_title_bar light js_second_title_bar dn" style="display: block;">
+	<h4>#{if menuWx.parent==null}一级菜单#{/if}#{else}二级菜单#{/else}：${menuWx.name}</h4>
+	<a id="jsDelBt" class="btn_ctrl" href="javascript:delBt(${menuWx.id})">删除</a>
+	<a id="jsChangeBt" class="btn_ctrl" href="javascript:changeBt(${menuWx.id});">重命名</a>
+</div>
+<div class="action_content send jsMain" id="edit" style="display: block;">
+	<p class="action_tips">订阅者点击该子菜单会收到以下消息，<a class="resetAction" href="javascript:reset(${menuWx.id});">重设动作</a></p>
+	<div class="msg_sender small" id="editDiv">
+		<div class="msg_tab">
+			<ul class="tab_navs">
+				<li class="tab_nav tab_text width5 selected" data-type="1" data-tab=".js_textArea" data-tooltip="文字"><a href="javascript:void(0);">&nbsp;<i class="icon_msg_sender"></i></a>
+				</li>
+				<li class="tab_nav tab_img width5" data-type="2" data-tab=".js_imgArea" data-tooltip="图片"><a href="javascript:void(0);">&nbsp;<i class="icon_msg_sender"></i></a>
+				</li>
+				<li class="tab_nav tab_appmsg width5 no_extra" data-type="10" data-tab=".js_appmsgArea" data-tooltip="图文消息"><a href="javascript:void(0);">&nbsp;<i class="icon_msg_sender"></i></a>
+				</li>
+			</ul>
+			<div class="tab_panel">
+				<div class="tab_content" style="display: block;" id="msg_tab_conent">
+					<div class="js_textArea inner no_extra">
+						<div class="emotion_editor">
+							<div class="edit_area js_editorArea" contenteditable="true" id="menuContent"
+								style="overflow-y: auto; overflow-x: hidden;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<form id="popupForm_3" method="post" class="form" action="/MenuWxs/update1">
+				<input type="hidden" name="id" id="menuId" value="${menuWx.id}" />
+				<input type="hidden" name="content" id="content" value="" />
+				<input type="hidden" name="imgStockId" id="imgStockId" value="${menuWx.imgStock?.id}" />
+				<input type="hidden" name="menu_key" id="menu_key" value="txt_${menuWx.id}" />
+				<input type="hidden" name="menuType" id="menuType" value="${menuWx.menuType}" />
+				<input type="hidden" name="newsinfoId" id="newsinfoId" value="${menuWx.newsinfo?.id}" />
+			</form>
+			
+		</div>
+	</div>
+	<div class="tool_bar dn" style="display: inline-block">
+		<a href="javascript:save(${menuWx.id});" class="btn btn_primary" id="editSave">保存</a>
+		<a href="javascript:back(${menuWx.id});" class="btn btn_default" id="editBack">返回</a>
+	</div>
+</div>
+
+<script>
+	var menu_key = "${menuWx.menu_key}";
+	var id = "${menuWx.id}";
+	var menuKey = menu_key.split("_")[0];
+	if(menuKey=="txt"){//文本消息
+		$("#editDiv div ul li").each(function(){
+			if($(this).attr("data-tooltip")=="文字"){
+				if($(this).hasClass("selected")){
+					
+				}else{
+					$(this).addClass("selected");
+				}
+			}else{
+				if($(this).hasClass("selected")){
+					$(this).removeClass("selected");
+				}else{
+					
+				}
+			}
+		});
+		$("#menu_key").val("txt_"+id);
+		
+		var content = "${menuWx.content}";
+		var msg = '<div class="js_textArea inner no_extra"><div class="emotion_editor"><div class="edit_area js_editorArea" contenteditable="true" id="menuContent" style="overflow-y: auto; overflow-x: hidden;">'+content+'</div></div></div>';
+		$("#msg_tab_conent").html("");
+		$("#msg_tab_conent").html(msg);
+		
+	}else if(menuKey=="pic"){//图片
+		$("#editDiv div ul li").each(function(){
+			if($(this).attr("data-tooltip")=="图片"){
+				if($(this).hasClass("selected")){
+					
+				}else{
+					$(this).addClass("selected");
+				}
+			}else{
+				if($(this).hasClass("selected")){
+					$(this).removeClass("selected");
+				}else{
+					
+				}
+			}
+		});
+		var selectedNode="${menuWx.imgStock?.id}";
+		$.post("/MenuWxs/selectImgStock", {
+			"id" : selectedNode,
+		}, function(data) {
+			$("#msg_tab_conent").html("");
+			$("#msg_tab_conent").html(data);
+		});
+		$("#menu_key").val("pic_"+id);
+	}else if(menuKey=="multiPic"){//图文
+		$("#editDiv div ul li").each(function(){
+			if($(this).attr("data-tooltip")=="图文消息"){
+				if($(this).hasClass("selected")){
+					
+				}else{
+					$(this).addClass("selected");
+				}
+			}else{
+				if($(this).hasClass("selected")){
+					$(this).removeClass("selected");
+				}else{
+					
+				}
+			}
+		});
+		var selectedNode="${menuWx.newsinfo?.id}";
+		$.post("/NewsInfos/findByNewsInfo", {
+			"id" : selectedNode,
+		}, function(data) {
+			$("#msg_tab_conent").html("");
+			$("#msg_tab_conent").html(data);
+		});
+		
+		$("#menu_key").val("multiPic_"+id);
+	}
+</script>
+
+
+<script>
+	$("#editDiv div ul li").click(function(){
+		var $this = $(this);
+		$("#editDiv div ul li").each(function(){
+			$(this).removeClass("selected");
+		});
+		
+		$this.addClass("selected");
+		var menu_key = $("#menu_key").val().split("_");
+		if($this.attr("data-tooltip")=="文字"){
+			$("#menu_key").val("txt_"+menu_key[1]);
+		}else if($this.attr("data-tooltip")=="图片"){
+			$("#menu_key").val("pic_"+menu_key[1]);
+			//弹出图片选择
+			jQuery("#modal-1").modal("show", {
+				backdrop : 'static'
+			});
+			
+			$.post("/MenuWxs/selectImgGoupgs", {}, function(data) {
+				$("#modal-1").find("div[id=dialog_bd]").html("");
+				
+				$("#modal-1").find("div[id=dialog_bd]").html(data);
+			});
+			
+		}else if($this.attr("data-tooltip")=="图文消息"){
+			$("#menu_key").val("multiPic_"+menu_key[1]);
+			
+			//弹出图文选择
+			jQuery("#modal-2").modal("show", {
+			});
+			
+			$.post("/MenuWxs/selectNewsInfos", {}, function(data) {
+				
+				$("#modal-2").find("div[id=dialog_bd]").html("");
+				
+				$("#modal-2").find("div[id=dialog_bd]").html(data);
+			});
+		}
+		
+	});
+	
+	//重设动作
+	function reset(id){
+		$.post("/MenuWxs/editLoad1", {
+			"id" : id,
+			"type":0
+		}, function(data) {
+			$("div[class='action_setting']").html("");
+			$("div[class='action_setting']").html(data);
+		});
+	}
+	
+	//返回
+	function back(id){
+		$.post("/MenuWxs/editLoad1", {
+			"id" : id
+		}, function(data) {
+			$("div[class='action_setting']").html("");
+			$("div[class='action_setting']").html(data);
+		});
+	}
+</script>

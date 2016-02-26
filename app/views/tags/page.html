@@ -1,0 +1,19 @@
+%{
+int __firstPage = 1;
+int __currentPage = _arg.pageNumber;
+int __maxPage = _arg.pageCount;
+int __rowCount = _arg.rowCount;
+int __pageSize = _arg.pageSize;
+
+boolean __hasPrev = _arg.hasPreviousPage;
+boolean __hasNext = _arg.hasNextPage;
+String __firstURL = __hasPrev ? _arg.getCallbackURL(1) : "javascript:void(0);";
+String __prevURL = __hasPrev ? _arg.getCallbackURL(__currentPage-1) : "javascript:void(0);";
+String __nextURL = __hasNext ? _arg.getCallbackURL(__currentPage+1) : "javascript:void(0);";
+String __lastURL = __hasNext ? _arg.getCallbackURL(__maxPage) : "javascript:void(0);";
+}%
+共<font color="#ff0000">${__rowCount}</font>条[<a href="${__firstURL}">首页</a>] [<a href="${__prevURL}">上一页</a>][<a href="${__nextURL}">下一页</a>] [<a href="${__lastURL}">尾页</a>]　页次：<font color="#ff0000">${__currentPage}</font>/${__maxPage}页　${__pageSize}条/页
+转到： 
+<select class="jumpableSelect">
+#{list items:__firstPage..__maxPage,as:'i'}<option value="${_arg.getCallbackURL(i)}"${i==__currentPage?" selected=selected":""}>第${i}页</option>#{/list}
+</select> 

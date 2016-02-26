@@ -1,0 +1,91 @@
+#{extends "main_list.html"/}
+<form>
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" width="100%">
+<table cellspacing="0" cellpadding="0" width="100%"><tr>
+</tr><tr height="22">
+<td valign="middle" align="left" style="padding:5px;">
+#{select "searchField",value:params.searchField}
+#{option}全部#{/option}
+#{option 'name'}名称#{/option}
+#{option 'path'}地址#{/option}
+#{option 'imggroups'}图片分组#{/option}
+#{option 'uploador'}上传人#{/option}
+<!-- #{option 'uploaddate'}上传时间#{/option} -->
+#{/select}#{select "condition",value:params.condition}
+#{option 'like'}包含#{/option}
+#{option '='}=#{/option}
+#{option '>'}>#{/option}
+#{option '<'}<#{/option}
+#{/select}
+<input type="text" name="search" value="${params.search}" id="obj_keyword" class="txt01" size="40"/>
+<input type="submit" value="搜索" class="btn01"/>
+</td>
+</tr>
+</table>
+</td></tr></tbody></table>
+</form>
+<form action="@@{delete()}" method="post" onsubmit="return chk_arrayid();" id="listform">
+<table height="100%" cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" align="middle" width="100%" height="100%">
+<div style="height:${session.get("tableHeight")}px;overflow: auto;">
+<table class="t1" cellspacing="0" cellpadding="0">
+<thead>
+<tr><td colspan="8" class="title">图片库</td></tr>
+<tr height="22">
+<td width="1%"><input type="checkbox" id="chkall"/></td>
+<td width="8%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','name').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+名称</a></td>
+<td width="10%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','path').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+地址</a></td>
+<td width="10%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imggroups').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+图片分组</a></td>
+<td width="6%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','uploador').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+上传人</a></td>
+<td width="6%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','uploaddate').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+上传时间</a></td>
+<td width="10%">&{'option.title'}</td>
+</tr></thead>
+<tbody>
+#{list pagedList.list,as:'row'}
+<tr id="tr_${row.id}" class="row">
+<td><input type="checkbox" name="arrayid" value="${row.id}"/></td>
+<td>${row.name}&nbsp;</td>
+<td>${row.path}&nbsp;</td>
+<td>
+	#{if row.imggroups==null}
+	未分组
+	#{/if}
+	#{else}
+	${row.imggroups.name}
+	#{/else}
+	
+&nbsp;</td>
+<td>${row.uploador}&nbsp;</td>
+<td>${row.created?.format('yyyy-MM-dd')}&nbsp;</td>
+<td>
+<a href="javascript:void(0);" onclick="open_dialog('@@{detail(row.id)}',800,600)">查看</a>
+<a href="javascript:void(0);" class="option_delete" url="@@{delete(row.id)}">删除</a>
+</td>
+</tr>
+#{/list}
+#{list 0..Integer.parseInt(session.get("pageSize"))-pagedList.list.size(),as:'i'}
+<tr id="tr0" class="row">
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+#{/list}
+</tbody>
+</table>
+</div>
+</td></tr></tbody></table>
+<div id="toolbar">
+<input type="submit" class="btn01" value="删除"/>
+#{page pagedList /}
+</div>
+</form>

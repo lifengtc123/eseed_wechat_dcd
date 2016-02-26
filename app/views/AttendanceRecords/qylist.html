@@ -1,0 +1,80 @@
+#{extends "main_list.html"/}
+<form>
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" width="100%">
+<table cellspacing="0" cellpadding="0" width="100%"><tr>
+</tr><tr height="22">
+<td valign="middle" align="left" style="padding:5px;">
+项目/标段：
+<select name="projectItemName">
+	<option value="">--请选择--</option>
+#{list protrees,as:'row'}
+<option value="${row.name}" #{if projectItemName==row.name}selected="selected"#{/if}>${row.selectTree.raw()}</option>
+#{/list}
+</select>
+单位:
+<select name="companyName">
+	<option value="">--请选择--</option>
+#{list comtrees,as:'row'}
+<option value="${row.name}"}  #{if companyName==row.name}selected="selected"#{/if}>${row.selectTree.raw()}</option>
+#{/list}
+</select>
+姓名：
+<input type="text" name="employeeName" value="${params.employeeName}"  class="txt01" size="20"/>
+
+<p/>
+年份：
+<input onfocus="WdatePicker({readonly:true,dateFmt:'yyyy'})"  readonly="readonly" class="txt01 Wdate " type="text" name="year" value="${year}"/>
+月份：
+<input id="etime" onfocus="WdatePicker({readonly:true,dateFmt:'MM'})"  readonly="readonly" class="txt01 Wdate " type="text" name="month" value="${month}"/>
+&nbsp;&nbsp;&nbsp;
+<input type="submit" value="搜索" class="btn01"/>
+</td>
+</tr>
+</table>
+</td></tr></tbody></table>
+</form>
+<table height="100%" cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" align="middle" width="100%" height="100%">
+<div style="height:${session.get("tableHeight")}px;overflow: auto;">
+<table class="t1" cellspacing="0" cellpadding="0">
+<thead>
+<tr><td colspan="12" class="title">企业到岗统计</td></tr>
+<tr height="22">
+<td width="6%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','name').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+时间</a></td>
+<td width="20%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','state').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+单位名称</a></td>
+<td width="10%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+实际到岗率</a></td>
+<td width="10%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+月度扣分</a></td>
+<td width="10%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+年度扣分</a></td>
+</tr></thead>
+<tbody>
+#{list pagedList.list,as:'row'}
+<tr id="tr_${row.id}" class="row">
+<td>${row.yearMonth}&nbsp;</td>
+<td><a href="/AttendanceRecords/qylistdetail?companyName=${row.companyName}&yearMonth=${row.yearMonth}">${row.companyName}&nbsp;</a></td>
+<td>${row.rate?.format("#.##")}&nbsp;</td>
+<td>${row.alldeductionMonthScore}&nbsp;</td>
+<td>${row.alldeductionYearScore}&nbsp;</td>
+</tr>
+#{/list}
+#{list 0..14-pagedList.list.size(),as:'i'}
+<tr id="tr0" class="row">
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+#{/list}
+</tbody>
+</table>
+</div>
+</td></tr></tbody></table>
+<div id="toolbar">
+#{page pagedList /}
+</div>

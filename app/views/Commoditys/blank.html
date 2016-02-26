@@ -1,0 +1,69 @@
+#{extends "main_list.html"/}
+#{set title:"添加商品信息"/}
+#{form @@create()}
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+<legend>商品信息</legend>
+<div class="field" style="width: 49%;">
+#{field "commodity.namecommodity"}
+<label for="${field.id}">商品名称</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "commodity.commodityprices"}
+<label for="${field.id}">商品价格</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "commodity.freight"}
+<label for="${field.id}">运费</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "commodity.inventory"}
+<label for="${field.id}">库存</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "commodity.quantitysold"}
+<label for="${field.id}">已售数量</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "commodity.statusgoods"}
+<label for="${field.id}">商品状态</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "commodity.descriptionsp"}
+<label for="${field.id}">描述</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "commodity.picturesp"}
+<label for="${field.id}">图片</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+</fieldset>
+<p class="buttons">
+<input type="submit" name="_save" value="&{'option.save'}" class="btn01"/>
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>
+#{/form}

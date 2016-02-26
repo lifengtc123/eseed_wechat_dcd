@@ -1,0 +1,110 @@
+#{extends "main_list.html"/}
+<input type="hidden" id="copyText" value=""/>
+<form action="/searchRecords/searchReport?btn=thisTime">
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" width="100%">
+<table cellspacing="0" cellpadding="0" width="100%"><tr>
+</tr><tr height="22">
+<td valign="middle" align="left" style="padding:5px;">
+		<input type="button" value="上一月" name="exp" class="btn01" onclick="window.location='/searchRecords/searchReport?btn=prev&year=${year}&month=${m}'"/>&nbsp;
+<input type="button" value="本月" name="exp" class="btn01" onclick="window.location='/searchRecords/searchReport?btn=now&year=${year}&month=${m}'"/>&nbsp;
+<input type="button" value="下一月" name="exp" class="btn01" onclick="window.location='/searchRecords/searchReport?btn=next&year=${year}&month=${m}'"/>&nbsp;
+
+	&nbsp;<label>查询时间:</label><input  style="width: 90px;"  type="text" id="sdate" name="sdate" value="${params.sdate}" class="Wdate" size="20" onfocus="WdatePicker({readonly:true,dateFmt:'yyyy-MM-dd'})" readonly="readonly"/>
+&nbsp;<label>至:</label><input  style="width: 90px;"  type="text" id="edate" name="edate" value="${params.edate}" class="Wdate" size="20" onfocus="WdatePicker({readonly:true,dateFmt:'yyyy-MM-dd'})" readonly="readonly"/>
+	&nbsp;<label>用户类型:</label>
+	<select name="buildType" id="buildType">
+		<option value="">--全部--</option>
+		<option value="0" #{if buildType==0}selected="selected" #{/if}>施工单位</option>
+		<option value="1" #{if buildType==1}selected="selected" #{/if}>监理单位</option>
+	</select>
+	
+	&nbsp;<label>单位名称:</label>
+	<input type="text" name="companyName" value="${companyName}"/>
+	<input type="hidden" name="year" value="${year}"/>
+<input type="hidden" name="month" value="${m}"/>
+<input type="submit" value="搜索" class="btn01"/>
+<!-- <input type="button" value="复 制" name="copy" class="btn01" onclick="copyCode();return false;"/>&nbsp; --></td>
+</tr>
+</table>
+</td></tr></tbody></table>
+</form>
+
+
+<form id="form2" style="height: 400px;overflow: auto;">
+<br />
+<div align="center"><span style="font-weight: bolder;font-size: 18px">查询报表</span></div>
+<table cellSpacing=0 cellPadding=0 width="99%" border=2 style="border-color:black;margin: 5px;empty-cells:show; border-collapse: collapse;margin:0 auto;">
+<tr  style="font-weight: bolder;" align="center" height="30">
+<td width="3%"><font size="2">序号</font></td>
+<td width="15%">用户类型</td>
+<td width="30%">单位名称</td>
+<td width="15%">用户帐号</td>
+<td width="15%">查询模块</td>
+<td width="15%">查询时间</td>
+</tr>
+<tbody id="products">
+#{set sum1 = 0 /}
+#{set sum2 = 0 /}
+#{list pagedList,as:'row'}
+
+
+
+<tr height="20" align="center" class="row">
+<td><font size="2">${row_index}</font>&nbsp;</td>
+<td>#{if row.buildType==0}施工单位#{/if}#{if row.buildType==1}监理单位#{/if}&nbsp;</td>
+<td>${row.companyName}&nbsp;</td>
+<td>${row.userNo}&nbsp;</td>
+<td>${row.name}&nbsp;</td>
+<td>${row.stime?.format("yyyy-MM-dd HH:mm:ss")}&nbsp;</td>
+</tr>
+#{/list}
+</tbody>
+</table>
+</td></tr>
+</form>
+
+<script>
+	//章本军--IE下兼容的复制功能
+function copyCode(){ 
+	var formText = $("#form2").html();
+   		//formText = formText.replaceAll("&nbsp;","");
+    	$("#copyText").val(formText);  
+    	var copyText = 'copyText';
+    var testCode=document.getElementById(copyText).value; 
+    if(copy2Clipboard(testCode)!=false){ 
+        alert("生成的代码已经复制到粘贴板，你可以使用Ctrl+V 贴到需要的地方去了哦！ "); 
+    } 
+} 
+copy2Clipboard=function(txt){ 
+    if(window.clipboardData){ 
+        window.clipboardData.clearData(); 
+        window.clipboardData.setData("Text",txt); 
+    } 
+    else if(navigator.userAgent.indexOf("Opera")!=-1){ 
+        window.location=txt; 
+    } 
+    else if(window.netscape){ 
+        try{ 
+            netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect"); 
+        } 
+        catch(e){ 
+            alert("您的firefox安全限制限制您进行剪贴板操作，请打开'about:config'将signed.applets.codebase_principal_support'设置为true'之后重试，相对路径为firefox根目录/greprefs/all.js"); 
+            return false; 
+        } 
+        var clip=Components.classes['@mozilla.org/widget/clipboard;1'].createInstance(Components.interfaces.nsIClipboard); 
+        if(!clip)return; 
+        var trans=Components.classes['@mozilla.org/widget/transferable;1'].createInstance(Components.interfaces.nsITransferable); 
+        if(!trans)return; 
+        trans.addDataFlavor('text/unicode'); 
+        var str=new Object(); 
+        var len=new Object(); 
+        var str=Components.classes["@mozilla.org/supports-string;1"].createInstance(Components.interfaces.nsISupportsString); 
+        var copytext=txt;str.data=copytext; 
+        trans.setTransferData("text/unicode",str,copytext.length*2); 
+        var clipid=Components.interfaces.nsIClipboard; 
+        if(!clip)return false; 
+        clip.setData(trans,null,clipid.kGlobalClipboard); 
+    } 
+} 
+</script>

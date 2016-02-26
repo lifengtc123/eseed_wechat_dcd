@@ -1,0 +1,17 @@
+#{field _object + '.' + _name}
+	<label for="${field.id}">
+		&{_inputName + "." + _name}
+	</label>
+	<select id="${field.id}" name="${field.name}">
+	%{ _input.each { }%
+	%{
+		selected = false
+		if(_value?.toString()==it?.key.toString()) selected = true;
+	}%
+	<option value="${it.key}"${selected ? ' selected="true"'.raw() : ''}>${it.value}</option>
+	%{ } }%
+	</select>
+	#{ifError field.name}
+		<span class="error">${field.error}</span>
+	#{/ifError}
+#{/field}

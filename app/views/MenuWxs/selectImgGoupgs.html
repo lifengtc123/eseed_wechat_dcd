@@ -1,0 +1,70 @@
+<div class="img_pick_panel inner_container_box side_l cell_layout">
+	<div class="inner_side">
+		<div class="group_list">
+			<div class="inner_menu_box">
+				<dl class="inner_menu js_group" id="imgGroup">
+					<dd id="js_group0" class="inner_menu_item js_groupitem selected" data-groupid="0">
+						<a href="javascript:;" class="inner_menu_link" title="未分组" onclick="return false"> <strong>未分组</strong><em class="num">(<span>${imgStocks.size()}</span>)
+						</em>
+						</a>
+					</dd>
+					#{list list,as:"imgGroup"}
+					<dd id="js_group${imgGroup.id}" class="inner_menu_item js_groupitem" data-groupid="${imgGroup.id}">
+						<a href="javascript:;" class="inner_menu_link" title="${imgGroup.name}" onclick="return false"> <strong>${imgGroup.name}</strong><em class="num">(<span>${imgGroup.imgStocks.size()}</span>)
+						</em>
+						</a>
+					</dd>
+					#{/list}
+
+				</dl>
+			</div>
+		</div>
+	</div>
+	<div class="inner_main">
+		<div class="img_pick_area">
+			<div>
+				<div class="img_pick">
+					<i class="icon_loading_small white js_loading"style="display: none;"></i>
+					<ul class="group js_list img_list" id="imgList">
+					
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+
+	showImgStock();
+	
+	function showImgStock(){
+		var groupid = $("#imgGroup").find(".selected").attr("data-groupid");
+		$.post("/ImgStocks/findByImgGroup", {
+			"id" : groupid
+		}, function(data) {
+			
+			if($("#okBtn").hasClass("disabled")){
+				$("#js_selected_img").val(1);
+			}else{
+				$("#okBtn").addClass("disabled");
+			}
+			
+			
+			$("#imgList").html("");
+			$("#imgList").html(data);
+		});
+	}
+	
+	$("#imgGroup dd").click(function(){
+		$this = $(this);
+		var selectedNode = $("#imgGroup").find(".selected");
+		for (var i = 0; i < selectedNode.length; i++) {
+			$(selectedNode[i]).removeClass("selected");
+		}
+
+		$this.addClass("selected");
+		
+		showImgStock();
+	});
+	
+</script>

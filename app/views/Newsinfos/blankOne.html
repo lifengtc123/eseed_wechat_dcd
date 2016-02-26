@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<!-- saved from url=(0124)https://mp.weixin.qq.com/cgi-bin/appmsg?begin=0&count=10&t=media/appmsg_list&type=10&action=list&lang=zh_CN&token=1515587834 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="renderer" content="webkit"><meta charset="utf-8">
+<title></title>
+<style type="text/css" media="screen">
+body {
+	overflow-y: auto;
+}
+#modal-1 .modal-dialog {
+  min-width: 930px;
+}
+</style>
+<link rel="stylesheet" type="text/css"
+	href="/public/weixin/css/base25404f.css">
+<link rel="stylesheet" type="text/css"
+	href="/public/weixin/css/lib22f1a9.css">
+<link rel="stylesheet"
+	href="https://res.wx.qq.com/mpres/htmledition/ueditor/themes/default/ueditor238f6c.css">
+<link rel="stylesheet"
+	href="https://res.wx.qq.com/mpres/htmledition/style/page/media/appmsg_edit25404f.css">
+<link rel="stylesheet" type="text/css"
+	href="/public/weixin/css/upload22a2de.css">
+<link rel="stylesheet" type="text/css"
+	href="/public/weixin/css/appmsg_editor238f6d.css">
+	<link onerror="wx_loaderror(this)" rel="stylesheet" href="@{'/public/weixin/css/bootstrap.css'}">
+<script src="/public/javascripts/jquery.js"></script>
+	<!-- 弹出层 -->
+	<script src="/public/weixin/js/bootstrap.min.js"></script>
+<!-- 编辑器 -->
+    <script type="text/javascript" charset="utf-8" src="/public/weixin/ueditor1_4_3-utf8-jsp/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/public/weixin/ueditor1_4_3-utf8-jsp/ueditor.all.min.js"> </script>
+     <!--<script src="/public/weixin/ueditor1_4_3-utf8-jsp/ueditor.parse.js"></script>-->
+    <script type="text/javascript" charset="utf-8" src="/public/weixin/ueditor1_4_3-utf8-jsp/lang/zh-cn/zh-cn.js"></script>
+</head>
+<body class="zh_CN">  
+<form id="uploadForm" action="@{ImgStocks.upload()}" method="post" enctype="multipart/form-data" target="hiddenIframe" style="display:none;width:0px;height:0px;"> 
+<span id="fileContent" ></span> 
+<input id="fieldID" type="hidden" name="fieldID"/> 
+<input id="preImgID" type="hidden" name="preImgID"/> 
+<input id="preImgtwoID" type="hidden" name="preImgtwoID"/> 
+</form>
+<iframe name="hiddenIframe" frameborder="0" border="0" style="display:none;width:0px;height:0px;"></iframe>
+#{form @@blankOnesave(),id:"form1"}
+	<!-- 0:只保存 1：预览（先保存在发送给指定微信号），2：保存并群发 -->
+	<input type="hidden" name="type" value="0" id="typeInput" />
+	<input type="hidden" name="wxAccount" value="" id="wxAccount1" />
+	<input type="hidden" name="newsinfo.classic" value="${newsinfo.classic}" />
+	<input type="hidden" name="imagetext.classic" value="${imagetext.classic}" />
+	<div class="head" id="header"></div>
+	<div id="body" class="body page_appmsg_edit">
+		<div id="js_container_box" class="container_box cell_layout side_l">
+
+			<div class="col_main">
+				<div class="main_hd">
+					<h2>素材管理</h2>
+					<div class="title_tab" id="topTab">
+						<ul class="tab_navs title_tab" data-index="0">
+
+							<li data-index="0" class="tab_nav first js_top selected"
+								data-id="media10"><a
+								href="@@{listblank()}">图文消息</a></li>
+							<li data-index="1" class="tab_nav  js_top" data-id="media2"><a
+								href="@@{ImgStocks.listimg()}">图片库</a></li>
+						</ul>
+					</div>
+					<div class="page_nav">
+						<a
+							href="@@{listblank()}"
+							class="icon_goback">返回上一层</a> <a
+							href="@@{listblank()}">图文消息</a>
+						/ 新建单图文消息
+					</div>
+				</div>
+				<div class="main_bd">
+					<div class="media_preview_area">
+						<div class="appmsg  editing">
+							<div id="js_appmsg_preview" class="appmsg_content">
+								<div id="appmsgItem1" data-fileid="" data-id="1"
+									class="js_appmsg_item ">
+
+									<h4 class="appmsg_title">
+										<a onclick="return false;" href="javascript:void(0);"
+											target="_blank" id="titleshow">${imagetext?.title!=null?"${imagetext?.title}":"标题"}${imagetext?.title==""?"标题":""}</a>
+									</h4>
+									<div class="appmsg_info">
+										<em class="appmsg_date"></em>
+									</div>
+									<div class="appmsg_thumb_wrp">
+										<img class="js_appmsg_thumb  appmsg_thumb" #{if imagetext?.imgStock?.path==null} style="display: none;" #{/if}#{else} style="display: block;" #{/else} id="preImg2" src='${imagetext?.imgStock?.path!=null?"${imagetext?.imgStock?.path}":""}'> 
+										<i class="appmsg_thumb default">封面图片</i>
+									</div>
+									<p class="appmsg_desc imagetext_summary">${imagetext?.summary}</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="media_edit_area">
+						<div id="js_appmsg_editor">
+							<div class="appmsg_editor" style="margin-top: 0px;">
+								<div class="inner">
+									<div class="appmsg_edit_item">
+										<label for="" class="frm_label">标题</label> <span
+											class="frm_input_box with_counter counter_in append count">
+											<input type="text" id="title" name="imagetext.title" value="${imagetext?.title}" class="frm_input js_title js_counter title"
+											max-length="64" > <em
+											class="frm_input_append frm_counter titlecheck">0/64</em>
+										</span>
+										<div class="frm_msg fail js_title_error" style="display:none;">标题不能为空且长度不能超过64字</div>
+									</div>
+									<div class="appmsg_edit_item">
+										<label for="" class="frm_label"> <strong class="title">作者</strong>
+											<p class="tips l">（选填）</p>
+										</label> <span
+											class="frm_input_box with_counter counter_in append count">
+											<input type="text" class="frm_input js_author js_counter author"
+											max-length="8" id="author" name="imagetext.author" value="${imagetext?.author}"> <em
+											class="frm_input_append frm_counter authorcheck">0/8</em>
+										</span>
+										<div class="frm_msg fail js_author_error"
+											style="display:none;">作者不能超过8个字</div>
+									</div>
+									<div class="appmsg_edit_item">
+										<label for="" class="frm_label"> <strong class="title">封面</strong>
+											<p class="js_cover_tip tips">（大图片建议尺寸：900像素 * 500像素）</p>
+										</label>
+										<!--<div class="upload_wrap">
+                <div class="upload_box">
+                    <div class="upload_area">
+                        <a id="js_appmsg_upload_cover" href="javascript:void(0);" onclick="return false;" class="btn btn_upload">
+                            上传                        </a>
+                    </div>
+                </div>&nbsp;
+                <p class="js_cover upload_preview">
+					<a class="js_removeCover" href="javascript:void(0);" onclick="return false;">删除</a>
+                </p>
+			</div>
+            <a id="js_imagedialog" href="javascript:void(0);" onclick="return false;" class="btn btn_upload">从图片库选择</a>-->
+										<div class="upload_wrap">
+											<div class="upload_box">
+											<span id="ufs1"><input type="file" name="uploadFiless" id="uploadFile1"/></span>
+											<input type="hidden" id="Newsinfo_path" name="imagetext.imgStock_id" value="${imagetext?.imgStock?.id}" class="input_wd" readonly="readonly" />
+											</div>
+											<div class="upload_area webuploader-container" onclick="upload('#uploadFile1','#ufs1','#Newsinfo_path','#preImg1','#preImg2');">
+													<a id="js_appmsg_upload_cover" href="javascript:void(0);"
+														
+														class="btn btn_upload webuploader-pick"> 上传 </a>
+													<ul class="upload_file_box" style="display:none"></ul>
+													<div id="rt_rt_19kk83d4c19dk1tljpne14h2uar1"
+														style="position: absolute; top: 0px; left: 0px; width: 106px; height: 32px; overflow: hidden; bottom: auto; right: auto;">
+														<input type="file" accept="image/*" style="display: none;"><label
+															style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+													</div>
+												</div>
+											&nbsp;&nbsp;<a id="js_imagedialog" href="javascript:void(0);"
+												onclick="selectimg(this,'#ufs1','#Newsinfo_path','#preImg1','#preImg2');" onclick="return false;" class="btn btn_upload">从图片库选择</a>
+											<p class="js_cover upload_preview imgshow" #{if imagetext?.imgStock?.path==null} style="display: none;" #{/if}>
+											<img id="preImg1"  src='${imagetext?.imgStock?.path!=null?"${imagetext?.imgStock?.path}":"/public/weixin/css/img/icon40_loading_white218877.gif"}'>
+												<!-- <a class="js_removeCover" href="javascript:void(0);"
+													onclick="return false;">删除</a> -->
+											</p>
+										</div>
+
+										<p class="frm_tips">
+											<label for="" #{if imagetext?.isshow==0} class="frm_checkbox_label js_show_cover_pic selected" #{/if}#{else} class="frm_checkbox_label js_show_cover_pic " #{/else} onclick="checkchange(this)">
+												<i class="icon_checkbox"></i> 
+												<input type="checkbox" class="frm_checkbox" id="imagetext_isshow" name="imagetext.isshow" checked="checked"  value="${imagetext?.isshow==0?'0':'1'}"> 封面图片显示在正文中
+											</label>
+										</p>
+										<div class="frm_msg fail js_cover_error" style="display:none;">必须插入一张图片</div>
+									</div>
+
+									<!--
+		<p><a class="js_addDesc" href="javascript:void(0);" onclick="return false;">添加摘要</a></p>
+        -->
+									<div class="js_desc_area appmsg_edit_item align_counter">
+										<label for="" class="frm_label"> <strong class="title">摘要</strong>
+											<p class="tips l">（选填）</p>
+										</label> <span
+											class="frm_textarea_box with_counter counter_out counter_in append count">
+											<textarea class="frm_textarea js_desc js_counter" name="imagetext.summary"  max-length="120" id="summary">${imagetext?.summary}</textarea> <em
+											class="frm_input_append frm_counter summarycheck">0/120</em>
+										</span>
+										<div class="frm_msg fail js_desc_error" style="display:none;"></div>
+									</div>
+									<div id="js_ueditor" class="appmsg_edit_item content_edit">
+										<label for="" class="frm_label"> <strong class="title">正文</strong>
+											<!-- <p class="tips l">
+												<em id="js_auto_tips">（已载入2015-05-06 17:14:30的草稿）</em> <a
+													id="js_cancle" style="" href="javascript:void(0);"
+													onclick="return false;">取消</a>
+											</p> -->
+										</label>
+										<textarea  id="myEditor" name="imagetext.content" style="width:730px;height:400px;">${imagetext?.content!=null?"${imagetext?.content.raw()}":""}</textarea>
+										<script type="text/javascript">
+											//实例化编辑器
+										    var ue = UE.getEditor('myEditor');
+										</script>
+									</div>
+									<div class="js_url_area appmsg_edit_item">
+										<p class="frm_tips">
+										<label for="" #{if imagetext?.isexternal==0} class="frm_checkbox_label js_show_cover_pic selected" #{/if}#{else} class="frm_checkbox_label js_show_cover_pic " #{/else} onclick="externalchange(this)">
+											<i class="icon_checkbox"></i> 
+											<input type="checkbox" class="frm_checkbox" id="imagetext_isexternal" name="imagetext.isexternal" checked="checked"  value="${imagetext?.isexternal==0?'0':'1'}"> 使用外部链接
+										</label>
+										</p>
+										<label for="" class="frm_label"> <strong class="title">外部链接</strong>
+										</label>
+										 <span class="frm_input_box"><input #{if imagetext?.isexternal==1} readonly="readonly" #{/if} onclick="onclickExternalurl(this)" type="text" id="imagetext_externalurl" name="imagetext.externalurl" value="${imagetext.externalurl}"  class="js_url frm_input"></span>
+										<div class="frm_msg fail js_url_error" style="display:none;">链接不合法</div>
+									</div>
+
+
+								</div>
+								<i class="arrow arrow_out" style="margin-top: 0px;"></i> <i
+									class="arrow arrow_in" style="margin-top: 0px;"></i>
+								<p class="editor_extra_info mini_tips icon_after"
+									id="js_editor_extra_info">
+									<a target="_blank"
+										href="https://mp.weixin.qq.com/cgi-bin/settingpage?t=setting/function&action=function&set_water=1&lang=zh_CN&token=1659264812"
+										class=" page_assist_link">修改图片水印 <i
+										class="icon_mini_tips document_link"></i></a>
+								</p>
+							</div>
+						</div>
+
+					</div>
+					<div class="tool_area">
+						<div style="display: none;">
+						 	<input name="imagetext.id" value="${imagetext?.id}">
+						 	<input name="id" value="${newsinfo?.id}">
+						</div>
+						<div class="tool_bar border tc">
+							<span ><input type="submit" value="保存" id="js_submit" class="btn btn_input btn_primary"/></span>
+							<span><input type="button" value="预览"  id="js_preview" class="btn btn_input btn_default"/></span>
+							<span ><input type="button" value="保存并群发" id="js_send" class="btn btn_input btn_default"/></span>
+						</div>
+					</div>
+
+
+				</div>
+				<div class="dialog_wrp link_dialog" id="linkPop"
+					style="width: 726px; display: none; ">
+					<div class="dialog">
+						<div class="dialog_hd">
+							<h3>新增或编辑超链接</h3>
+							<a href="javascript:;" onclick="return false"
+								class="icon16_opr closed pop_closed jsLinkClose">关闭</a>
+						</div>
+						<form class="dialog_bd" id="linkForm">
+							<div class="frm_control_group">
+								<label for="" class="frm_label">文本内容</label>
+								<div class="frm_controls">
+									<span class="frm_input_box"> <input type="text"
+										id="txtTitle" name="title" class="frm_input"
+										placeholder="请填写被点击的文字内容">
+									</span>
+
+								</div>
+							</div>
+							<div class="frm_control_group dn" id="hrefDiv">
+								<label for="" class="frm_label">链接地址</label>
+								<div class="frm_controls">
+									<span class="frm_input_box"> <input type="text"
+										id="txtHref" name="href" class="frm_input" placeholder=""
+										value="http://">
+									</span>
+
+								</div>
+							</div>
+							<div class="link_chooser_wrap">
+								<span class="btn_link_triger" id="linkArrow">从已发送的图文消息中选择<i
+									class="arrow down"></i></span>
+								<div class="link_chooser dn" id="linkChoose">
+									<div class="search_bar">
+										<span class="frm_input_box search with_del append"> <a
+											class="del_btn"
+											href="https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit&action=edit&type=10&isMul=0&isNew=1&lang=zh_CN&token=1659264812###"
+											id="searchCloseBt"><i class="icon_search_del"
+												id="searchCloseBt"></i>&nbsp;</a> <a id="searchBt"
+											href="https://mp.weixin.qq.com/cgi-bin/appmsg?t=media/appmsg_edit&action=edit&type=10&isMul=0&isNew=1&lang=zh_CN&token=1659264812###"
+											class="frm_input_append"><i
+												class="icon16_common search_gray">搜索</i>&nbsp;</a> <input
+											id="keyInput" type="text" placeholder="搜索相关文章" value=""
+											class="frm_input">
+										</span>
+									</div>
+									<ul class="my_link_list" id="linkList">
+									</ul>
+									<div class="pagination tr" id="pageBar"></div>
+								</div>
+							</div>
+						</form>
+
+						<div class="dialog_ft">
+							<span class="btn btn_primary btn_input" id="linkOk"><button
+									type="button">确定</button></span> <span
+								class="btn btn_default btn_input jsLinkClose"><button
+									type="button">取消</button></span>
+						</div>
+
+					</div>
+				</div>
+				<div class="mask" id="mask" style="display: none;">
+					<iframe frameborder="0"
+						style="filter:progid:DXImageTransform.Microsoft.Alpha(opacity:0);position:absolute;top:0px;left:0px;width:100%;height:100%;"
+						src="about:blank"></iframe>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+<div class="JS_TIPS page_tips " id="wxTips" style="opacity: 0.950727558556123;display: none;"><div class="inner"></div></div>
+
+		<!-- 弹出层 -->
+<div class="modal fade" id="modal-1" >
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">选择图片</h4>
+			</div>
+			<div class="dialog_bd" id="dialog_bd" style="padding: 0px 5px 0px;">
+			
+			</div>
+			
+			<div class="dialog_ft">
+			
+            <span class="btn btn_primary btn_input js_btn_p disabled" id="okBtn">
+            	<button type="button" class="js_btn" id="addPicBtn" onclick="onselects(this)" data-index="0" data-dismiss="modal">确认</button>
+            </span>
+	        
+            <span class="btn btn_default btn_input js_btn_p">
+            	<button type="button" class="js_btn" data-index="1"data-dismiss="modal">取消</button>
+            </span>
+	        
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="modal-2">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">发送预览</h4>
+			</div>
+			<div class="dialog_bd">
+				<div class="simple_dialog_content">
+			    <form id="popupForm_" method="post" class="form" action="/MenuWxs/update">
+			         <div class="frm_control_group">
+			            <span class="frm_input_box">
+			                <input type="text" class="frm_input" name="wxAccount" id="wxAccount" value="">
+			            </span>
+			            <p class="frm_tips"></p>
+			        </div>       
+			        <div class="js_verifycode" style="color:red;"></div>
+			    </form>
+			</div></div>
+			
+			<div class="dialog_ft">
+			
+            <span class="btn btn_primary btn_input js_btn_p">
+            	<button type="button" class="js_btn" id="ok" data-index="0" data-dismiss="modal">确认</button>
+            </span>
+	        
+            <span class="btn btn_default btn_input js_btn_p">
+            	<button type="button" class="js_btn" data-index="1"data-dismiss="modal">取消</button>
+            </span>
+	        
+			</div>
+		</div>
+	</div>
+</div>
+
+	<script type="text/html" id="voteExtra">
+    <div class="frm_control_group extra">
+        <div class="frm_label">选项{vote_index_label}</div>
+        <div class="frm_controls">
+            <span class="frm_input_box"><input type="text" placeholder="十五字以内" class="frm_input" name="option{vote_index + 2}" data-index="{vote_index}" {if vote_input}value="{vote_input}"{/if}></span>
+            <a class="vote_remove_link" onclick="return false;" data-index="{vote_index}" href="javascript:void(0);">删除</a>
+        </div>
+    </div>
+</script>
+<script type="text/javascript" id="voteExtra">
+//去掉左右空格
+String.prototype.trim=function(){ return this.replace(/(^\s*)|(\s*$)/g, "");}
+//停止提示  str:提示的文字； yesNo：2 error 警告 ，1 success 成功
+function showWarn(str,yesNo){
+	$("#wxTips").find(".inner").html(str);
+	$("#wxTips").css("display","block");
+	if(yesNo==2)	$("#wxTips").addClass("error");
+	else $("#wxTips").addClass("success");
+	setTimeout(function(){
+		$("#wxTips").css("display","none");
+		$("#wxTips").find(".inner").html("");
+		if(yesNo==2)	$("#wxTips").removeClass("error");
+		else $("#wxTips").removeClass("success");
+		},4000);
+}
+$(function(){
+	$("#loading").remove();
+	   
+	if(/msie/i.test(navigator.userAgent)){
+		//ie浏览器 
+		document.getElementById('title').onpropertychange=titlechange 
+		document.getElementById('author').onpropertychange=authorchange 
+		document.getElementById('summary').onpropertychange=summarychange 
+	} 
+	else {//非ie浏览器，比如Firefox 
+		document.getElementById('title').addEventListener("input",titlechange,false); 
+		document.getElementById('author').addEventListener("input",authorchange,false); 
+		document.getElementById('summary').addEventListener("input",summarychange,false); 
+	} 
+})
+//修改标题和字数
+function titlechange(){
+	var title=$("#title").val().trim();
+	if(title!=""){
+		if(title.length>64){
+			$(".titlecheck").css("color","red");
+		}else{
+			$("#titleshow").html(title);
+			$(".titlecheck").css("color","#8d8d8d");
+		}
+		$(".titlecheck").html(title.length+"/64");
+	}else{
+		$("#titleshow").html("标题");
+		$(".titlecheck").html("0/64");
+	}
+}
+//修改作者和字数
+function authorchange(){
+	var author=$("#author").val().trim();
+	if(author!=""){
+		if(author.length>8){
+			$(".authorcheck").css("color","red");
+		}else{
+			$(".authorcheck").css("color","#8d8d8d");
+		}
+		$(".authorcheck").html(author.length+"/8");
+	}else{
+		$(obj).parent().find(".authorcheck").css("color","#8d8d8d");
+		$(".authorcheck").html("0/8");
+	}
+}
+//修改摘要和字数
+function summarychange(){
+	var summary=$("#summary").val().trim();
+	if(summary!=""){
+		if(summary.length>120){
+			$(".summarycheck").css("color","red");
+		}else{
+			$(".imagetext_summary").html(summary);
+			$(".summarycheck").css("color","#8d8d8d");
+		}
+		$(".summarycheck").html(summary.length+"/120");
+	}else{
+		$(".imagetext_summary").html("");
+		$(".summarycheck").html("0/120");
+	}
+}
+//是否显示在正文点击事件
+function checkchange(obj){
+	var isshow= $(obj).find("#imagetext_isshow").val();
+	if(isshow==1){
+		$(obj).find("#imagetext_isshow").val(0);
+		$(obj).addClass("selected");
+	}else{
+		$(obj).find("#imagetext_isshow").val(1);
+		$(obj).removeClass("selected");
+	}
+}
+//是否使用外部链接
+function externalchange(obj){
+	var isexternal= $(obj).find("#imagetext_isexternal").val();
+	if(isexternal==1){
+		$(obj).find("#imagetext_isexternal").val(0);
+		$(obj).parent().parent().find("input[name='imagetext.externalurl']").attr("readonly",false);
+		$(obj).addClass("selected");
+	}else{
+		$(obj).find("#imagetext_isexternal").val(1);
+		$(obj).parent().parent().find("input[name='imagetext.externalurl']").attr("readonly","readonly");
+		$(obj).removeClass("selected");
+	}
+}
+//点击Externalurl时
+function onclickExternalurl(obj){
+	var b=$(obj).attr("readonly");
+	if(b){
+		showWarn("请先选中使用外部链接！",2);
+	}
+} 
+//上传图片
+function upload(uploadFile,ufs,field,preImg,preImgtwo){
+	var uf = $(uploadFile);
+	if(uf.val()=='') {
+		alert('请选择要上传的图片!');
+		return;
+	}else{
+		$(".imgshow").css("display","");
+		$(".imgshow").attr("src","/public/weixin/css/img/icon40_loading_white218877.gif");
+	}
+	//将file移动至上传表单
+	$('#fileContent').empty();
+	$('#fileContent').append(uf);
+	//复制一个file放至原处
+	$(ufs).append(uf.clone());
+	uf.attr('id','');
+	uf.attr('name','file');
+	$("#fieldID").val(field);
+	$("#preImgID").val(preImg);
+	$("#preImgtwoID").val(preImgtwo);
+	$('#uploadForm').submit();
+}
+	function clearImg(field,preImg){
+		if(confirm("清空会删掉图片，确认操作？")){
+			var path = $(field).val();
+		if(path!=""){
+			$.getJSON('/Activitieinfos/deleteImg',{path:path},function(result){
+				if(result==true){
+					$(field).val("");
+					$(preImg).attr("src","/public/images/photos/nophoto.jpg");
+				}
+			});
+		}else{
+			alert("空值不能清除");
+		}
+		}
+	}
+	var selectufs="";
+	var selectfield="";
+	var selectpreImg="";
+	var	selectpreImgtwo="";
+	//弹出图片库层
+	function selectimg(obj,ufs,field,preImg,preImgtwo){
+		selectufs=ufs;
+		selectfield=field;
+		selectpreImg=preImg;
+		selectpreImgtwo=preImgtwo;
+		$.post("/MenuWxs/selectImgGoupgs", {}, function(data) {
+			$("#modal-1").find("div[id=dialog_bd]").html("");
+			$("#modal-1").find("div[id=dialog_bd]").html(data);
+			jQuery("#modal-1").modal("show", {
+				backdrop : 'static'
+			});
+		});
+	}
+	//图片库层选择图片
+	function onselects(obj){
+		var selectedNode = $("#imgList").find(".selected").attr("val");
+		$("#imgStockId").val(selectedNode);
+		
+		$.post("/ImgStocks/selectImgStock", {
+			"id" : selectedNode,
+		}, function(data) {
+			$(selectfield).val(data.id);
+			$(selectpreImg).attr("src",data.path);
+			$(selectpreImg).parent().css("display","block");
+			$(selectpreImgtwo).attr("src",data.path);
+			$(selectpreImgtwo).css("display","block");
+			$(selectpreImgtwo).parent().find(".default").css("display","none");
+			//$("#msg_tab_conent").html("");
+			//$("#msg_tab_conent").html(data);
+		});
+	};
+	
+	//预览
+	$("#js_preview").click(function(){
+		$("#modal-2").modal("show",{
+			backdrop:"static"
+		});
+	});
+	
+	//预览的确定
+	$("#ok").click(function(){
+		var wxAccount = $("#modal-2").find("input[id='wxAccount']").val();
+		var js_verifycode = $("modal-2").find("div[class='js_verifycode']");
+		if(wxAccount==""){
+			$(js_verifycode).text("请输入微信号!");
+			return false;
+		}else{
+			//这里的ajax用来判断输入的微信号是不是存在的
+			$.post("/Customerinfos/checkCustomer", {"wxAccount":wxAccount}, function(data) {
+				if(data=="-1"){
+					$(js_verifycode).text("输入的微信号不存在！");
+				}else{
+					$(js_verifycode).text("");
+					$("#typeInput").val(1);
+					$("#wxAccount1").val(data);
+					
+					$.ajax({
+		                cache: true,
+		                type: "POST",
+		                url: "/Newsinfos/blankOnesave1",
+		                data:$('#form1').serialize(),// 你的formid
+		                async: false,
+		                error: function(request) {
+		                    alert("Connection error");
+		                },
+		                success: function(data) {
+		                    if(data=="40003"){//openid 不合法
+		                    	alert("该用户不存在或未关注本微信！");
+		                    }else if(data=="0"){
+		                    	alert("发送成功！");
+		                    }
+		                }
+		            });
+				}
+			});
+		}
+	});
+</script>
+#{/form}
+</body>
+</html>

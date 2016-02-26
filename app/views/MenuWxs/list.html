@@ -1,0 +1,610 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta charset="utf-8">
+<title>微信菜单</title>
+<link onerror="wx_loaderror(this)" rel="stylesheet" type="text/css" href="@{'/public/weixin/css/base25404f.css'}" />
+<link onerror="wx_loaderror(this)" rel="stylesheet" type="text/css" href="@{'/public/weixin/css/lib22f1a9.css'}" />
+<link onerror="wx_loaderror(this)" rel="stylesheet" href="@{'/public/weixin/css/advanced_menu_setting25404f.css'}">
+<link rel="stylesheet" type="text/css" href="@{'/public/weixin/css/tooltip218878.css'}" />
+<link onerror="wx_loaderror(this)" rel="stylesheet" href="@{'/public/weixin/css/bootstrap.css'}">
+<link onerror="wx_loaderror(this)" rel="stylesheet" href="@{'/public/weixin/css/wx.css'}">
+<script src="/public/javascripts/jquery.js"></script>
+<script src="/public/javascripts/jquery.validate.js"></script>
+<script src="/public/weixin/js/bootstrap.min.js"></script>
+<script src="/public/weixin/js/wx.js"></script>
+<script type="text/javascript" src="/public/draggable/js/jquery.sortable.js"></script>
+
+</head>
+<body class="zh_CN">
+	<div id="body" class="body1 page_menu_setting">
+		<div id="js_container_box" class="container_box cell_layout side_l">
+			<div class="col_main">
+				<div class="main_bd">
+					#{if roots!=null&&roots.size()!=0}
+					<div class="menu_setting_area_wrp" id="menu_container">
+						<div class="menu_setting_area edit">
+							<div class="inner_container_box side_l cell_layout">
+								<div class="inner_container_box_bd">
+									<div class="inner_side">
+										<div class="bd">
+											<div class="menu_manage">
+												<div class="sub_title_bar light">
+													<h4>菜单管理</h4>
+													<div class="opr_wrp">
+														<a href="javascript:add(0,${roots.size()});" id="addBt" class="addBt opr_meta icon16_common add_gray">添加</a>
+													</div>
+												</div>
+													<div class="inner_menu_box gray with_switch ui-sortable ui-sortable-disabled" id="menuList1">
+														#{list roots,as:"root"}
+														<dl class="inner_menu jsMenu ui-sortable ui-sortable-disabled parentMenu">
+															<dt class="inner_menu_item jslevel1" id="menu_${root_index-1}">
+																<a href="javascript:void(0);" class="inner_menu_link" id="${root.id}" ><strong>${root.name}</strong></a>
+																<span class="menu_opr">
+																	#{if root.children.size()<5}
+																	<a href="javascript:add(${root.id},${root.children.size()});" class="js_addSecondMenu icon14_common add_gray jsAddBt">添加</a>
+																	#{/if}
+																</span>
+															</dt>
+															#{list root.children,as:"child"}
+															<dd class="inner_menu_item jslevel2" id="subMenu_menu_${root_index-1}_${child_index-1}" >
+																<i class="icon_dot">●</i>
+																<a href="javascript:void(0);" class="inner_menu_link" id="${child.id}">
+																	<strong>${child.name}</strong>
+																</a>
+															</dd>
+															#{/list}
+														</dl>
+														#{/list}
+														<div class="menu_mask"></div>
+													</div>
+											</div>
+										</div>
+									</div>
+									<div class="inner_main">
+										<div class="bd">
+											<div class="menu_create_box_preview"></div>
+											<div class="action_setting">
+												
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="inner_container_box_ft" id="menuStatus"
+									style="display:none">
+									<p class="menu_msg mini_tips weak_text" style="display:none"
+										id="menustatus_2">编辑中：点击下方“保存并发布”，才能更新到手机上</p>
+									<p class="menu_msg mini_tips warn" id="menustatus_3"
+										style="display:none">待发布&#40;还有13小时&#41;</p>
+									<p class="menu_msg mini_tips success" style="display:none"
+										id="menustatus_1">菜单正在使用中</p>
+								</div>
+							</div>
+						</div>
+						<div class="tool_bar tc js_totaltool_bar">
+							<a href="javascript:pubMenu();" class="btn btn_primary" id="pubBt">发布菜单</a>
+						</div>
+					</div>
+					#{/if}
+					#{else}
+					<div class="menu_setting_empty_wrp dn" style="display:block;">
+						<img src="@{'/public/weixin/css/img/menu_demo25404e.jpg'}">
+						<p class="tips_global">你还未创建菜单</p>
+						<a class="addBt btn btn_primary" href="javascript:add(0,0);">添加菜单</a>
+					</div>
+					#{/else}
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<div class="modal fade" id="modal-6">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"></h4>
+			</div>
+			<div class="dialog_bd">
+				<div class="simple_dialog_content">
+			    <form id="popupForm_" method="post" class="form" action="/MenuWxs/update">
+			         <div class="frm_control_group">
+			            <span class="frm_input_box">
+			                <input type="text" class="frm_input" name="name" id="menuName" value="">
+			               <input type="hidden" class="frm_input" name="id" id="menuId" value="">
+			               <input type="hidden" class="frm_input" name="" id="parentId" value="">
+			            </span>
+			            <p class="frm_tips"></p>
+			        </div>       
+			        <div class="js_verifycode" style="color:red;"></div>
+			    </form>
+			</div></div>
+			
+			<div class="dialog_ft">
+			
+            <span class="btn btn_primary btn_input js_btn_p">
+            	<button type="button" class="js_btn" id="ok" data-index="0" data-dismiss="modal">确认</button>
+            </span>
+	        
+            <span class="btn btn_default btn_input js_btn_p">
+            	<button type="button" class="js_btn" data-index="1"data-dismiss="modal">取消</button>
+            </span>
+	        
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-7">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">温馨提示</h4>
+			</div>
+			<form id="popupForm_1" method="post" class="form" action="/MenuWxs/delete">
+			<div class="dialog_bd">
+		      <div class="page_msg large simple default ">
+		        <div class="inner group">
+		          <span class="msg_icon_wrapper"><i class="icon_msg warn "></i></span>
+		          <div class="msg_content ">
+		          <h4>删除确认</h4>
+		          <p>删除后该菜单下设置的消息将不会被保存</p>
+		          <input type="hidden" class="frm_input" name="id" id="menuId" value="">
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+			</form>
+			<div class="dialog_ft">
+			
+            <span class="btn btn_primary btn_input js_btn_p">
+            	<button type="button" class="js_btn" id="delbtn" data-index="0" data-dismiss="modal">确认</button>
+            </span>
+	        
+            <span class="btn btn_default btn_input js_btn_p">
+            	<button type="button" class="js_btn" data-index="1"data-dismiss="modal">取消</button>
+            </span>
+	        
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-8">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title"></h4>
+			</div>
+			<form id="popupForm_2" method="post" class="form" action="/MenuWxs/add">
+			
+			<div class="dialog_bd"><div class="simple_dialog_content">
+					
+			         <div class="frm_control_group">
+			         <label class="frm_label" style="width: 450px;margin-top: -30px;" id="labelMsg"></label>
+			            <span class="frm_input_box">
+			                <input type="text" class="frm_input" name="name" value="">
+			                <input type="hidden" class="frm_input" name="parentId" id="parentId" value="">
+			            </span>
+			            
+			        </div>       
+			        <div class="js_verifycode" style="color:red"></div>
+			</div></div>
+			<div class="dialog_ft">
+			
+            <span class="btn btn_primary btn_input js_btn_p">
+            	<button type="button" class="js_btn" id="addBtn" data-index="0" data-dismiss="modal">确认</button>
+            </span>
+	        
+            <span class="btn btn_default btn_input js_btn_p">
+            	<button type="button" class="js_btn" data-index="1"data-dismiss="modal">取消</button>
+            </span>
+	        
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade" id="modal-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">选择图片</h4>
+			</div>
+			<div class="dialog_bd" id="dialog_bd" style="padding: 0px 5px 0px;">
+			
+			</div>
+			
+			<div class="dialog_ft">
+			
+            <span class="btn btn_primary btn_input js_btn_p disabled" id="okBtn">
+            	<button type="button" class="js_btn" id="addPicBtn" data-index="0" data-dismiss="modal">确认</button>
+            </span>
+	        
+            <span class="btn btn_default btn_input js_btn_p">
+            	<button type="button" class="js_btn" data-index="1"data-dismiss="modal">取消</button>
+            </span>
+	        
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-2">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">选择素材</h4>
+			</div>
+			<div class="dialog_bd" id="dialog_bd" style="padding: 0 0 0 0;">
+			
+			</div>
+			
+			<div class="dialog_ft">
+			
+            <span class="btn btn_primary btn_input js_btn_p disabled" id="addNewsInf">
+            	<button type="button" class="js_btn" id="addNewsInfBtn" data-index="0" data-dismiss="modal">确认</button>
+            </span>
+	        
+            <span class="btn btn_default btn_input js_btn_p">
+            	<button type="button" class="js_btn" data-index="1"data-dismiss="modal">取消</button>
+            </span>
+	        
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-3">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">从素材管理中选择</h4>
+			</div>
+			<div class="dialog_bd" id="dialog_bd" style="padding: 0 0 0 0;">
+			
+			</div>
+			
+			<div class="dialog_ft">
+			
+            <span class="btn btn_primary btn_input js_btn_p disabled" id="addUrl">
+            	<button type="button" class="js_btn" id="addUrlBtn" data-index="0" data-dismiss="modal">确认</button>
+            </span>
+	        
+            <span class="btn btn_default btn_input js_btn_p">
+            	<button type="button" class="js_btn" data-index="1"data-dismiss="modal">取消</button>
+            </span>
+	        
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-4" data-backdrop="static">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				
+				<div class="modal-header">
+					<h4 class="modal-title">提示信息</h4>
+				</div>
+				
+				<div class="modal-body"></div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<script>
+	//页面加载的时候显示load页面的信息
+	$.post("/MenuWxs/load", "", function(data) {
+		$("div[class='action_setting']").html("");
+		$("div[class='action_setting']").html(data);
+	});
+
+	
+	
+	//一级菜单的点击事件
+	$("dt[id^='menu_']").click(function() {
+		var $this = $(this);
+		
+		//获取当前点击一级菜单的id
+		var id = $this.children("a").first().attr("id");
+		$.post("/MenuWxs/editLoad1", {
+			"id" : id
+		}, function(data) {
+			
+			//查找到其他具有selecte样式的菜单，清除其seleted
+			var selectedNode = $("#menuList1").find(".selected");
+			for (var i = 0; i < selectedNode.length; i++) {
+				$(selectedNode[i]).removeClass("selected");
+			}
+
+			//给当前点击的菜单增加selected样式
+			$this.addClass("selected");
+			$("div[class='action_setting']").html("");
+			$("div[class='action_setting']").html(data);
+		});
+	});
+
+	
+	//二级菜单的点击事件
+	$("dd[id^='subMenu_menu']").click(function() {
+		var $this = $(this);
+		//菜单的id
+		var id = $this.children("a").first().attr("id");
+		$.post("/MenuWxs/editLoad1", {
+			"id" : id
+		}, function(data) {
+			var selectedNode = $("#menuList1").find(".selected");
+			for (var i = 0; i < selectedNode.length; i++) {
+				$(selectedNode[i]).removeClass("selected");
+			}
+
+			$this.addClass("selected");
+			$("div[class='action_setting']").html("");
+			$("div[class='action_setting']").html(data);
+		});
+	});
+
+	//菜单的修改
+	function changeBt(id) {
+		$.post("/MenuWxs/edit1", {
+			"id" : id
+		}, function(data) {
+			var msg = "";
+			//清除警告信息
+			$("#popupForm_").find("div[class='js_verifycode']").text("");
+			//清除上一次输入的内容
+			$("#popupForm_").find("input[name='name']").val("");
+			if(data.parent==null){//修改一级菜单
+				msg="修改一级菜单名称";
+				$("#modal-6").find("p[class='frm_tips']").text("不多于4个汉字或8个字母");
+				$("#popupForm_").find("input[id='parentId']").val(0);
+			}else{//修改二级菜单
+				msg="修改二级菜单名称";
+				$("#modal-6").find("p[class='frm_tips']").text("不多于8个汉字或16个字母");
+				$("#popupForm_").find("input[id='parentId']").val(data.parent.id);
+			}
+			$("#modal-6").find("h4[class='modal-title']").text(msg);
+			$("#menuName").val(data.name);
+			$("#menuId").val(data.id);
+		});
+		jQuery("#modal-6").modal("show", {
+			backdrop : 'static'
+		});
+	}
+	
+	
+	//菜单的修改确认
+	$("#ok").click(function(){
+		//在这里添加验证条件
+		var name = $("#popupForm_").find("input[name='name']").val();//输入菜单的名字
+		//菜单的上一级id 如果是0 表明添加的是一级菜单，否则就是二级菜单
+		var parent = $("#popupForm_").find("input[id='parentId']").val();
+		//显示警告信息
+		var js_verifycode = $("#popupForm_").find("div[class='js_verifycode']");
+		
+		if(parent>0){//添加的二级菜单
+			if(getByteLen(name)>16){
+				$(js_verifycode).text("菜单名称名字不多于8个汉字或16个字母");
+				return false;
+			}else if(getByteLen(name)<1){
+				$(js_verifycode).text("输入框内容不能为空");
+				return false;
+			}
+		}else{//添加的一级菜单
+			if(getByteLen(name)>8){
+				$(js_verifycode).text("菜单名称名字不多于4个汉字或8个字母");
+				return false;
+			}else if(getByteLen(name)<1){
+				$(js_verifycode).text("输入框内容不能为空");
+				return false;
+			}
+		}
+		
+		$("#popupForm_").submit();
+	});
+	
+	//菜单的删除
+	function delBt(id) {
+		$.post("/MenuWxs/edit1", {
+			"id" : id
+		}, function(data) {
+			$("#modal-7").find("input[id=menuId]").val(data.id);
+		});
+		jQuery("#modal-7").modal("show", {
+			backdrop : 'static'
+		});
+	}
+	
+	//菜单的删除确定
+	$("#delbtn").click(function(){
+		$("#popupForm_1").submit();
+	});
+	
+	//菜单的添加，注意 这里的id是父菜单的id
+	//length表明已经添加了几个菜单
+	function add(id,length){
+		$("#modal-8").find("input[id=parentId]").val(id);
+		//清除警告信息
+		$("#popupForm_2").find("div[class='js_verifycode']").text("");
+		//清除上一次输入的内容
+		$("#popupForm_2").find("input[name='name']").val("");
+		var msg = "";
+		var msg1 = "";
+		if(id==0){//添加一级菜单
+			msg="添加一级菜单名称";
+			msg1 = "还能添加"+(3-length)+"个一级菜单，请输入名称（4个汉字或8个字母以内）"
+		}else{//添加二级菜单
+			msg="添加二级菜单名称";
+			msg1 = "还能添加"+(5-length)+"个二级菜单，请输入名称（8个汉字或16个字母以内）"
+		}
+		$("#modal-8").find("h4[class='modal-title']").text(msg);
+		$("#modal-8").find("label[id='labelMsg']").text(msg1);
+		jQuery("#modal-8").modal("show", {
+			backdrop : 'static'
+		});
+	}
+	
+	//菜单的添加
+	$("#addBtn").click(function(){
+		//在这里添加验证条件
+		var name = $("#popupForm_2").find("input[name='name']").val();//输入菜单的名字
+		
+		//菜单的上一级id 如果是0 表明添加的是一级菜单，否则就是二级菜单
+		var parent = $("#popupForm_2").find("input[id='parentId']").val();
+		
+		//显示警告信息
+		var js_verifycode = $("#popupForm_2").find("div[class='js_verifycode']");
+		
+		if(parent>0){//添加的二级菜单
+			if(getByteLen(name)>16){
+				$(js_verifycode).text("菜单名称名字不多于8个汉字或16个字母");
+				return false;
+			}else if(getByteLen(name)<1){
+				$(js_verifycode).text("输入框内容不能为空");
+				return false;
+			}
+		}else{//添加的一级菜单
+			if(getByteLen(name)>8){
+				$(js_verifycode).text("菜单名称名字不多于4个汉字或8个字母");
+				return false;
+			}else if(getByteLen(name)<1){
+				$(js_verifycode).text("输入框内容不能为空");
+				return false;
+			}
+		}
+		
+		
+		$("#popupForm_2").submit();
+	});
+	
+	//给菜单添加click事件
+	//id：菜单的id
+	function sendMsg(id,menuType){
+		$.post("/MenuWxs/sendMsg", {
+			"id" : id,
+			"menuType":menuType
+		}, function(data) {
+			$("div[class='action_setting']").html("");
+			$("div[class='action_setting']").html(data);
+		});
+	}
+	
+	//菜单事件的添加保存
+	function save(id){
+		$("#popupForm_3").find("input[id='content']").val($("#menuContent").text());
+		$("#popupForm_3").submit();
+	}
+	
+	//菜单添加发送图片
+	$("#addPicBtn").click(function(){
+		var selectedNode = $("#imgList").find(".selected").attr("val");
+		$("#imgStockId").val(selectedNode);
+		
+		$.post("/MenuWxs/selectImgStock", {
+			"id" : selectedNode,
+		}, function(data) {
+			$("#msg_tab_conent").html("");
+			$("#msg_tab_conent").html(data);
+		});
+	});
+	
+	//给菜单添加发送多图文的
+	$("#addNewsInfBtn").click(function(){
+		var selectedNode = $("#newsInfos").find(".selected").attr("data-id");
+		$("#newsinfoId").val(selectedNode);
+		
+		$.post("/NewsInfos/findByNewsInfo", {
+			"id" : selectedNode,
+		}, function(data) {
+			$("#msg_tab_conent").html("");
+			$("#msg_tab_conent").html(data);
+		});
+	});
+	
+	//给菜单添加url链接
+	$("#addUrlBtn").click(function(){
+		var selectedId;
+		$(".select_list_item").each(function(){
+			if($(this).hasClass("selected")){
+				selectedId = $(this).find("input[type='radio']").val();
+			}
+		});
+		
+		$.post("/NewsInfos/findImagetext", {
+			"id" : selectedId,
+		}, function(data) {
+			$("#urlText").val("/Newsinfos/detail?id="+data);
+		});
+	});
+	
+	//计算字符数，一个汉字算两个字符
+	function getByteLen(val) {
+        var len = 0;
+        for (var i = 0; i < val.length; i++) {
+           var length = val.charCodeAt(i);
+           if(length>=0&&length<=128){
+                len += 1;
+            }else{
+            	len += 2;
+            }
+        }
+        
+        return len;
+	}
+	
+	//菜单的发布 
+	function pubMenu(){
+		$.post("/MenuWxs/pushMenuWx", {}, function(data) {
+			if(data==0){
+				$("#modal-4").find("div[class='modal-body']").text("菜单发布成功！");
+				jQuery("#modal-4").modal("show", {
+					backdrop : 'static'
+				});
+			}else{
+				$("#modal-4").find("div[class='modal-body']").text("存在还未设置响应的菜单，请检查！");
+				jQuery("#modal-4").modal("show", {
+					backdrop : 'static'
+				});
+			}
+			
+		});
+	}
+</script>
+<script>
+	//二级菜单的排序
+    $(".parentMenu").sortable().bind('sortupdate', function() {
+		$('#msg').html('position hahaha changed').fadeIn(200).delay(1000).fadeOut(200);
+		
+		//获取二级菜单所在的节点
+		var ddId = $("#menuList1").find("dd");
+		
+		var aIds = "";
+		for(var i=0;i<ddId.length;i++){
+			var aId = $(ddId[i]).find("a").attr("id");
+			aIds = aIds+aId+","+i+";"//由排序之后 二级菜单id组成的字符串
+		}
+		
+		//ajax提交到后台，进行排序之后的保存
+		$.post("/MenuWxs/sortMenu", {
+			"ids" : aIds,
+		}, function(data) {
+			
+		});
+		
+	});
+</script>
+</html>

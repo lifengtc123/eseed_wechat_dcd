@@ -1,0 +1,16 @@
+#{extends 'main_tree.html'/}
+<script> 
+d = new dTree('d');
+d.init("/public/images");
+d.add("0","ROOT",'列表','/imgStocks/list','','listframe');
+d.add('-1','0','未分组','/imgStocks/list?pid=-1','','listframe');
+#{list list,as:'row'}
+#{if row.pid==null}
+d.add('${row.cid}','0','${row.name}','/imgStocks/list?pid=${row.id}','','listframe');
+#{/if}
+#{else}
+d.add('${row.cid}','${row.pid}','${row.name}','/imgStocks/list?pid=${row.id}','','listframe');
+#{/else}
+#{/list}
+document.write(d);
+</script>

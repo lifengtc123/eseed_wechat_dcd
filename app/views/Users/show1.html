@@ -1,0 +1,120 @@
+#{extends "main_list.html"/}
+#{set title:"添加生产计划单"/}
+<style type="text/css" media="screen">
+	body{overflow-y: auto;}
+</style>
+<script src="/public/javascripts/common.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/loading.js" type="text/javascript" charset="utf-8"></script>
+<form id="form1" action="/users/save1" method="POST">
+<div class="form">
+<fieldset>
+	<legend>用户信息</legend>
+<div class="field" style="width: 49%;">
+	<label for="user_username">
+		用户名
+	</label>
+	<input id="user_username" class="txt01 emptyInfo" type="text" name="user.username" value="${user.username}"/>
+</div>
+		
+<input  type="hidden" name="user.password" value="${user.password}"/>
+<div class="field" style="width: 45%;">
+	<label for="user_password">
+		密码
+	</label>
+	<input id="user_password" style="width:148" class="txt01" type="password" name="user.password2" value=""/><span></span><font color="red">&nbsp;&nbsp;&nbsp;不修改密码此处为空</font>
+</div>
+
+		
+<div class="field" style="width: 49%;">
+	<label for="user_truename">
+		真实姓名
+	</label>
+	<input id="user_truename" class="txt01 emptyInfo" type="text" name="user.truename" value="${user.truename}"/>
+</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_sex">
+		性别
+	</label>
+	<select id="user_sex" name="user.sex" class="txt01">
+	<option value="男" #{if user.sex == "男"} selected="selected" #{/if}>男</option>
+	<option value="女" #{if user.sex == "女"} selected="selected" #{/if}>女</option>
+	</select>
+		</div>
+		
+		<div class="field" style="width: 49%;">
+	<label for="user_email">
+		电子邮件
+	</label>
+	<input id="user_email" class="txt01 " type="text" name="user.email" value="${user.email}"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_tel">
+		联系电话
+	</label>
+	<input id="user_tel" class="txt01 " type="text" name="user.tel" value="${user.tel}"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_mobile">
+		移动电话
+	</label>
+	<input id="user_mobile" class="txt01 " type="text" name="user.mobile" value="${user.mobile}"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="user_cornet">
+		短号
+	</label>
+	<input id="user_cornet" class="txt01 " type="text" name="user.cornet" value="${user.cornet}"/>
+		</div>
+
+</fieldset>
+<fieldset>
+<legend>参数设置</legend>
+<div class="field" style="width: 49%;">
+<label style="width: 100px;"> 
+	分辨率宽：${screenSet.widthSize?.format("#")}<input type="hidden" value="${screenSet.widthSize?.format('#.##')}" name="widthSize">
+</label>
+</div>
+<div class="field" style="width: 49%;">
+<label style="width: 100px;">
+	分辨率高：${screenSet.heightSize?.format("#")}<input type="hidden" value="${screenSet.heightSize?.format('#.##')}" name="heightSize">
+</label>
+</div>
+<div class="field" style="width: 49%;">
+<label>
+	列表高
+</label>
+<input id="tableHeight" class="txt01 emptyInfo" type="text" name="tableHeight" value="${screenSet.tableHeight?.format('#.##')}" onblur="checkDecimals(this);" onfocus="clearZero(this);"/>
+</div>
+<div class="field" style="width: 49%;">
+<label>
+	每页条数
+</label>
+<input id="pageSize" class="txt01 emptyInfo" type="text" name="pageSize" value="${screenSet.pageSize?.format('#.##')}" onblur="checkDecimals(this);" onfocus="clearZero(this);"/>
+</div>
+<div class="field" style="width: 49%;">
+<label>
+	显示菜单
+</label>
+<input id="menuNum" class="txt01 emptyInfo" type="text" name="menuNum" value="${screenSet.menuNum?.format('#.##')}" onblur="checkDecimals(this);" onfocus="clearZero(this);"/>
+</div>
+<input type="hidden" name="screenSet.id" value="${screenSet?.id}">
+</fieldset>
+<p class="buttons">
+	<input type="hidden" name="id" value="${user.id}"/>
+	<input type="button" name="_save" onclick="check()" value="保存" class="btn01"/>
+	<input type="button" name="_close" value="关闭" class="btn01 option_close"/> 
+</p>
+</div>
+</form>
+<script type="text/javascript"> 
+function check(){
+	if(checkEmptyInfo()){
+		loadingcontent();
+		$("#form1").submit();
+	} 
+}
+</script>

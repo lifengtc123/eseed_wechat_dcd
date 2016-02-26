@@ -1,0 +1,12 @@
+<select id="${_oid}" name="${_oname}.id">
+%{ 
+	list = play.db.jpa.JPA.getEntityManager().createQuery(_sql).getResultList()
+	list = utils.SelectTreeUtils.setTree(list)
+	list.each {
+		selected = false
+		pid = _ovalue ? _ovalue['id'] : params.pid
+		if(String.valueOf(pid)==String.valueOf(it.id)) selected = true
+}%
+<option value="${it[_name?_name:'id']}"${selected ? ' selected="true"'.raw() : ''}>${it.selectTree.raw()}</option>
+%{ } }%
+</select>

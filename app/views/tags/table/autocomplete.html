@@ -1,0 +1,16 @@
+#{field _object + '.' + _name}
+	#{if _label}
+	<label for="${field.id}">
+		&{_inputName + "." + _name}
+	</label>
+	#{/if}
+	#{if _input}
+	<input id="${field.id}" style="width:${_input}" class="txt01 ${field.errorClass}" type="text" name="${field.name}" value="${_value?.escape()?.raw()}" onkeydown="keyenter(event);"; onkeyup="findValue(this,${_name}_options,event)" autocomplete="off"/>
+	#{/if}
+	#{else}
+	<input id="${field.id}" class="txt01 ${field.errorClass}" type="text" name="${field.name}" value="${_value?.escape()?.raw()}" onkeydown="keyenter(event);"; onkeyup="findValue(this,${_name}_options,event)" autocomplete="off"/>
+	#{/else}
+	#{ifError field.name}
+		<span class="error">${field.error}</span>
+	#{/ifError}
+#{/field}

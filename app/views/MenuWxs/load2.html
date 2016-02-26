@@ -1,0 +1,74 @@
+<div class="sub_title_bar light js_second_title_bar dn" style="display: block;">
+	<h4>#{if menuWx.parent==null}一级菜单#{/if}#{else}二级菜单#{/else}：${menuWx.name}</h4>
+	<a id="jsDelBt" class="btn_ctrl" href="javascript:delBt(${menuWx.id})">删除</a>
+	<a id="jsChangeBt" class="btn_ctrl" href="javascript:changeBt(${menuWx.id});">重命名</a>
+</div>
+<div class="action_content url jsMain" id="url" style="display: block;">
+	<form id="popupForm_3" method="post" class="form" action="/MenuWxs/update1">
+		<p class="action_tips" id="urlTips">
+			订阅者点击该子菜单会跳到以下链接，<a class="resetAction" href="javascript:reset(${menuWx.id});">重设动作</a>
+		</p>
+		<div class="frm_control_group">
+			<label for="" class="frm_label">页面地址</label>
+			<div class="frm_controls">
+				<span class="frm_input_box">
+					<input type="text" class="frm_input" id="urlText" name="content" value="${menuWx.url}">
+					<input type="hidden" name="id" id="menuId" value="${menuWx.id}" />
+				<input type="hidden" name="menuType" id="menuType" value="${menuWx.menuType}" />
+				</span>
+				<p class="frm_tips" id="js_urlTitle" style="display: none;">来自图文消息"<span></span>"
+				</p>
+				<p class="frm_msg fail" style="display: none;" id="urlFail">
+					<span for="urlText" class="frm_msg_content" style="display: inline;">请输入正确的URL</span>
+				</p>
+			</div>
+		</div>
+
+		<div class="frm_control_group btn_appmsg_wrap">
+			<div class="frm_controls">
+				<a href="javascript:selectUrl();" id="js_appmsgPop">从素材库图文消息中选择</a>
+				<p class="frm_msg fail" style="display: none;" id="urlUnSelect">
+					<span for="urlText" class="frm_msg_content" style="display: inline;">请选择一篇文章</span>
+				</p>
+			</div>
+		</div>
+	</form>
+	<div class="tool_bar dn" style="display: inline-block">
+		<a href="javascript:save(${menuWx.id});" class="btn btn_primary" id="editSave">保存</a>
+		<a href="javascript:back(${menuWx.id});" class="btn btn_default" id="urlBack">返回</a>
+	</div>
+</div>
+<script>
+//重设动作
+function reset(id){
+	$.post("/MenuWxs/editLoad1", {
+		"id" : id,
+		"type":0
+	}, function(data) {
+		$("div[class='action_setting']").html("");
+		$("div[class='action_setting']").html(data);
+	});
+}
+
+//返回
+function back(id){
+	$.post("/MenuWxs/editLoad1", {
+		"id" : id
+	}, function(data) {
+		$("div[class='action_setting']").html("");
+		$("div[class='action_setting']").html(data);
+	});
+}
+//选择素材
+function selectUrl(){
+	$.post("/NewsInfos/selectSuCai", {}, function(data) {
+		$("#modal-3").find("div[id=dialog_bd]").html("");
+		
+		$("#modal-3").find("div[id=dialog_bd]").html(data);
+	});
+	
+	jQuery("#modal-3").modal("show", {
+		backdrop : 'static'
+	});
+}
+</script>

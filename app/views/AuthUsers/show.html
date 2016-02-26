@@ -1,0 +1,49 @@
+#{extends "main_list.html"/}
+#{set title:"修改授权用户"/}
+#{form @@save(authUser?.id)}
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+<legend>授权用户</legend>
+<div class="field" style="width: 49%;">
+#{field "authUser.number"}
+<label for="${field.id}">客户编号</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "authUser.authorizer_appid"}
+<label for="${field.id}">appid</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "authUser.authorizer_access_token"}
+<label for="${field.id}">授权方令牌</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "authUser.authorizer_refresh_token"}
+<label for="${field.id}">刷新令牌</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "authUser.func_info"}
+<label for="${field.id}">授权权限集</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+</fieldset>
+<p class="buttons">
+<input type="hidden" name="authUser.id" value="${authUser?.id}"/>
+<input type="submit" name="_save" value="&{'option.save'}" class="btn01"/>
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>
+#{/form}

@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<title>帐号解绑</title>
+<link rel="stylesheet" type="text/css" href="/public/weiwang/css/style.css"/>
+<script type="text/javascript" src="/public/weiwang/js/loading.js"></script> 
+<script type="text/javascript" src="/public/weiwang/js/jquery-1.10.1.min.js"></script> 
+<script type="text/javascript" src="/public/weiwang/js/ealert.js"></script> 
+<script type="text/javascript" src="/public/weiwang/js/myjq.js"></script> 
+<script src="/public/javascripts/jsAddress.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+<form method="post" action="/phone/Wechat/delAccount" id="form1">
+
+<div class="info_banner"><img src="/public/weiwang/images/info_banner.png" /></div>
+
+<div class="info_list">
+	<ul>
+		<li style="margin-left: 2em;">
+    		您已经绑定了#{if customerinfo.buildType==0}企业帐号#{/if}
+             	#{if customerinfo.buildType==1}监管帐号#{/if}，
+        </li>
+        #{if customerinfo.buildType==0}
+        <li style="margin-left: 2em;">
+             	单位名称为：${customerinfo.companyName},
+        </li>
+        #{/if}
+        <li style="margin-left: 2em;">
+        	绑定的帐号为：${customerinfo.userNo}
+        </li>
+        <li style="margin-left: 2em;">
+        	解绑请输入密码：
+            <input type="password" style="width: 30%;height: 2em;border: solid 0.0625em #ddd;border-radius: 0.1875em;padding: 0 5%;" class="input_text required"  name="userPwd"  id="userPwd" value="" />
+        </li>
+    </ul>
+</div>
+
+<div class="sweep_line">
+<input type="hidden" class="input_text"  name="openid"  id="openid" value="${openid}"/>
+	<div class="input_sweep" onclick="sub()">完成解绑</div>
+</div>
+
+
+<script  type="text/javascript">
+function sub(){
+	var b=true;
+	var userPwd=$("#userPwd").val().trim();
+	if(userPwd==""){
+		b=false;
+		$("#userPwd").val("");
+		$("#userPwd").attr("placeholder","*不能为空");
+	}else{
+		$("#userPwd").attr("placeholder","");
+	}
+	if(b){
+		loading();
+		setTimeout(function(){
+			$("#form1").submit();
+		},500)
+	}
+}
+
+
+</script>
+</form>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<title>帐号绑定</title>
+<link rel="stylesheet" type="text/css" href="/public/weiwang/css/style.css"/>
+<script type="text/javascript" src="/public/weiwang/js/loading.js"></script> 
+<script type="text/javascript" src="/public/weiwang/js/jquery-1.10.1.min.js"></script> 
+<script type="text/javascript" src="/public/weiwang/js/ealert.js"></script> 
+<script type="text/javascript" src="/public/weiwang/js/myjq.js"></script> 
+<script src="/public/javascripts/jsAddress.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+<form method="post" action="/phone/Wechat/saveAccount" id="form1">
+
+<div class="info_banner"><img src="/public/weiwang/images/info_banner.png" /></div>
+
+<div class="info_list">
+	<ul>
+    	<li>
+        	<div class="tit"><span>*</span>类型</div>
+             <div class="content">
+             	<select id="type" name="type"  style="width: 90%;height: 2em;border: solid 0.0625em #ddd;border-radius: 0.1875em;padding: 0 5%;">
+             		<option value="1">企业帐号</option>
+             		<option value="2">监管帐号</option>
+				</select></div>
+        </li>
+        <li>
+        	<div class="tit"><span>*</span>帐号</div>
+            <div class="content">
+            <input type="text" class="input_text required"  name="userNo"  id="userNo" value="" />
+            </div>
+        </li>
+        <li>
+        	<div class="tit"><span>*</span>密码</div>
+            <div class="content">
+            <input type="password" class="input_text required"  name="userPwd"  id="userPwd" value="" />
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="sweep_line">
+<input type="hidden" class="input_text"  name="openid"  id="openid" value="${openid}"/>
+	<div class="input_sweep" onclick="sub()">完成</div>
+</div>
+
+
+<script  type="text/javascript">
+	
+function sub(){
+	var b=true;
+	var userNo=$("#userNo").val().trim();
+	var userPwd=$("#userPwd").val().trim();
+	if(userNo==""){
+		b=false;
+		$("#userNo").val("");
+		$("#userNo").attr("placeholder","*不能为空");
+	}else{
+		$("#userNo").attr("placeholder","");
+	}
+	if(userPwd==""){
+		b=false;
+		$("#userPwd").val("");
+		$("#userPwd").attr("placeholder","*不能为空");
+	}else{
+		$("#userPwd").attr("placeholder","");
+	}
+	if(b){
+		loading();
+		setTimeout(function(){
+			$("#form1").submit();
+		},500)
+	}
+}
+
+
+</script>
+</form>
+</body>
+</html>

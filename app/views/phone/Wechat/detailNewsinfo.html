@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<!-- saved from url=(0105)http://mp.weixin.qq.com/mp/appmsg/show?__biz=MjM5NzYyNDMwMQ==&appmsgid=10000002&itemidx=1#wechat_redirect -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         
+
+        
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+        <title>${imagetext?.title}</title>
+        
+<link rel="stylesheet" type="text/css" href="/public/weixin/css/page_mp_article_improve251980.css">
+<script type="text/javascript" src="/public/weixin/javascripts/jweixin-1.0.0.js"></script> 
+<script type="text/javascript" src="/public/weixin/javascripts/jquery-1.10.2.min.js"></script>
+<style>
+     
+    </style>
+<!--[if lt IE 9]>
+<link rel="stylesheet" type="text/css" href="http://res.wx.qq.com/mmbizwap/zh_CN/htmledition/style/page/appmsg/page_mp_article_improve_pc25624b.css">
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/public/weixin/css/not_in_mm24ed02.css"></head>
+    <body id="activity-detail" class="zh_CN mm_appmsg not_in_mm" ontouchstart="">
+
+    <div id="js_cmt_mine" class="discuss_container editing access" style="display:none;">
+        <div class="discuss_container_inner">
+            <h2 class="rich_media_title">${imagetext?.title}<input type="hidden" name="openid" id="openid" value="${openid}"/><input type="hidden" name="hightopenid" id="hightopenid" value="${hightopenid}"/></h2>
+            <div class="frm_textarea_box_wrp">
+                <span class="frm_textarea_box">
+                    <textarea id="js_cmt_input" class="frm_textarea" placeholder="评论将由公众帐号筛选后显示，对所有人可见。"></textarea>
+                </span>
+            </div>
+            <div class="discuss_btn_wrp"><a id="js_cmt_submit" class="btn btn_primary btn_discuss btn_disabled" href="javascript:;">提交</a></div>
+            <div class="discuss_list_wrp" style="display:none">
+                <div class="rich_tips with_line title_tips discuss_title_line">
+                    <span class="tips">我的评论</span>
+                </div>
+                <ul class="discuss_list" id="js_cmt_mylist"></ul>
+            </div>
+            <div class="rich_tips tips_global loading_tips" id="js_mycmt_loading">
+                <img src="/public/weixin/css/icon_loading_white22c04a.gif" class="rich_icon icon_loading_white" alt="">
+                <span class="tips">加载中</span>
+            </div>
+            <div class="wx_poptips" id="js_cmt_toast" style="display:none;">
+                <img alt="" class="icon_toast" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGoAAABqCAYAAABUIcSXAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3NpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyMTUxMzkxZS1jYWVhLTRmZTMtYTY2NS0xNTRkNDJiOGQyMWIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MTA3QzM2RTg3N0UwMTFFNEIzQURGMTQzNzQzMDAxQTUiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MTA3QzM2RTc3N0UwMTFFNEIzQURGMTQzNzQzMDAxQTUiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NWMyOGVjZTMtNzllZS00ODlhLWIxZTYtYzNmM2RjNzg2YjI2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjIxNTEzOTFlLWNhZWEtNGZlMy1hNjY1LTE1NGQ0MmI4ZDIxYiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pmvxj1gAAAVrSURBVHja7J15rF1TFMbXk74q1ZKHGlMkJVIhIgg1FH+YEpEQJCKmGBpThRoSs5jVVNrSQUvEEENIhGiiNf9BiERICCFIRbUiDa2qvudbOetF3Tzv7XWGffa55/uS7593977n3vO7e5+199p7v56BgQGh0tcmvAUERREUQVEERREUQVEERREUQVEERREUQVEERREUQVEERREUQVEERVAUQVEERVAUQbVYk+HdvZVG8b5F0xj4RvhouB+eCy8KrdzDJc1RtAX8ILxvx98V1GyCSkN98Cx4z/95/Wn4fj6j6tUEeN4wkFSnw1MJqj5NhBfAuwaUHREUg4lqNMmePVsHll/HFhVfe1t3FwpJI8DXCCquDrCWNN4B6Tb4M3Z98aTPmTvh0YHl18PXw29yZiKejoPvcUD6E74yFBJbVDk6Bb7K8aP/Hb4c/tRzEYIqprPhSxzlf4Uvhb/0Xoig8qnHAJ3lqPMzfDH8XZ4LEpRf2sVdA5/sqPO9Qfop70UJyn+/boaPddT5yrq7VUUvTIVJI7q74MMddXR8NB1eXcYvhBpZm0s2w72/o86HFoKvLau/pYaXzjLMdUJ6y0LwtWV9CIIaXtvA8+G9HHV03u5q+K+yH47U0NoRngPv7KjzHDwTLj0bS1BDazfJJlcnOOostC6ysnCT+q80G/sIvFVgeW09D8FPVT0uoP7VfvAD8NjA8pqmuAN+OcYAjso0RbIZ8DGB5TVNcRO8JMaHY9SXSdfa3eeANJimWBLrA7JFiZwIXye+NMUV8CcxP2SRFjXefok7NRjSGZJlWUPvw2/wtNiQirSoXWyMsR28wR7AzzYM0oXw+Y7yK+CLJGeaoqjyrJSdZJD6Ov4+z5y6NJc0Az7NUecHydIUy+v60KNyQHoM3nKI1y7YCFiq0i7uBvgER52vDdKqWn9djhY1Dn4G3n6Ecqm2rF74dvgoR53S0hQxW9RJAZAGW5bSn58QJA27dQ7uIEedjywEX5NKVxCqsY6y+qA+LxFI4+yZ6oH0trWkNan80jygtIUsc5SflgAsDXgehfdx1KkkTRE76tN+Xue2jnTU0Ru1oIbvpt30bBtKhOp5yaaRkts0lic8V1i6dPcIRx2d/l8Y8XtNNEg7OOo8bl1kmmOKnDsO88CaYzejau0hWZqiL7C83oCH4SeTHvwV2BqqsHRVztSEYOmWF80NeXZT6Hd4KflResE9vCnBOlCyGfDNAstHTVPUDWoQ1t3iW+9WNizvlhfd4aerXd+ThqiMfNR6+9LvOOro5OY5JX2H4+F7HZD+kGzlamMgldWiirQsjcwWFbjmqZJteekJLK9pisvgL6RhKvuciZiwzrWWGapfrPy30kBVcSBIrw0aD3PU0XB6cehntq7rTMf7/2iQlktDVdXJLXlg6VjmiYBn6rWSTRCH6hvJ0hQrpcGq8oidsmHpTP8t8DGO9/vcWt9qabiqPgup1yKyQwvC2tSefZ73SSpNkUJ4PlLorlHZ+446nc8f3fIyywlJhwrTuwVSjBa1ccvSxN0hjjoK5xVrYZMd9V6XbFfgBukixTwGLg8sDam3dZR/wZ6L/dJlin1en8LS+bgpFbz3Ygvzu1J1HKxYNqxGpCmaCEo12rrBorD6LRp8UbpcdR5VWhTW35KlKd6QFqjuM2XzwlpnMxTvSkuUwuG/Xlg6NtPjbT6WFimF/VG6LEvXgn8QGDjMbBukVECFwhpoS+CQatfX2Q1q6H7wENHdrfCr0lKleEB9JyxNneus+VJpsVL9TwI6W65LovWIGl3KtVJaLv7LBwYTFEERFEVQFEERFEVQFEERFEVQFEERFEVQFEERFEVQFEERFFWq/hFgADUMN4RzT6/OAAAAAElFTkSuQmCC">
+                <p class="toast_content">已评论</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="js_article" class="rich_media">
+        
+        <div id="js_top_ad_area" class="top_banner">
+ 
+        </div>
+                
+
+        <div class="rich_media_inner">
+            <div id="page-content">
+                <div id="img-content" class="rich_media_area_primary">
+                    <h2 class="rich_media_title" id="activity-name">
+                       ${imagetext?.title}
+                    </h2>
+                    <div class="rich_media_meta_list">
+                                                <em id="post-date" class="rich_media_meta rich_media_meta_text">${imagetext?.updated?.format("yyyy-MM-dd")}</em>
+                                                <em class="rich_media_meta rich_media_meta_text">${imagetext?.author}</em>
+                                                <a class="rich_media_meta rich_media_meta_link rich_media_meta_nickname" href="javascript:void(0);" id="post-user" style="color: #607fa6">盒你一起</a>
+                        <span class="rich_media_meta rich_media_meta_text rich_media_meta_nickname">宁海住建局</span>
+
+                        <div id="js_profile_qrcode" class="profile_container" style="display: none;">
+                            <div class="profile_inner">
+                                <strong class="profile_nickname">亿赛德物联</strong>
+                                <img class="profile_avatar" id="js_profile_qrcode_img" src="" alt="">
+
+                                <p class="profile_meta">
+                                <label class="profile_meta_label">微信号</label>
+                                <span class="profile_meta_value">zhihuinongye</span>
+                                </p>
+
+                                <p class="profile_meta">
+                                <label class="profile_meta_label">功能介绍</label>
+                                <span class="profile_meta_value">智慧农业是集新兴的互联网、移动互联网、云计算和物联网技术为一体，依托部署在农业生产现场的各种传感节点（环境温湿度、土壤水分、二氧化碳、图像等）和无线通信网络实现农业生产环境的智能感知、智能预警、智能决策、智能分析、专家在线指导，为农业生产提供精准化种植、可视化管理、智能化决策</span>
+                                </p>
+                                
+                            </div>
+                            <span class="profile_arrow_wrp" id="js_profile_arrow_wrp">
+                                <i class="profile_arrow arrow_out"></i>
+                                <i class="profile_arrow arrow_in"></i>
+                            </span>
+                        </div>
+                    </div>
+                    
+                   #{if imagetext.isshow==0}                                       
+                    <div class="rich_media_thumb_wrp" id="media">
+					<img class="rich_media_thumb" id="js_cover" onerror="this.parentNode.removeChild(this)" src="${imagetext?.imgStock?.path}">
+                    </div>
+                    #{/if}                    
+                    <div class="rich_media_content" id="js_content">
+					${imagetext?.content?.raw()}
+                    </div>
+                    <link rel="stylesheet" type="text/css" href="/public/weixin/css/page_mp_article_improve_combo25624b.css">
+
+                                        
+                                        
+                    <div class="rich_media_tool" id="js_toobar">
+
+                                                <div id="js_read_area" class="media_tool_meta tips_global meta_primary" style="display:none;">阅读 <span id="readNum"></span></div>
+
+                        <span style="display:none;" class="media_tool_meta meta_primary tips_global meta_praise" id="like">
+                            <i class="icon_praise_gray"></i><span class="praise_num" id="likeNum"></span>
+                        </span>
+
+                        <a id="js_report_article" style="display:none;" class="media_tool_meta tips_global meta_extra" href="javascript:void(0);">举报</a>
+
+                    </div>
+                </div>
+
+                <div class="rich_media_area_extra">
+
+                    
+                    <div class="mpda_bottom_container" id="js_bottom_ad_area"></div>
+
+                    
+                    <div id="js_iframetest" style="display:none;"></div>
+
+                    
+                                    </div>
+               
+            </div>
+            <div id="js_pc_qr_code" class="qr_code_pc_outer" style="display: block;">
+                <div class="qr_code_pc_inner">
+                    <div class="qr_code_pc">
+                        <img id="js_pc_qr_code_img" class="qr_code_pc_img" src="/public/weixin/css/img/hzcode.jpg">
+                        <p>微信扫一扫<br>关注该公众号</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+ 	<script type="text/javascript">
+	//去掉左右空格
+	String.prototype.trim=function(){ return this.replace(/(^\s*)|(\s*$)/g, "");}
+	// appId: 'wx9f1847b4811101c4', // 海尔施
+	// appId: 'wx68b779ee1d32b13b' //公司
+	wx.config({
+	    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+	    appId: 'wx68b779ee1d32b13b', //必填，公众号的唯一标识
+	    timestamp: ${timestamp}, // 必填，生成签名的时间戳
+	    nonceStr: "${nonceStr}", // 必填，生成签名的随机串
+	    signature: "${signature}",// 必填，签名，见附录1 
+	    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+	});
+	wx.ready(function(){
+	    // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+	});
+	wx.error(function(res){
+	//alert(res);
+	    // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+
+	});
+	 wx.ready(function () {
+	        wx.checkJsApi({
+	            jsApiList: [
+	                'onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ'
+	            ]
+	        });
+	        //分享到朋友圈
+		wx.onMenuShareTimeline({
+		    title: '${imagetext?.title}', // 分享标题
+		    link:'${reporturl}', // 分享链接
+		    imgUrl: '${severpath+imagetext?.imgStock?.path}', // 分享图标
+		    trigger: function (res) {
+	        },
+		    success: function () { 
+		    	// 用户确认分享后执行的回调函数
+		    	var hightopenid=$("#hightopenid").val();
+		    	var openid=$("#openid").val();
+		    	$.ajax({url:"/phone/Wechat/addSharenumber",data:{imagetext_id:${imagetext.id},hightopenid:hightopenid,openid:openid},async:false,success:function(data){
+		   			 //alert(data);
+		   		}});	
+		    },
+		    cancel: function () { 
+		    }
+		});
+		//分享给朋友
+		wx.onMenuShareAppMessage({
+		    title: '${imagetext?.title}', // 分享标题
+		    desc: '${reporturl}', // 分享描述
+		    link: '${reporturl}', // 分享链接
+		    imgUrl: '${severpath+imagetext?.imgStock?.path}', // 分享图标
+		    type: '', // 分享类型,music、video或link，不填默认为link
+		    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		    trigger: function (res) {
+		    	//alert(res);
+	        },
+		    success: function () { 
+		    	// 用户确认分享后执行的回调函数
+		    	var hightopenid=$("#hightopenid").val();
+		    	var openid=$("#openid").val();
+		    	$.ajax({url:"/phone/Wechat/addSharenumber",data:{imagetext_id:${imagetext.id},hightopenid:hightopenid,openid:openid},async:false,success:function(data){
+		   			//alert(data);
+		   		}});	
+		    },
+		    cancel: function () { 
+		        // 用户取消分享后执行的回调函数
+		    }
+		});
+		//分享到qq
+		wx.onMenuShareQQ({
+		    title: '${imagetext?.title}', // 分享标题
+		    desc: '${reporturl}', // 分享描述
+		    link: '${reporturl}', // 分享链接
+		    imgUrl: '${severpath+imagetext?.imgStock?.path}', // 分享图标
+		    trigger: function (res) {
+		    	//alert(res);
+	        },
+		    success: function () { 
+		       // 用户确认分享后执行的回调函数
+		    	var hightopenid=$("#hightopenid").val();
+		    	var openid=$("#openid").val();
+		    	$.ajax({url:"/phone/Wechat/addSharenumber",data:{imagetext_id:${imagetext.id},hightopenid:hightopenid,openid:openid},async:false,success:function(data){
+		   			// alert(data);
+		   		}});	
+		    },
+		    cancel: function () { 
+		       // 用户取消分享后执行的回调函数
+		    }
+		});
+    });
+//这个是调用微信图片浏览器的函数 
+function imagePreview(curSrc,srcList) {
+                //这个检测是否参数为空
+                if(!curSrc || !srcList || srcList.length == 0) {
+                    return;
+                }
+                //这个使用了微信浏览器提供的JsAPI 调用微信图片浏览器
+                WeixinJSBridge.invoke('imagePreview', { 
+                    'current' : curSrc,
+                    'urls' : srcList
+                });
+}; 
+</script>   
+
+
+</body></html>

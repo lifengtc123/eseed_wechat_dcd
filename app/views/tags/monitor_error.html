@@ -1,0 +1,16 @@
+%{
+	exception = _arg;
+	message = exception.errorTitle + "\r\n" + exception.sourceFile + "(around line " + exception.lineNumber + ")\r\n";
+    from = exception.lineNumber - 5 >= 0 && exception.lineNumber <= exception.source.size() ? exception.lineNumber - 5 : 0
+    to = exception.lineNumber + 5  < exception.source.size() ? exception.lineNumber + 5 : exception.source.size()-1
+}%
+#{list items:exception.source[from..to], as:'line'}
+	${play.utils.Utils.open(exception.sourceFile, line_index+from) ? ('<a href="' + play.utils.Utils.open(exception.sourceFile, line_index+from) + '">').raw() : ''}
+	%{
+		message = message + (line_index+from) + ":" +new String(line.toString().getBytes("utf-8"))+ "\r\n";
+	}%
+#{/list}
+%{
+	message = message + exception.errorDescription ;
+	monitor.Monitor.doerror(request,message);
+}%

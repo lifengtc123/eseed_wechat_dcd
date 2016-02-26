@@ -1,0 +1,330 @@
+﻿body 
+{
+	margin:0px;
+	font-size:12px;
+}
+img
+{
+	border:0px
+}
+form
+{
+	margin:0
+}
+
+.error{
+	color: red;
+}
+.success{
+	position: absolute;top:30%;left:42%;z-index: 3;background-color: green;color: white;padding: 3px 35px 3px 35px;
+}
+.fail{
+	position: absolute;top:30%;left:42%;z-index: 3;background-color: red;color: white;padding: 3px 35px 3px 35px;
+}
+fieldset{
+	padding: 5px 20px 10px 20px;
+}
+.menu
+{
+	margin-left: 6px;
+	cursor:pointer;
+}
+.menuSelect
+{
+	background: url(../images/top_label_middle_fill.gif) repeat-x;
+	color:Black;
+	font-weight:bold;
+	padding-right: 3px;
+}
+.buttons{
+	cursor:pointer; padding:3px 10px 4px 10px;color: white;text-decoration: none
+}
+.buttonSelect{
+	cursor:pointer; padding:3px 10px 4px 10px;background-color: #3367a3;color: white;text-decoration: none
+}
+.menuTD
+{
+	background: url(../images/top_label_fill.gif) repeat-x;
+	color:White;
+	font-weight:bold;
+	padding-right: 3px;
+}
+.tree
+{
+	padding:1px 0px 2px 5px;margin:3px 1px 3px 0px;cursor: pointer;border:1px solid #f6f9fd;
+}
+.treeSelect
+{
+	padding:1px 0px 2px 5px;border:1px solid #c2c5cc;background-color:#e7ebf0;margin:3px 1px 3px 0px;cursor: pointer;
+}
+.treeSelect2
+{
+	padding:1px 0px 2px 5px;border:1px solid #c2c5cc;background-color:#e7ebf0;margin:3px 1px 3px 0px;cursor: pointer;
+}
+.left
+{
+	width:175px;height:100%; background-color:#f6f9fd;border:1px solid #808080; font-size:12px
+}
+.leftTB
+{
+	font-size:12px;width: 100%
+}
+.leftTitle
+{
+	background:url(../images/left_menu_bg_gray.gif) repeat-x;height:32px;padding-left: 30px;cursor: pointer;
+}
+.btn {
+    BORDER: #82829e 1px solid; 
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#CDCCDF); 
+    BACKGROUND-COLOR: #ececf4; 
+    HEIGHT: 21px; 
+    font-size:12px;
+    CURSOR: pointer; 
+    padding:2px 3px 0px 3px;
+    width:80px;vertical-align: bottom;
+} 
+.btnSmail {
+    BORDER: #82829e 1px solid; 
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#CDCCDF); 
+    BACKGROUND-COLOR: #ececf4; 
+    HEIGHT: 21px; 
+    font-size:12px;
+    CURSOR: pointer; 
+    padding:2px 3px 0px 3px;
+    width:50px;vertical-align: bottom;
+}
+.btnExcel {
+    BORDER: #82829e 1px solid; 
+    FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#ffffff, EndColorStr=#CDCCDF); 
+    BACKGROUND-COLOR: #ececf4; 
+    HEIGHT: 21px; 
+    font-size:12px;
+    CURSOR: pointer; 
+    padding:2px 3px 0px 3px;
+    width:80px;vertical-align: bottom;
+} 
+input.txt {
+	border:1px solid #7b9ebc;height: 20px;line-height: 20px;padding-left: 2px;
+}
+input.number{
+	text-align:right;
+}
+textarea {
+	BORDER: #7b9ebc 1px solid; padding:2px;
+}
+A.orgAdd:link, A.orgAdd:visited{
+	color:#207BD6;
+	padding-left:12px;
+	background-position: 0px 0px;
+	background:url("/public/images/org_select.png") no-repeat;
+}
+A.orgAdd:hover, A.orgAdd:active{
+	color:#207bd6;
+	text-decoration: underline;
+}
+
+A.orgClear:link, A.orgClear:visited{
+	color:#9AA9B8;
+	padding-left:12px;
+	background:url("/public/images/org_select.png") no-repeat;
+	background-position: 0px -60px;
+	margin-left:5px;
+}
+A.orgClear:hover, A.orgClear:active{
+	color:#207bd6;
+	padding-left:12px;
+	background-position: 0px -40px;
+	text-decoration: underline;
+}
+
+.main
+{
+	padding:4px 7px 4px 0px;background-color:#e5eef5;
+}
+.mainTB
+{
+	border:1px solid #94a5b5;background-color:White;width:100%
+}
+.mainTitle
+{
+	background:url(../images/left_menu_bg_gray.gif) repeat-x;height:32px;color:#0d5480;font-size:13px;font-weight:bold;padding-left:10px
+}
+.mainSelect
+{
+	background:url(../images/work_bg_1.gif) repeat-x;width:100%;height:34px;border:1px solid #fff
+}
+.mainSelect1
+{
+	
+}
+.tb
+{
+	width:99.9%;border-collapse: collapse;
+}
+.tb th
+{
+	background-color:#a5c8e8;height:21px;border:1px solid #808080;text-align:left;padding-left:5px;font-weight:100;
+}
+.tb td
+{
+	border-bottom:1px solid #d7d7d7;height:22px;padding-left:5px;
+}
+
+.tb .row{
+	cursor: pointer;
+}
+.formTitle
+{
+	height:47px;padding-left:25px;font-weight:bold;color:White;background:url(../images/win_top_bg.gif) repeat-x;
+}
+.down
+{
+	background:url(../images/foot_bg.gif) repeat-x;height:23px;line-height:23px;color:White;
+}
+.tbform{
+	width: 100%;
+}
+.tbform td{
+	line-height: 27px;	
+}
+.tbleft{
+	width: 75px;
+}
+.formbtn{
+	text-align: right;margin-top: 15px;padding-right: 1px;
+}
+.form{
+	margin: 3px;padding:10px 20px;
+}
+.form fieldset{
+	border: 1px solid #808080;
+}
+.form .field{
+	float: left;
+	min-height: 20px;
+}
+.form label {
+	font-weight: bold;
+	width: 80px;
+	float: left;
+	line-height: 25px;
+}
+.form .field .help{
+	color: red;
+}
+
+.form .error{
+	color: red;
+}
+
+.form .hasError{
+	border: 1px solid red;
+}
+
+.multform{
+	margin-top:10px;
+	width:100%px;
+  	border: 1px solid #5A9AE1;/*table没有外围的border，只有内部的td或th有border*/
+}
+
+.multform table{
+	border-collapse:collapse;
+}
+
+.multform table.thead{ /*表头*/
+  width:100%;
+}
+.multform div{/*能带滚动条的表身*/
+  width:100%;
+  overflow:auto;/*必需*/
+}
+
+.multform table.tbody{/*能带滚动条的表身的正体*/
+  width:100%;
+  color:#666666;
+  background: #FFF;
+}
+
+.multform table.tbody td{/*能带滚动条的表身的格子*/
+  text-align: left;
+  border-bottom:1px solid #5A9AE1;
+  background-color:#EFEFEF;
+  height:20px;
+}
+.multform table.thead th{
+	text-align:left;
+	background-color: #5A9AE1;
+	color:#fff;
+	height:20px;
+}
+
+#loading{padding-left:20px;height:16px;font-size:12px;}
+
+.pagination{text-align: right;padding:5px 0px;}
+
+.check0{width:16px;height:16px;padding:0px;margin:0px;overflow:hidden;background:url("/public/images/checkbox0.gif") no-repeat;cursor:pointer;float:left;}
+.check1{width:16px;height:16px;padding:0px;margin:0px;overflow:hidden;background:url("/public/images/checkbox1.gif") no-repeat;cursor:pointer;float:left;}
+.box_g{position:relative;float:left; border:1px #AFDE9F solid; background:#DBF1D4;margin-right:5px;}
+.g1{background:url("/public/images/circle_green.gif") no-repeat 0px 0px;height:7px; width:7px;  left:-1px; top:-1px;}
+.g2{background:url("/public/images/circle_green.gif") no-repeat -7px 0px;; height:7px; width:7px; top:-1px;right:-1px;}
+.g3{background:url("/public/images/circle_green.gif") no-repeat 0px -7px;height:7px; width:7px; left:-1px; bottom:-1px;}
+.g4{background:url("/public/images/circle_green.gif") no-repeat -7px -7px; height:7px; width:7px;bottom:-1px;right:-1px;}
+.g1,.g2,.g3,.g4{overflow:hidden;position:absolute;}
+.content_g{ margin:0px; padding:5px; background-color:#DBF1D4;line-height:24px;}
+
+table{
+    empty-cells:show; 
+    border-collapse: collapse;
+    margin:0 auto;
+}
+
+table.t1{
+    border:1px solid #cad9ea;
+}
+table.t1 th{
+	font-size:12px;
+    height:30px;
+}
+table.t1 td,table.t1 th{
+    border:1px solid #cad9ea;
+    padding:0 1em 0;
+}
+table.t1 tr.a1{
+    background-color:#f5fafe;
+}
+
+
+/* suggest */
+#suggest{position:absolute; z-index:2000; left:0; top:0;}
+#suggest ul{list-style:none; padding:1px; margin:0; background-color:#fff; border:1px solid #999; width:150px;}
+#suggest li{display:block; color:#000; padding:3px; margin:0; border:1px solid #fff; background-color:transparent; text-align:left; cursor:default;}
+#suggest li.selected{border:1px solid #0a246a; background-color:#b6bdd2}
+
+/* pagination */
+.panelBar { display:block; }
+
+.panelBar ul { padding:1px;}
+.panelBar li { float:left; display:block; overflow:hidden; height:23px; padding:0 0 0 5px;}
+.panelBar li.hover { background-position:0 -100px;}
+.panelBar li.hover a { background-position:100% -150px;}
+
+.pagination { float:right; padding-left:7px; background-position:0 -199px;}
+.pagination li, .pagination li.hover { background-position:0 -100px;}
+.pagination a, .pagination li.hover a, .pagination li span { float:left; display:block; text-decoration:none; line-height:23px; background-position:100% -150px;}
+.pagination li.selected a{color:red; font-weight:bold;}
+.pagination span, .pagination li.hover span { float:left; display:block; height:23px; line-height:23px; cursor:pointer;}
+
+.pagination li .first span { background-position:0 -244px;}
+.pagination li .previous span { background-position:0 -294px;}
+.pagination li .next span { background-position:100% -344px;}
+.pagination li .last span { background-position:100% -394px;}
+.pagination li .last { margin-right:5px;}
+
+.pagination li.disabled { background:none;}
+.pagination li.disabled span, .grid .pagination li.disabled a { background-position:0 100px; cursor:default;}
+.pagination li.disabled span span { color:#666;}
+.pagination li.disabled .first span { background-position:0 -444px;}
+.pagination li.disabled .previous span { background-position:0 -494px;}
+.pagination li.disabled .next span { background-position:100% -544px;}
+.pagination li.disabled .last span { background-position:100% -594px;}
+.pagination li.disabled .last { margin-right:5px;}

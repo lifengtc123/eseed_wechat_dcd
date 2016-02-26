@@ -1,0 +1,23 @@
+<div class="sub_title_bar light js_second_title_bar dn" style="display: block;">
+	<h4>#{if menuWx.parent==null}一级菜单#{/if}#{else}二级菜单#{/else}：${menuWx.name}</h4>
+	<a id="jsDelBt" class="btn_ctrl" href="javascript:delBt(${menuWx.id})">删除</a>
+	<a id="jsChangeBt" class="btn_ctrl" href="javascript:changeBt(${menuWx.id});">重命名</a>
+</div>
+<div class="action_content sended jsMain" id="view" style="display: block;">
+	<p class="action_tips">订阅者点击该子菜单会跳到以下链接</p>
+	<div class="msg_wrp" id="viewDiv">${menuWx.url}</div>
+	<div class="btn_wrp">
+		<a href="javascript:edit(${menuWx.id});" class="btn btn_default btn_editing" id="changeBt" style="display: inline-block;">修改</a>
+	</div>
+</div>
+<script>
+	function edit(id){
+		$.post("/MenuWxs/editLoad2", {
+			"id" : id
+		}, function(data) {
+			
+			$("div[class='action_setting']").html("");
+			$("div[class='action_setting']").html(data);
+		});
+	}
+</script>

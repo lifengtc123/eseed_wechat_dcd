@@ -1,0 +1,36 @@
+
+<div class="js_appmsgArea inner ">
+	<div id="msgSender_media_1_10">
+		<div class="appmsg multi" data-id="206667034" data-fileid="206835263">
+			<div class="appmsg_content">
+				<div class="appmsg_info">
+					<em class="appmsg_date">${newsinfo.updated?.format("MM月dd日")}</em>
+				</div>
+				#{list newsinfo.imagetext,as:"imagetext"}
+				#{if imagetext_index==1}
+				<div class="cover_appmsg_item">
+					<h4 class="appmsg_title">
+						<a href="/newsinfos/detail?id=${imagetext.id}" target="_blank">${imagetext.title}</a>
+					</h4>
+					<div class="appmsg_thumb_wrp">
+						<img src="${imagetext.imgStock?.path}" alt="${imagetext.imgStock?.name}" class="appmsg_thumb">
+					</div>
+				</div>
+				#{/if}
+				#{else}
+				<div class="appmsg_item">
+					<img src="${imagetext.imgStock?.path}" alt="${imagetext.imgStock?.name}" class="appmsg_thumb">
+					<h4 class="appmsg_title">
+						<a href="/newsinfos/detail?id=${imagetext.id}" target="_blank">${imagetext.title}</a>
+					</h4>
+				</div>
+				#{/else}
+				#{/list}
+			</div>
+
+
+		</div>
+		<a href="javascript:;" class="link_dele"
+			onclick="this.parentNode.parentNode.removeChild(this.parentNode);">删除</a>
+	</div>
+</div>

@@ -1,0 +1,248 @@
+#{extends "main_list.html"/}
+#{set title:"添加微信菜单"/}
+<style type="text/css" media="screen">
+	body{overflow-y: auto;}
+</style>
+
+<script src="/public/javascripts/ejohn-templating.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/jquery-1.7.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/jquery.validate.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script>
+	function selectParent(obj){
+		var type = $(obj).val();
+		if(type>0){
+			$("#menu_name").attr("maxlength",7);
+		}else{
+			$("#menu_name").attr("maxlength",4);
+		}
+		if(type==17){
+			$("#activitieinfoDiv").css("display","");
+		}else{
+			$("#activitieinfoDiv").css("display","none");
+		}	
+//		if(type==19){
+//			$("#newsinfoDiv").css("display","");
+//		}else{
+//			$("#newsinfoDiv").css("display","none");
+//		}	
+		
+	}
+	
+	$().ready(function() {
+		
+		$("#form1").validate({
+			rules: {
+				"menuWx.name": {
+					required: true
+				},
+				"menuWx.menuType": {
+					required: true
+				},
+				"menuWx.menu_key": {
+					required: true,
+				},
+				
+			},
+			messages: {
+				
+				"menuWx.name": {
+					required: "必填",
+					maxlength: "不能超过{0}个字符"
+				},
+				"menuWx.menuType": {
+					required: "必填",
+				},
+				"menuWx.menu_key": {
+					required: "必填"
+				},
+			}
+		});
+	});
+	
+	
+	function check(){
+		
+		var size = $("#rootSize").val()
+		var parentId = $("#parent_menu").val();
+		
+		if(size>=3&&parentId==0){
+			alert("一级菜单最多只能添加3个");
+			return false;
+		}else if(parentId>0){
+			$.post("/MenuWxs/select",{id:parentId},function(data){
+				if(data>=5){
+					alert("该菜单下面已经有5个子菜单了,不能添加");
+					return false;
+				}else{
+					return true;
+				}
+			});
+		}
+	}
+	
+	
+</script>
+
+<script>
+		function upload(uploadFile,ufs,field,preImg){
+
+	var uf = $(uploadFile);
+	if(uf.val()=='') {
+		alert('请选择要上传的图片!');
+		return;
+	}
+	//将file移动至上传表单
+	$('#fileContent').empty();
+	$('#fileContent').append(uf);
+	//复制一个file放至原处
+	$(ufs).append(uf.clone());
+	uf.attr('id','');
+	uf.attr('name','file');
+	$("#fieldID").val(field);
+	$("#preImgID").val(preImg);
+	$('#uploadForm').submit();
+}
+function clearImg(field,preImg){
+	if(confirm("清空会删掉图片，确认操作？")){
+		var path = $(field).val();
+	if(path!=""){
+		$.getJSON('/CMSManagements/deleteImg',{path:path},function(result){
+			if(result==true){
+				$(field).val("");
+				$(preImg).attr("src","/public/images/photos/nophoto.jpg");
+			}
+		});
+	}else{
+		alert("空值不能清除");
+	}
+	}
+}
+</script>
+
+
+<form id="uploadForm" action="@{upload()}" method="post" enctype="multipart/form-data" target="hiddenIframe" style="display:none;width:0px;height:0px;"> 
+<span id="fileContent"></span> 
+<input id="fieldID" type="hidden" name="fieldID"/> 
+<input id="preImgID" type="hidden" name="preImgID"/> 
+</form>
+<iframe name="hiddenIframe" frameborder="0" border="0" style="display:none;width:0px;height:0px;"></iframe>
+<form action="/MenuWxs/create" method="post" id="form1" onsubmit="return check()">
+<div class="form">
+<fieldset style="height:550px;width:99%;">
+	<legend>微信菜单的添加</legend>
+<div class="field" style="width: 49%;">
+#{field "menuWx.parent.id"}
+<label for="${field.id}">上一级菜单</label>
+<select  name=${field.name} id="parent_menu" onchange="selectParent(this)">
+	<option value="1">上一级菜单</option>
+	#{list list,as:"menu"}
+	<option value="${menu.id}">${menu.name}</option>
+	#{/list}
+</select>
+<input type="hidden" id="rootSize" value="${list.size}" />
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "menuWx.name"}
+<label for="${field.id}">菜单名称</label>
+<input type="text" id="menu_name" name="${field.name}" maxlength="4" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "menuWx.menuType"}
+<label for="${field.id}">菜单类型</label>
+
+<select name=${field.name} id="menu_type" onchange="selectMenu_type(this)">
+	<option value="0">请选择</option>
+	<option value="0">click</option>
+	<option value="1">view</option>
+</select>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "menuWx.menu_key"}
+<label for="${field.id}">值</label>
+<input type="text" id="menu_key" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+#{/field}
+</div>
+<div class="field" id="activitieinfoDiv" style="width: 49%;display: none;">
+#{field "menuWx.activitieinfo_id"}
+<label for="${field.id}">活动</label>
+<select  name=${field.name} >
+	<option value="">请选择</option>
+	#{list ativitieinfo,as:"menu"}
+	<option value="${menu.id}">${menu.name}</option>
+	#{/list}
+</select>
+#{/field}
+</div>
+<div class="field" id="newsinfoDiv" style="width: 49%;display: none;">
+#{field "menuWx.newsinfo_id"}
+<label for="${field.id}">对应新闻</label>
+<select  name=${field.name} >
+	<option value="">选择对应新闻</option>
+	#{list newsinfo,as:"menu"}
+	<option value="${menu.id}">${menu.name}</option>
+	#{/list}
+</select>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "menuWx.url"}
+<label for="${field.id}">url链接</label>
+<input type="text" id="menu_url" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+#{/field}
+</div>
+
+<div class="field" style="width: 49%;">
+#{field "menuWx.sort"}
+<label for="${field.id}">排序</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+#{/field}
+</div>
+
+<div class="field" style="width: 99%;">
+#{field "menuWx.image"}
+<label for="${field.id}">图片</label>
+<span id="ufs0"><input type="file" name="uploadFile" id="uploadFile0" size="20" /></span>
+<input type="button" value="上传" onclick="upload('#uploadFile0','#ufs0','#${field.id}','#preImg0');"/>
+<label for="${field.id}"></label>
+<input type="hidden" id="${field.id}" name="${field.name}" value="${field.value}" class="input_wd" readonly="readonly" />
+<input type="button" value="清空" onclick="clearImg('#${field.id}','#preImg0');"/>
+<div class="field" style="width: 99%;">
+<label for="${field.id}">&nbsp;&nbsp;&nbsp;</label>
+<img id="preImg0" alt="预览区" style="background-color:#CCCCCC;border:0px solid #333;width: 360px;height: 200px" src="/public/images/photos/nophoto.jpg"/> 
+</div>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+
+<div class="field" style="width: 99%;">
+#{field "menuWx.summary"}
+<label for="${field.id}">菜单描述</label>
+<textarea rows="8" cols="70" id="${field.id}" name="${field.name}"></textarea>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+
+
+<div class="field" style="width: 49%;">
+#{field "menuWx.flag"}
+<label for="${field.id}">状态</label>
+<select  name=${field.name}>
+	<option value="1">使用</option>
+	<option value="2">停用</option>
+</select>
+#{/field}
+</div>
+
+</fieldset>
+<p class="buttons">
+<input type="submit" name="_save"  value="&{'option.save'}" class="btn01"/>
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>
+</form>

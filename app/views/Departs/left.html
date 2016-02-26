@@ -1,0 +1,10 @@
+#{extends 'main_tree.html'/}
+<script> 
+d = new dTree('d');
+d.init("/public/images");
+d.add("0","ROOT",'部门信息列表','/departs/list','','listframe');
+#{list list,as:'row'}
+d.add('${row.cid}','${row.pid}','${row.name}','/departs/list_pid?pid=${row.cid}','','listframe');
+#{/list}
+document.write(d);
+</script>

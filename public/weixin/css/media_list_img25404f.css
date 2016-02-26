@@ -1,0 +1,37 @@
+.img_pick{padding:20px}
+.img_pick .img_item{float:left;text-align:center}
+.img_pick .img_item .pic{display:block;border-bottom:1px solid #e7e7eb}
+.img_pick .img_item .pic:hover{cursor:pointer;cursor:hand}
+.img_pick .img_item .lbl_content{overflow:hidden;height:32px;text-align:left;text-overflow:ellipsis;white-space:nowrap;line-height:32px}
+.group_list .num{display:inline-block;padding-left:3px;color:#8d8d8d;font-style:normal}
+.group_list dt.inner_menu_item{background-color:#f4f5f9}
+.page_media_list .inner_container_box.cell_layout.side_r{*padding-right:158px}
+.page_media_list .inner_container_box.cell_layout.side_r .inner_side{width:17%;*width:157px;*max-width:157px}
+.img_pick_panel{padding:0 30px}
+.img_pick_panel .side_r .inner_menu_item .icon14_common{margin-right:2px}
+.img_pick_panel .img_pick{margin-right:-45px}
+.img_pick_panel .img_pick .img_item{margin-right:15px;margin-bottom:20px;border:1px solid #e7e7eb;*width:169px}
+.img_pick_panel .img_pick .img_item .pic{width:169px;height:169px}
+.img_pick_panel .img_pick .check_content{display:block;overflow:hidden;height:32px;line-height:32px}
+.img_pick_panel .img_pick .check_content .frm_checkbox_label{margin-right:0;line-height:1.6}
+.img_pick_panel .img_pick .check_content .icon_checkbox{margin-top:8px;margin-right:4px;vertical-align:top}
+.img_pick_panel .img_pick .check_content .lbl_content{display:inline-block;padding:0;width:118px}
+.img_pick_panel .img_pick .msg_card_opr_item_inner{margin:5px 0;border:0}
+.global_mod{padding:10px 20px}
+.global_mod .global_info{margin-top:4px}
+.global_mod .global_info .global_info_ele{margin-right:1em}
+.mod_info{height:30px;line-height:30px}
+.mod_info .group_name{margin-right:1em}
+.mod_info a{margin-right:1em}
+.pagination_wrp{padding:0 20px 20px;*padding-top:20px}
+.oper_group{padding:10px 20px;border-bottom:1px solid #e7e7eb;background-color:#f4f5f9}
+.oper_group .oper_ele{margin-right:1em}
+.oper_group .frm_controls{width:62px;height:30px;line-height:30px}
+.tool_bar.tool_bar_tips{margin-top:10px;padding-top:0;padding-bottom:0}
+.group_select .frm_radio_label{margin-right:0;width:49%}
+.group_select .frm_radio_label:nth-child(odd){margin-right:7px;width:49%}
+.group_select .frm_radio_label:nth-child(even){width:46%}
+.frm_control_group.radio_row .frm_controls{display:block;margin-bottom:1em}
+.frm_control_group.radio_row .frm_tips{margin-left:19px;padding-top:0}
+.popover_edit .frm_label{float:none}
+.popover_edit .frm_controls{display:block}

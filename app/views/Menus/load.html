@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd"> 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>menu_load</title>
+<script src="@@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
+<script src="@@{'/public/javascripts/menu.js'}"></script>
+<script src="@@{'/public/javascripts/main-menu.js'}"></script>
+<script src="@@{'/public/javascripts/time.js'}"></script>
+<script src="@@{'/public/javascripts/fast.js'}"></script>
+<link href="@@{'/public/stylesheets/menu.css'}" type=text/css rel=stylesheet>
+<script>
+function closeParent(){
+	if(confirm("真的要退出吗？")==true){
+		qw = true;
+        if(true){			
+			this.parent.window.opener=null;
+			this.parent.location="@@{Secure.logout()}";
+		}else{
+			this.parent.window.opener=null;
+		    this.parent.window.close();
+		}
+	}else {
+		qw = false;
+	}
+}
+
+function makeClickEvent(action) {
+	if (typeof(action) == 'function') {
+		action(event);
+	} else {
+		eval(action);
+	}
+}
+</script>
+<style>
+td{font-size:12px;color:white;}
+</style>
+</head>
+<body onload="getTime()" onselectstart="return false" ondragstart="return false" onbeforecopy="return false" oncopy=document.selection.empty() onselect=document.selection.empty()>
+<table id=toplinebg cellSpacing=0 cellPadding=0 background="@@{'/public/images/head_topline_bg.gif'}" border=0> 
+<tbody>
+<tr> 
+    <td id="headline_left"><img src="@@{'/public/images/head_topline_left.gif'}"></td> 
+    <td id="headline" background="@@{'/public/images/head_topline.gif'}"> 
+	    <table align="right" width="100%"><tr>
+	    <td><div id="companymanecn">宁海住建局微信考勤查询系统</div></td>
+	    <td width="400" align="right"><a href="javascript:void(0);" onclick="userSet(${user.id})">用户信息设置</a>&nbsp;<span id=time></span>
+	    您好:&nbsp;<b><a href="javascript:void(0);">${session.truename}</a></b>
+	    <font title=退出系统 style="cursor:pointer" onclick="closeParent()">退出</font> </td>
+	    </tr></table>
+    </td>
+    <td id=headline_right><img src="@@{'/public/images/head_topline_right.gif'}"></td>
+</tr></tbody>
+</table>
+<!-- 菜单 -->
+<div>
+<table style="padding-top: 0px" cellSpacing=0 cellPadding=0 background="@@{'/public/images/head_topbg.gif'}" border=0> 
+<tbody> 
+  <tr> 
+    <td id="menuitem0_left"><img src="@@{'/public/images/menuitem0_left.gif'}"></td> 
+    <td class="menu">
+    <table style="margin-top: 2px" cellSpacing=0 cellPadding=0 border=0 align="left"><tbody> <tr> 
+     
+     #{if Integer.parseInt(session.get("menuNum"))-menu_p.size()<0}
+     <td id="prev" menulevel="0" onclick="getPrevMenu(this);" minIndex="0" style="display: none;">
+     	<img class=menu_leftimg src="@@{'/public/images/left.png'}" align=absMiddle >
+     </td> 
+     <td><img src="@@{'/public/images/head_button_tiao.gif'}"></td>
+     #{/if}
+     
+     #{list menu_p,as:'p'}
+     <td class="menuitem menuitem0_default" id="menu${p_index-1}" noWrap songroupid="menugroup${p_index-1}" menulevel="0" #{if p_index-Integer.parseInt(session.get('menuNum'))>0}style="display: none;"#{/if}>
+     	<img class=menu_leftimg src="@@{'/public/images/menuitem0_default_bk_left.gif'}" align=absMiddle id="menuImg">${p.name} 
+     </td> 
+     <td #{if p_index-Integer.parseInt(session.get('menuNum'))>0}style="display: none;"#{/if}><img src="@@{'/public/images/head_button_tiao.gif'}"></td>
+     #{/list} 
+     
+     <input type="hidden" id="showNum" value="${session.get('menuNum')}">
+     #{if Integer.parseInt(session.get("menuNum"))-menu_p.size()<0}
+     <td id="next" menulevel="${Integer.parseInt(session.get('menuNum'))-1}" onclick="getNextMenu(this);" maxIndex="${menu_p.size-1}" style="padding-left: 8px;">
+     	<img class=menu_leftimg src="@@{'/public/images/right.png'}" align=absMiddle>
+     </td> 
+     #{/if}
+     
+     </tr></tbody></table> 
+    </td>
+    <td id="logo">&nbsp;</td> 
+    <td id="menuitem0_right"><img src="@@{'/public/images/menuitem0_right.gif'}"></td> 
+  </tr>
+</tbody>
+</table>
+#{list menu_p,as:'p'}
+<span id="menugroup${p_index-1}" style="display:none" defaultmenuid="menu0${p_index}0"> 
+<table class="t2" cellSpacing="0" cellPadding="0"> 
+  <tr> 
+    <td id="mi1_l"><img src="@@{'/public/images/m1l.gif'}" width=9></td> 
+    <td class="menu2" vAlign="top"> 
+      <table cellSpacing="0" cellPadding="0" border="0"><tbody> 
+        <tr>
+        #{set i:0 /}
+        #{list menu_c,as:'c'}
+        #{if p.cid == c.pid}
+          <td class="menu_sub menuitem1_default" id="menu0${p_index}${i}" songroupid="menugroup14_14" menulevel="1" url="${c.url}"> 
+          <img src="@@{'/public/images/menuitem1_default_bk_left.gif'}" align="absmiddle"> 
+          <img class="menu2_img" src="@@{'/public/images/index.gif'}" align="absmiddle">${c.name}
+          </td> 
+          <td class="menu2_tiao"><img src="@@{'/public/images/head2_button_tiao.gif'}"></td>
+        #{set i:i+1 /}
+        #{/if}
+        #{/list}
+      	</tr>
+      </table></td> 
+     <td id="menuitem1_right" width=9 background="@@{'/public/images/menuitem1_right.gif'}">
+     <img src="@@{'/public/images/menuitem1_right.gif'}" width=9></td>
+  </tr>
+</table>
+</span>
+#{/list}
+</div>
+</body>
+</html>
+<script>
+var readMethod ;
+function read(){
+	var color = $("#warnInfo").css("color");
+	if(color=="red"){
+		$("#warnInfo").css("color","white");
+	}
+	if(color=="white"){
+		$("#warnInfo").css("color","red");
+	}
+}
+//警告信息
+$(function(){
+	if($("#warnInfo").html()!=""&&$("#warnInfo").html()!=null){
+	    readMethod = setInterval(read,1000);
+	}
+});
+//个人设置
+function userSet(id){
+	var screen_height = window.screen.height;
+    var screen_width = window.screen.width;
+    open_dialog("/users/show1?id="+id+"&screen_height="+screen_height+"&screen_width="+screen_width,850,470);
+}
+//向前
+function getPrevMenu(obj){
+	//最后面的角标
+	var nextIndex = $("#next").attr("menulevel");
+	//最前面的角标
+	var prevIndex = $(obj).attr("menulevel");
+	//一次显示多少
+	var showNum = $("#showNum").val();
+	//最大角标
+	var maxIndex = $("#next").attr("maxIndex");
+	for(var i=1;i<=showNum;i++){
+		//准最后角标
+		var newIndexLast = parseFloat(nextIndex)-parseFloat(1);
+		//准最前角标
+		var newIndexFirst = parseFloat(prevIndex)-parseFloat(1);
+		//如果有菜单可以隐藏
+		if(newIndexFirst>=0){
+			//对应的菜单隐藏
+			$("#menu"+nextIndex).next().hide();
+			$("#menu"+nextIndex).hide();
+			$("#next").attr("menulevel",newIndexLast);
+			//对应的菜单显示
+			$("#menu"+newIndexFirst).next().show();
+			$("#menu"+newIndexFirst).show();
+			$(obj).attr("menulevel",newIndexFirst);
+		}
+		nextIndex--;
+		prevIndex--;
+	}
+	//设置隐藏区域
+	if($("#prev").attr("menulevel")==0){
+		$("#prev").hide();
+		$("#next").show();
+	}
+	if($("#next").attr("menulevel")==maxIndex){
+		$("#prev").show();
+		$("#next").hide();
+	} 
+	if($("#prev").attr("menulevel")!=0&&$("#next").attr("menulevel")!=maxIndex){
+		$("#prev").show();
+		$("#next").show();
+	} 
+}
+//向后
+function getNextMenu(obj){
+	//最后面的角标
+	var nextIndex = $(obj).attr("menulevel");
+	//最前面的角标
+	var prevIndex = $("#prev").attr("menulevel");
+	//一次显示多少
+	var showNum = $("#showNum").val();
+	//最大角标
+	var maxIndex = $(obj).attr("maxIndex");
+	for(var i=1;i<=showNum;i++){
+		//准最后角标
+		var newIndexLast = parseFloat(nextIndex)+parseFloat(1);
+		//准最前角标
+		var newIndexFirst = parseFloat(prevIndex)+parseFloat(1);
+		//如果有菜单可以隐藏
+		if(newIndexLast-maxIndex<=0){
+			//对应的菜单显示
+			$("#menu"+newIndexLast).next().show();
+			$("#menu"+newIndexLast).show();
+			$(obj).attr("menulevel",newIndexLast);
+			//对应的菜单隐藏
+			$("#menu"+prevIndex).find("#menuImg").after();
+			$("#menu"+prevIndex).next().hide();
+			$("#menu"+prevIndex).hide();
+			$("#prev").attr("menulevel",newIndexFirst);
+		}
+		nextIndex++;
+		prevIndex++;
+	}
+	//设置隐藏区域
+	if($("#prev").attr("menulevel")==0){
+		$("#prev").hide();
+		$("#next").show();
+	}
+	if($("#next").attr("menulevel")==maxIndex){
+		$("#prev").show();
+		$("#next").hide();
+	} 
+	if($("#prev").attr("menulevel")!=0&&$("#next").attr("menulevel")!=maxIndex){
+		$("#prev").show();
+		$("#next").show();
+	} 
+}
+</script>

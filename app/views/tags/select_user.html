@@ -1,0 +1,15 @@
+%{
+	flag = _input?_input['flag']:"only"
+}%
+#{if flag=="only"}
+<input type="hidden" id="object_${_id}" name="object.${_id}.id" value="${_value?_value.id:''}"/>
+<input type="text" id="object_${_id}_name" readonly="true" class="txt01" value="${_value?_value:''}"/>
+<a href="javascript:;" class="orgAdd" onclick="user_select('object_${_id}','object_${_id}_name','only',0,0);">添加</a> 
+<a href="javascript:;" class="orgClear" onclick="clear_user('object_${_id}','object_${_id}_name');">清空</a>
+#{/if}
+#{if flag=="more"}
+<input type="hidden" id="object_${_id}" name="object.${_id}_id" />
+<textarea id="object_${_id}_name" name="object.${_id}" readonly="true" class="txt01" rows="5" cols="30">${_value?_value:""}</textarea>
+<a href="javascript:;" class="orgAdd" onclick="user_select('object_${_id}','object_${_id}_name','more',0,0);">添加</a> 
+<a href="javascript:;" class="orgClear" onclick="clear_user('object_${_id}','object_${_id}_name');">清空</a>
+#{/if}

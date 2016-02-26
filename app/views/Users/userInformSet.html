@@ -1,0 +1,158 @@
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<base target="_self"/>
+<title>用户信息设置</title> 
+<script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/fast.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/autocomplete.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/alt.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/HashMap.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/My97DatePicker/WdatePicker.js" type="text/javascript" charset="gb2312"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/list_style.css">
+<script type="text/javascript"> 
+$(function(){
+	$(".row").mouseover(function(){
+		$(this).attr("bgColor","#FFD74E");
+	});
+	$(".row").mouseout(function(){
+		$(this).attr("bgColor","#ffffff");
+	});
+	
+});
+function yanzheng() {
+
+	var b = true;
+	if($("#object_username").val() == '') {
+		$("#object_usernameID").show();
+		$("#object_username").focus();
+		b = false;
+		return false;
+	}
+	if($("#object_username").val().length <4) {
+		$("#object_usernameID").show();
+		$("#object_username").focus();
+		b = false;
+		return false;
+	}
+	if($("#object_truename").val() == '') {
+		$("#object_truenameID").show();
+		$("#object_truename").focus();
+		b = false;
+		return false;
+	}
+	if(b) {
+		form1.submit();
+	}
+	
+}
+</script>
+ 
+</head> 
+<body style="overflow: auto;">
+<form id="form1" name="form1" action="/users/userInformSetSave"  method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" >
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+	<legend>用户信息</legend>
+<div class="field" style="width: 49%;">
+	<label for="object_username">
+		用户名
+	</label>
+	<input id="object_username" class="txt01 " type="text" name="object.username" value="${object.username}" readonly="readonly"/>
+	<span class="error">* </span>
+	<span id="object_usernameID" style="color: red; display: none;">必填(4-16位)</span>
+</div>
+		
+<input  type="hidden" name="object.password" value="${object.password}"/>
+<div class="field" style="width: 45%;">
+	<label for="object_password">
+		密码
+	</label>
+	<input id="object_password" style="width:148" class="txt01 " type="password" name="object.password2" value=""/>&nbsp;&nbsp;<font color="red">不修改密码此处为空</font>
+</div>
+
+		
+<div class="field" style="width: 49%;">
+	<label for="object_truename">
+		联系人
+	</label>
+	<input id="object_truename" class="txt01 " type="text" name="object.truename" value="${object.truename}"/>
+	<span class="error">* </span>
+	<span id="object_truenameID" style="color: red; display: none;">必填</span>
+</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="object_sex">
+		性别
+	</label>
+	<select id="object_sex" name="object.sex">
+	<option value="男" #{if object.sex == "男"} selected="selected" #{/if}>男</option>
+	<option value="女" #{if object.sex == "女"} selected="selected" #{/if}>女</option>
+	</select>
+		</div>
+		
+		<div class="field" style="width: 49%;">
+	<label for="object_email">
+		电子邮件
+	</label>
+	<input id="object_email" class="txt01 " type="text" name="object.email" value="${object.email}"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="object_tel">
+		联系电话
+	</label>
+	<input id="object_tel" class="txt01 " type="text" name="object.tel" value="${object.tel}"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="object_mobile">
+		移动电话
+	</label>
+	<input id="object_mobile" class="txt01 " type="text" name="object.mobile" value="${object.mobile}"/>
+		</div>
+	
+		<div class="field" style="width: 49%;">
+	<label for="object_cornet">
+		短号
+	</label>
+	<input id="object_cornet" class="txt01 " type="text" name="object.cornet" value="${object.cornet}"/>
+		</div>
+</fieldset>
+<fieldset>
+<legend>参数设置</legend>
+<div class="field" style="width: 49%;">
+<label>
+	分辨率宽：${screenSet.widthSize?.format("#")}
+</label>
+</div>
+<div class="field" style="width: 49%;">
+<label>
+	分辨率高：${screenSet.heightSize?.format("#")}
+</label>
+</div>
+<div class="field" style="width: 49%;">
+<label>
+	列表高
+</label>
+<input id="tableHeight" class="txt01 " type="text" name="tableHeight" value="${screenSet.tableHeight?.format('#.##')}" onblur="checkDecimals(this);" onfocus="clearZero(this);"/>
+</div>
+<div class="field" style="width: 49%;">
+<label>
+	每页条数
+</label>
+<input id="pageSize" class="txt01 " type="text" name="pageSize" value="${screenSet.pageSize?.format('#.##')}" onblur="checkDecimals(this);" onfocus="clearZero(this);"/>
+</div>
+</fieldset>
+<br />
+
+<p class="buttons">
+	<input type="hidden" name="id" value="${object.id}"/>
+	<input type="button" name="_save" onclick="yanzheng()" value="保存" class="btn01"/>
+	<input type="button" name="_close" value="关闭" class="btn01 option_close"/> 
+</p>
+</div>
+ 
+</form>
+</body> 
+</html>

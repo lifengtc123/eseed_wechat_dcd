@@ -1,0 +1,117 @@
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<base target="_self"/>
+<title>个人信息设置</title> 
+<script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/fast.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/ejohn-templating.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/autocomplete.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/My97DatePicker/WdatePicker.js" type="text/javascript" charset="gb2312"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/list_style.css">
+
+<script type="text/javascript"> 
+$(function(){
+	$(".row").mouseover(function(){
+		$(this).attr("bgColor","#FFD74E");
+	});
+	$(".row").mouseout(function(){
+		$(this).attr("bgColor","#ffffff");
+	});
+});
+</script>
+</head> 
+
+<body>
+<form action="@@{user_save()}" method="POST" accept-charset="utf-8" enctype="application/x-www-form-urlencoded" >
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+	<legend>个人信息设置</legend>
+	
+	<div class="field" style="width: 50%;">
+	<label>
+		用户名:
+	</label>
+	<label style="font-weight: normal;width: 250;">${user.username}</label>
+		<span class="info"></span>
+		</div>
+
+		<div class="field" style="width: 50%;">
+	<label>
+		真实姓名:
+	</label>
+	<input type="text" id="object_truename" name="user.truename" class="txt01"  value="${user.truename}"/>
+		<span class="info"></span>
+		</div>
+		
+		<div class="field" style="width: 50%;">
+	<label>
+		密码:
+	</label>
+	<input type="password" id="object_password" name="password" class="txt01"  value=""/>
+	<span><font color="red">*不填不修改</font></span>
+		<span class="info"></span>
+		</div>
+
+		<div class="field" style="width: 50%;">
+	<label>
+		性别:
+	</label>
+	<select id="object_sex" name="user.sex">
+	<option #{if user.sex=="男"} selected="selected" #{/if}value="男">男</option>
+	<option #{if user.sex=="女"} selected="selected" #{/if}value="女">女</option>
+	</select>
+		<span class="info"></span>
+		</div>
+		
+		<div class="field" style="width: 50%;">
+	<label>
+		电子邮件:
+	</label>
+	<input type="text" id="object_email" name="user.email" class="txt01"  value="${user.email}"/>
+		<span class="info"></span>
+		</div>
+		
+		<div class="field" style="width: 50%;">
+	<label>
+		联系电话:
+	</label>
+	<input type="text" id="object_tel" name="user.tel" class="txt01"  value="${user.tel}"/>
+		<span class="info"></span>
+		</div>
+		
+		<div class="field" style="width: 50%;">
+	<label>
+		移动电话:
+	</label>
+	<input type="text" id="object_mobile" name="user.mobile" class="txt01"  value="${user.mobile}"/>
+		<span class="info"></span>
+		</div>
+		
+		<div class="field" style="width: 50%;">
+	<label>
+		短号:
+	</label>
+	<input type="text" id="object_cornet" name="user.cornet" class="txt01"  value="${user.cornet}"/>
+		<span class="info"></span>
+		</div>
+		
+		<div class="field" style="width: 50%;">
+	<label>
+		备注:
+	</label>
+	<textarea id="object_remark" name="user.remark" class="tetx01"  cols="30" rows="5">${user.remark}</textarea>
+		<span class="info"></span>
+		</div>
+		
+</fieldset>
+ 
+<p class="buttons">
+	<input type="hidden" name="id" value="${user.id}"/>
+	<input style="float:left" type="submit" name="save" value="保存" class="btn01"/>
+</p>
+</div>
+ 
+</form>
+</body> 
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<title>盒你一起</title>
+<link rel="stylesheet" type="text/css" href="/public/weiwang/css/style.css"/>
+<script type="text/javascript" src="/public/weiwang/js/loading.js"></script> 
+<script type="text/javascript" src="/public/weiwang/js/jquery-1.10.1.min.js"></script> 
+<script type="text/javascript" src="/public/weiwang/js/ealert.js"></script> 
+<script type="text/javascript" src="/public/weiwang/js/myjq.js"></script> 
+<script src="/public/javascripts/jsAddress.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+<form method="post" action="/phone/Wechat/saveCustomerinfo" id="form1">
+
+<div class="info_banner"><img src="/public/weiwang/images/info_banner.png" /></div>
+
+<div class="info_list">
+	<ul>
+    	<li>
+        	<div class="tit"><span>*</span>姓名</div>
+            <div class="content">
+                	<input type="text" class="input_text required"  name="customerinfo.name"  id="customerinfo_name" value="${customerinfo?.name}" onfocus="getoldname(this)" onblur="setoldname(this)"/>
+            </div>
+        </li>
+        <li>
+        	<div class="tit"><span>*</span>手机</div>
+            <div class="content">
+            <input type="text" class="input_text required"  name="customerinfo.telephone"  id="customerinfo_telephone" value="${customerinfo?.telephone}" onfocus="getoldtelephone(this)" onblur="setoldtelephone(this)"/>
+            <i>（请填写正在使用的号码）</i></div>
+        </li>
+        <li>
+        	<div class="tit"><span>*</span>省</div>
+            <div class="content">
+	            <select id="customerinfo_province"  class="input_text required" name="customerinfo.province">
+	    		</select>
+            </div>
+        </li>
+        <li>
+        	<div class="tit"><span>*</span>市</div>
+            <div class="content"><select id="customerinfo_city" class="input_text required" name="customerinfo.city">
+				</select></div>
+        </li>
+        <li>
+        	<div class="tit"><span>*</span>区</div>
+            <div class="content">
+            <select id="customerinfo_area"  class=" input_text required" name="customerinfo.area">
+            </select>
+            </div>
+        </li>
+        <li>
+        	<div class="tit"><span>*</span>详细</div>
+            <div class="content">
+            <input type="text" class="input_text required"   name="customerinfo.address"  id="customerinfo_address" value="${customerinfo?.address}" onfocus="getoldaddress(this)" onblur="setoldaddress(this)"/>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="sweep_line">
+<input type="hidden" class="input_text"  name="customerinfo.openid"  id="customerinfo_openid" value="${customerinfo?.openid}"/>
+<input type="hidden" class="input_text"  name="id"  id="customerinfo_id" value="${customerinfo?.id}"/>
+	<div class="input_sweep" onclick="sub()">完成</div>
+</div>
+
+
+<script  type="text/javascript">
+//去掉左右空格   例如：str.trim();
+String.prototype.trim=function(){ return this.replace(/(^\s*)|(\s*$)/g, "");}  
+var oldname="";
+var oldtelephone="";
+var oldaddress="";
+$(function(){
+	loading();
+	oldname=$("#customerinfo_name").val().trim();
+	oldtelephone=$("#customerinfo_telephone").val().trim();
+	oldaddress=$("#customerinfo_address").val().trim();
+	setTimeout(function(){
+			$("#loadings").remove();
+	},1100)
+})
+function sub(){
+	var b=true;
+	var customerinfo_name=$("#customerinfo_name").val().trim();
+	var customerinfo_telephone=$("#customerinfo_telephone").val().trim();
+	var customerinfo_address=$("#customerinfo_address").val().trim();
+	if(customerinfo_name==""){
+		b=false;
+		$("#customerinfo_name").val("");
+		$("#customerinfo_name").attr("placeholder","*不能为空");
+		//$("#tel_error").html("*不能为空");
+		//$("#tel_error").css("display","");
+	}else{
+		$("#customerinfo_name").attr("placeholder","");
+		//$("#tel_error").css("display","none");
+	}
+	if(customerinfo_address==""){
+		b=false;
+		$("#customerinfo_address").val("");
+		$("#customerinfo_address").attr("placeholder","*不能为空");
+		//$("#tel_error").html("*不能为空");
+		//$("#tel_error").css("display","");
+	}else{
+		$("#customerinfo_address").attr("placeholder","");
+		//$("#tel_error").css("display","none");
+	}
+	if(customerinfo_telephone==""){
+		b=false;
+		$("#customerinfo_telephone").val("");
+		$("#customerinfo_telephone").attr("placeholder","*不能为空");
+		//$("#tel_error").html("*不能为空");
+		//$("#tel_error").css("display","");
+	}
+	else if(customerinfo_telephone!=""&&!validateMobile(customerinfo_telephone)){
+		b=false;
+		oldtele=$("#customerinfo_telephone").val();
+		$("#customerinfo_telephone").val("");
+		$("#customerinfo_telephone").attr("placeholder","*格式错误");
+		//$("#tel_error").html("*格式错误");
+		//$("#tel_error").css("display","");
+	}else{
+		$("#customerinfo_telephone").attr("placeholder","");
+		//$("#tel_error").css("display","none");
+	}
+	if(b){
+		loading();
+		setTimeout(function(){
+			$("#form1").submit();
+		},500)
+	}
+}
+
+function setoldname(obj){
+	oldname=$(obj).val();
+}
+function getoldname(obj){
+	$(obj).val(oldname);
+}
+function setoldtelephone(obj){
+	oldtelephone=$(obj).val();
+}
+function getoldtelephone(obj){
+	$(obj).val(oldtelephone);
+}
+function setoldaddress(obj){
+	oldaddress=$(obj).val();
+}
+function getoldaddress(obj){
+	$(obj).val(oldaddress);
+}
+</script>
+		<script type="text/javascript">
+			addressInit('customerinfo_province', 'customerinfo_city', 'customerinfo_area', '${customerinfo?.province!=null?"${customerinfo?.province}":"浙江"}', '${customerinfo?.city!=null?"${customerinfo?.city}":"宁波市"}', '${customerinfo?.area!=null?"${customerinfo?.area}":"鄞州区"}');
+		</script>
+</form>
+</body>
+</html>

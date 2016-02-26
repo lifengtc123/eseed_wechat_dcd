@@ -1,0 +1,21 @@
+%{
+	name = _name?_name:'id';
+}%
+#{if name=='id'}
+<select id="${field.id}" name="${field.name}.id">
+#{/if}
+#{else}
+<select id="${field.id}" name="${field.name}">
+#{/else}
+%{ 
+play.db.jpa.JPA.entityManagerFactory.createEntityManager().createQuery(_sql).getResultList().each {
+	selected = false
+	if(name=="id"){
+		if(String.valueOf(field.value?.id)==String.valueOf(it.id)) selected = true
+	}else{
+		if(String.valueOf(field.value)==String.valueOf(it[name])) selected = true
+	}
+}%
+<option value="${it[_name?_name:'id']}"${selected ? ' selected="true"'.raw() : ''}>${it}</option>
+%{ } }%
+</select>

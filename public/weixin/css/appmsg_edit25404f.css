@@ -1,0 +1,135 @@
+.appmsg{position:relative;overflow:hidden;margin-bottom:20px;border:1px solid #e7e7eb;background-color:#fff;color:#8d8d8d}
+.appmsg_info{padding-bottom:10px;font-size:13px;line-height:20px}
+.appmsg_date{font-weight:400;font-style:normal}
+.appmsg_content{position:relative;padding:0 14px;*zoom:1}
+.appmsg_title{overflow:hidden;padding-top:10px;max-height:56px;word-wrap:break-word;font-weight:400;font-style:normal;font-size:16px;line-height:28px;word-break:break-all}
+.appmsg_title a{display:block;color:#8d8d8d}
+.appmsg_thumb_wrp{overflow:hidden;height:160px}
+.appmsg_thumb{width:100%}
+.appmsg_desc{padding:5px 0 10px;word-wrap:break-word;word-break:break-all}
+.appmsg_opr{border-top:1px solid #e7e7eb;background-color:#f4f4f4}
+.appmsg_opr ul{overflow:hidden;*zoom:1}
+.appmsg_opr_item{float:left;height:44px;line-height:44px}
+.appmsg_opr_item a{display:block;border-right:1px solid #e7e7eb;text-align:center;text-decoration:none}
+.appmsg_opr_item a:hover{text-decoration:none}
+.appmsg_opr_item a.no_extra{border-right-width:0}
+.appmsg_item{position:relative;padding:20px 14px;border-top:1px solid #e7e7eb;*zoom:1}
+.appmsg_item:after{clear:both;display:block;height:0;content:"\200B"}
+.appmsg_item .appmsg_title{overflow:hidden;margin-top:14px;max-height:48px;line-height:24px;*zoom:1}
+.appmsg_item .appmsg_thumb{float:right;margin-left:14px;width:78px;height:78px}
+.multi .appmsg_info{padding-top:14px;padding-right:14px;padding-left:14px}
+.multi .appmsg_content{padding:0}
+.multi .appmsg_title{padding-top:0;font-size:14px}
+.cover_appmsg_item{position:relative;margin:0 14px 14px}
+.cover_appmsg_item .appmsg_title{position:absolute;bottom:0;left:0;width:100%;background:rgba(0,0,0,0.6) !important;filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#99000000',endcolorstr = '#99000000')}
+.cover_appmsg_item .appmsg_title a{padding:0 8px;color:#fff}
+.appmsg_mask{position:absolute;top:0;left:0;z-index:1;display:none;width:100%;height:100%;background-color:#000;opacity:.6;filter:alpha(opacity = 60);-moz-opacity:.6;-khtml-opacity:.6}
+.appmsg .icon_card_selected{position:absolute;top:50%;left:50%;z-index:1;display:none;overflow:hidden;margin-top:-23px;margin-left:-23px;line-height:999em}
+.dialog_wrp .appmsg:hover{cursor:pointer}
+.appmsg:hover .appmsg_mask{display:block}
+.appmsg.selected .appmsg_mask{display:block}
+.appmsg.selected .icon_card_selected{display:inline-block}
+.appmsg_thumb.default{display:block;background-color:#ececec;color:silver;text-align:center;font-weight:400;font-style:normal;font-size:16px;line-height:160px}
+.appmsg_item .appmsg_thumb.default{font-size:14px;line-height:78px}
+.appmsg_edit_mask{position:absolute;top:0;left:0;display:none;width:100%;height:100%;background:rgba(229,229,229,0.85) !important;text-align:center;filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#d9e5e5e5',endcolorstr = '#d9e5e5e5')}
+.appmsg_item .appmsg_edit_mask{line-height:118px}
+.cover_appmsg_item .appmsg_edit_mask{line-height:160px}
+.appmsg_edit_mask a{margin-right:8px;margin-left:8px}
+.editing .cover_appmsg_item:hover .appmsg_edit_mask,.editing .appmsg_item:hover .appmsg_edit_mask{display:block}
+.editing .appmsg_thumb{display:none}
+.editing .appmsg_thumb.default{display:block}
+.editing .has_thumb .appmsg_thumb{display:block}
+.editing .has_thumb .appmsg_thumb.default{display:none}
+.editing .appmsg_content{-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;border-bottom-width:0}
+.editing.multi .appmsg_content{border-bottom-width:1px}
+.appmsg_add{margin:20px 14px}
+.tab_content .appmsg{width:320px}
+.appmsg_list{margin:0 30px;text-align:justify;text-justify:distribute-all-lines;letter-spacing:-4px;font-size:0}
+.appmsg_list:after{display:inline-block;overflow:hidden;margin:0;padding:0;width:100%;height:0;content:".";font-size:0}
+.appmsg_list .tj_item{text-align:left;text-justify:auto;font-size:14px}
+.appmsg_col{display:inline-block;width:32%;vertical-align:top;text-align:left;letter-spacing:normal;font-size:14px;*display:inline;*zoom:1}
+.media_dialog.appmsg_list{position:relative;overflow-y:auto;margin:0;padding:28px 140px;height:345px}
+.media_dialog .appmsg_col{width:48%}
+.vote_container{padding:30px}
+.vote_meta:first-child{margin-top:0}
+.vote_meta.option_setting{margin-bottom:20px}
+.vote_meta.option_setting .vote_meta_title{padding:10px;background-color:#f4f5f9}
+.vote_meta .frm_tips{width:auto}
+.vote_form{margin-bottom:0}
+.vote_meta_title{border-top:1px solid #e7e7eb;border-bottom:1px solid #e7e7eb;font-weight:400;font-style:normal}
+.vote_meta_title .vote_meta_title_opr{float:right}
+.vote_meta_title .vote_meta_title_opr a{margin-left:1em}
+.vote_num{float:left;margin-right:1em}
+.vote_question{float:left;display:block;overflow:hidden;width:17em;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal}
+.vote_warn{float:right;color:#e15f63}
+.vote_meta_detail .frm_control_group .link_delete{margin-left:.5em}
+.vote_meta_detail .frm_control_group .frm_num{margin:0 .5em 0 0;height:30px;color:#8d8d8d;line-height:30px}
+.vote_meta_detail .frm_control_group .frm_num.warning{color:#e15f63}
+.vote_meta_detail .upload_box{display:table-cell}
+.vote_meta_detail .frm_label_top{margin-top:0}
+.vote_meta_detail.tips_wrp{padding-top:.5em;border-top:1px solid #e7e7eb}
+.vote_meta_detail.vote_meta_radio{padding-left:5em}
+.vote_meta_detail.vote_meta_radio .frm_label{margin-top:0}
+.vote_remove_link{margin-left:.5em}
+.vote_edit .dialog_bd{overflow-y:scroll;padding:40px 0 15px;height:450px}
+.vote_edit .dialog_bd .title_tab{position:absolute;top:26px;right:0;left:0;z-index:2;width:100%;background-color:#fff}
+.vote_edit .frm_label{width:4em}
+.vote_edit .frm_input_box{margin-right:.3em;width:248px}
+.vote_meta_content{padding:2em 2em}
+.vote_meta_container .option_setting{margin-bottom:20px;border:1px solid #e7e7eb;border-top:0}
+.vote_meta_container .option_setting.close_vote .vote_meta_title{border:0;border-top:1px solid #e7e7eb;background:0}
+.frm_tips_btm{width:auto}
+.img_container{margin-top:.5em;margin-left:5em}
+.img_container .img_panel{display:table-cell}
+.img_container .link_dele{display:table-cell;padding-left:.5em}
+.img_container img{display:block;width:75px;height:75px}
+.upload_area .upload_file_box{right:0;left:auto;z-index:4}
+.vote_edit .dialog_bd{overflow-x:hidden;*position:relative}
+.vote_edit .dialog_bd .title_tab{*top:0}
+.btn.btn_vote_add{display:block;height:40px;line-height:40px}
+.simple_preview_title{margin-bottom:5px;padding-bottom:5px;border-bottom:1px solid #e7e7eb}
+.simple_preview_title a{margin-left:.5em}
+.simple_preview_label{float:left;margin-right:.5em;width:5em}
+.simple_preview_item,.simple_preview_value{overflow:hidden;*zoom:1}
+.link_dialog .dialog_bd{padding:50px}
+.link_dialog .btn_link_triger{color:#459ae9;cursor:pointer}
+.link_dialog .btn_link_triger:hover{text-decoration:underline}
+.link_dialog .btn_link_triger .arrow{display:inline-block;margin-left:5px;width:0;height:0;border-color:transparent;border-style:dashed;border-width:5px;vertical-align:middle;border-bottom-width:0;border-top-color:#d0d0d0;border-top-style:solid}
+.link_dialog .btn_link_triger .arrow.up{display:inline-block;width:0;height:0;border-color:transparent;border-style:dashed;border-width:5px;border-top-width:0;border-bottom-color:#d0d0d0;border-bottom-style:solid}
+.link_dialog .link_chooser_wrap{margin-left:70px}
+.link_dialog .frm_input_box.search{width:278px}
+.link_dialog .frm_label{width:4em}
+.link_dialog .link_chooser{margin-top:5px}
+.link_dialog .my_link_list{overflow-y:scroll;margin-top:10px;height:214px;border:1px solid #e7e7eb}
+.link_dialog .my_link_list .empty_tips{padding:64px 0}
+.link_dialog .my_link_item{position:relative;border-bottom:1px solid #e7e7eb;line-height:42px}
+.link_dialog .my_link_item:last-child{border:0}
+.link_dialog .my_link_item .frm_radio_label{display:block;margin-right:0;padding:0 10px;color:#222}
+.link_dialog .my_link_item .frm_radio_label:hover{background-color:#f4f5f9}
+.link_dialog .my_link_item .lbl_content{display:block;overflow:hidden;margin-top:-42px;padding-right:7em;padding-left:1.7em;width:auto;text-overflow:ellipsis;white-space:nowrap;word-wrap:normal}
+.link_dialog .my_link_item .date{position:absolute;right:10px;color:#8d8d8d}
+.link_dialog .pagination{margin-top:10px}
+.page_appmsg_edit .main_bd{padding:0 30px 0}
+.page_appmsg_edit .tool_area{clear:both;margin:0;padding:20px 0}
+.page_appmsg_edit .tool_bar{margin-right:0;margin-left:0}
+.page_appmsg_edit .appmsg{min-height:180px}
+.page_appmsg_edit .upload_preview img{max-width:100px;max-height:100px}
+.media_preview_area{float:left;margin-right:14px;width:320px}
+.media_edit_area{float:none;display:table-cell;width:auto;vertical-align:top;*display:block;*zoom:1}
+.media_edit_area:after{clear:both;display:block;visibility:hidden;height:0 !important;content:" . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ";line-height:0}
+.edui_editor_wrp{position:relative;z-index:0}
+.appmsg_edit_item{padding-bottom:1em}
+.editor_extra_info{position:absolute;top:0;right:0;margin-top:-30px;line-height:30px}
+body .tooltip{z-index:801}
+.original_dialog .simple_dialog_content{width:495px;min-height:245px}
+.original_dialog .step_panel{padding:55px}
+.original_dialog .original_msg{padding-top:30px}
+.original_dialog .original_edit_box .frm_label{width:6em}
+.original_poptips h4{margin-top:1em;font-weight:400;font-style:normal}
+.original_poptips h4:first-child{margin-top:0}
+.icon_original{display:inline-block;width:18px;height:18px;vertical-align:middle}
+.icon_original.access{background:url("/mpres/zh_CN/htmledition/comm_htmledition/style/page/media/appmsg_edit_z25404f.png") 0 0 no-repeat}
+.icon_original.success{background:url("/mpres/zh_CN/htmledition/comm_htmledition/style/page/media/appmsg_edit_z25404f.png") 0 -28px no-repeat}
+.original_preview_pop{width:542px}
+.original_preview_pop .popover_inner{padding:14px 18px}
+.original_preview_pop .popover_bar{display:none}

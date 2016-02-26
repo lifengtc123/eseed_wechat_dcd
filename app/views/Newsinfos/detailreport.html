@@ -1,0 +1,182 @@
+#{extends "main_list.html"/}
+ <style type="text/css" media="screen">
+/*body {
+	overflow-y: auto;
+}*/
+</style>
+ <script src="/public/javascripts/builds/esl.js"></script>
+ %{
+ hightcustomerinfo=null;
+}%
+  <div style="text-align: center;"><span style="font-size: 22;font-weight:bold">${imagetext?.title}</span></div>
+  <div><span style="float: right;font-size: 15;font-weight:bold;margin: 0 20px 0 0;">总浏览数:<font style="color: red;">${imagetext?.browseNumber}</font>&nbsp;总分享数:<font style="color: red;">${imagetext?.shareNumber}</font><span></div>
+ <div id="mainMap" style="clear:right;height:85%;border:1px solid #ccc;width:98.5%;margin: 0 10px 10px 10px;"></div>
+
+  <script type="text/javascript">
+ var option = {
+         title : {
+             text: '分享报表',
+             subtext: '',
+             x:'right',
+             y:'bottom'
+         },
+         tooltip : {
+             trigger: 'item',
+             formatter: '{a} : {b}'
+         },
+         toolbox: {
+             show : true,
+             feature : {
+                 restore : {show: true},
+                 magicType: {show: true, type: ['force', 'chord']},
+                 saveAsImage : {show: true}
+             }
+         },
+         legend: {
+             x: 'left',
+             data:[
+                   #{list 1..num,as:'b'}
+              		 '${b}级',
+               		#{/list}
+                   '（分享数，浏览数，浏览总数）']
+         },
+         series : [
+             {
+                 type:'force',
+                 name : "openid",
+                 ribbonType: false,
+                 categories : [
+                     {
+                         name: '人物'
+                     },
+                     #{list 1..num,as:'b'}
+                    	 {
+                             name: '${b}级'
+                         },
+                     #{/list}
+                 ],
+                 itemStyle: {
+                     normal: {
+                         label: {
+                             show: true,
+                             textStyle: {
+                                 color: '#333'
+                             }
+                         },
+                         nodeStyle : {
+                             brushType : 'both',
+                             borderColor : 'rgba(255,215,0,0.4)',
+                             borderWidth : 1
+                         },
+                         linkStyle: {
+                             type: 'curve'
+                         }
+                     },
+                     emphasis: {
+                         label: {
+                             show: false
+                             // textStyle: null      // 默认使用全局文本样式，详见TEXTSTYLE
+                         },
+                         nodeStyle : {
+                             //r: 30
+                         },
+                         linkStyle : {}
+                     }
+                 },
+                 useWorker: false,
+                 minRadius : 15,
+                 maxRadius : 25,
+                 gravity: 1.1,
+                 scaling: 1.1,
+                 roam: 'move',
+                 nodes:[
+					{category:0, name: '${imagetext?.title}', value : '${imagetext?.id}', label: '${imagetext?.title}'},
+					#{list shareinfos,as:'row'}
+					#{if row?.higherCustomerinfo==null}
+					 %{
+						 hightcustomerinfo=row;
+						}%
+                     {category:'1', name: '${row?.customerinfo?.openid}', value : ${row_index}, label: '${row?.customerinfo?.getstr()} \n （${row.shareNumber}-${row.browseNumber}-${row.countNumber}）'},
+					#{/if}
+                    #{else}
+                    {category:'${row?.level!=null?"${row?.level+1}":"11"}', name: '${row?.customerinfo?.openid}', value : ${row_index}, label: '${row?.customerinfo?.getstr()} \n （${row.shareNumber}-${row.browseNumber}-${row.countNumber}）'},
+                    #{/else}
+                    #{/list}
+//                    	 {category:0, name: '乔布斯', value : 10, label: '乔布斯\n（主要）'},
+//                         {category:2, name: '丽萨-乔布斯',value : 2},
+//                         {category:2, name: '保罗-乔布斯',value : 3},
+//                         {category:2, name: '克拉拉-乔布斯',value : 3},
+//                         {category:2, name: '劳伦-鲍威尔',value : 7},
+//                         {category:1, name: '史蒂夫-沃兹尼艾克',value : 5},
+//                         {category:1, name: '奥巴马',value : 8},
+//                         {category:1, name: '比尔-盖茨',value : 9},
+//                         {category:1, name: '乔纳森-艾夫',value : 4},
+//                         {category:1, name: '蒂姆-库克',value : 4},
+//                         {category:1, name: '龙-韦恩',value : 1},
+//                         {category:3, name: '李岑',value : 1}
+                 ],
+                 links : [
+#{list shareinfos,as:'row1'}
+#{if row1?.higherCustomerinfo==null}
+	{source : '${row1?.customerinfo?.openid}', target : '${imagetext?.title}', weight : 1, name: '上：${row1?.higherCustomerinfo?.getstr()} 下：${row1?.customerinfo?.getstr()}'},
+#{/if}
+#{else}
+{source : '${row1?.customerinfo?.openid}', target : '${row1?.higherCustomerinfo?.openid}', weight : 1, name: '上：${row1?.higherCustomerinfo?.getstr()} 下：${row1?.customerinfo?.getstr()}'},
+#{/else}
+#{/list}
+//					 {source : '丽萨-乔布斯', target : '龙-韦恩', weight : 1, name: '三级'},
+//                     {source : '保罗-乔布斯', target : '龙-韦恩', weight : 2, name: '三级'},
+//                     {source : '劳伦-鲍威尔', target : '蒂姆-库克', weight : 2, name: '三级'},
+//                     {source : '李岑', target : '劳伦-鲍威尔', weight : 3, name: '四级'},
+//                     {source : '史蒂夫-沃兹尼艾克', target : '乔布斯', weight : 3, name: '二级'},
+//                     {source : '奥巴马', target : '乔布斯', weight : 1, name: '二级'},
+//                     {source : '比尔-盖茨', target : '乔布斯', weight : 6, name: '二级'},
+//                     {source : '乔纳森-艾夫', target : '乔布斯', weight : 1, name: '二级'},
+//                     {source : '蒂姆-库克', target : '乔布斯', weight : 1, name: '二级'},
+//                     {source : '龙-韦恩', target : '乔布斯', weight : 1, name: '二级'},
+//                     {source : '比尔-盖茨', target : '克拉拉-乔布斯', weight : 1, name: '二级'},
+                 ]
+             }
+         ]
+     };
+    // Step:3 conifg ECharts's path, link to echarts.js from current page.
+    // Step:3 为模块加载器配置echarts的路径，从当前页面链接到echarts.js，定义所需图表路径
+     require.config({
+        paths:{ 
+        	  echarts:'/public/javascripts/builds/source/echarts',
+            'echarts/chart/force' : '/public/javascripts/builds/source/chart/force',
+            'echarts/chart/chord' : '/public/javascripts/builds/source/chart/chord'
+        }
+    });
+
+    // Step:4 require echarts and use it in the callback.
+    // Step:4 动态加载echarts然后在回调函数中开始使用，注意保持按需加载结构定义图表路径
+    require(
+        [
+            'echarts',
+            'echarts/chart/force',
+            'echarts/chart/chord'
+        ],
+
+        function(ec) {
+            // --- 地图 ---
+            var myChart2 = ec.init(document.getElementById('mainMap'));
+           // var opetion=$("#code").val();
+            myChart2.setOption(option);
+            var ecConfig = require('echarts/config');
+            myChart2.on(ecConfig.EVENT.MAP_SELECTED, function(param){
+                var selected = param.selected;
+                var str = '当前选择： ';
+                for (var p in selected) {
+                    if (selected[p]) {
+                        str += p + ' ';
+                    }
+                }
+                document.getElementById('varchare').innerHTML = str;
+            });
+            	                    
+        }
+
+       
+    );
+    </script>

@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta charset="utf-8">
+<title>微信菜单</title>
+<link onerror="wx_loaderror(this)" rel="stylesheet" type="text/css" href="@{'/public/weixin/css/base25404f.css'}" />
+<link onerror="wx_loaderror(this)" rel="stylesheet" type="text/css" href="@{'/public/weixin/css/lib22f1a9.css'}" />
+<link onerror="wx_loaderror(this)" rel="stylesheet" href="@{'/public/weixin/css/advanced_menu_setting25404f.css'}">
+<link rel="stylesheet" type="text/css" href="@{'/public/weixin/css/tooltip218878.css'}" />
+<link onerror="wx_loaderror(this)" rel="stylesheet" href="@{'/public/weixin/css/bootstrap.css'}">
+<link onerror="wx_loaderror(this)" rel="stylesheet" href="@{'/public/weixin/css/wx.css'}">
+<script src="/public/javascripts/jquery.js"></script>
+<script src="/public/javascripts/jquery.validate.js"></script>
+<script src="/public/weixin/js/bootstrap.min.js"></script>
+<script src="/public/weixin/js/wx.js"></script>
+<script type="text/javascript" src="/public/draggable/js/jquery.sortable.js"></script>
+
+</head>
+<body class="zh_CN">
+	<div id="body" class="body1 page_menu_setting">
+		<div id="js_container_box" class="container_box cell_layout side_l">
+			<div class="col_main">
+				<div class="main_bd">
+					<div class="menu_setting_area_wrp" id="menu_container">
+						<div class="menu_setting_area edit">
+							<div class="inner_container_box side_l cell_layout">
+								<div class="inner_container_box_bd">
+									<div class="inner_main">
+										<div class="bd">
+											<div class="menu_create_box_preview"></div>
+											<div class="action_setting">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<div class="modal fade" id="modal-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">选择图片</h4>
+			</div>
+			<div class="dialog_bd" id="dialog_bd" style="padding: 0px 5px 0px;">
+			
+			</div>
+			
+			<div class="dialog_ft">
+			
+            <span class="btn btn_primary btn_input js_btn_p disabled" id="okBtn">
+            	<button type="button" class="js_btn" id="addPicBtn" data-index="0" data-dismiss="modal">确认</button>
+            </span>
+	        
+            <span class="btn btn_default btn_input js_btn_p">
+            	<button type="button" class="js_btn" data-index="1"data-dismiss="modal">取消</button>
+            </span>
+	        
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modal-2">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">选择素材</h4>
+			</div>
+			<div class="dialog_bd" id="dialog_bd" style="padding: 0 0 0 0;">
+			
+			</div>
+			
+			<div class="dialog_ft">
+			
+            <span class="btn btn_primary btn_input js_btn_p disabled" id="addNewsInf">
+            	<button type="button" class="js_btn" id="addNewsInfBtn" data-index="0" data-dismiss="modal">确认</button>
+            </span>
+	        
+            <span class="btn btn_default btn_input js_btn_p">
+            	<button type="button" class="js_btn" data-index="1"data-dismiss="modal">取消</button>
+            </span>
+	        
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+$.post("/MenuWxs/editLoad3", {}, function(data) {
+	$("div[class='action_setting']").html("");
+	$("div[class='action_setting']").html(data);
+});
+
+
+
+//群发 图片，普通消息，图文消息
+function sendMsg1(menuType){
+	$.post("/MenuWxs/sendMsg1", {
+		"menuType":menuType
+	}, function(data) {
+		$("div[class='action_setting']").html("");
+		$("div[class='action_setting']").html(data);
+	});
+}
+
+
+//发送文本
+function sendAll(){
+	$("#popupForm_3").find("input[id='content']").val($("#menuContent").text());
+	$("#popupForm_3").submit();
+}
+
+//发送图片
+$("#addPicBtn").click(function(){
+	var selectedNode = $("#imgList").find(".selected").attr("val");
+	$("#imgStockId").val(selectedNode);
+	$("#newsinfoId").val("");
+	
+	$.post("/MenuWxs/selectImgStock", {
+		"id" : selectedNode,
+	}, function(data) {
+		$("#msg_tab_conent").html("");
+		$("#msg_tab_conent").html(data);
+	});
+});
+
+//发送多图文的
+$("#addNewsInfBtn").click(function(){
+	var selectedNode = $("#newsInfos").find(".selected").attr("data-id");
+	$("#newsinfoId").val(selectedNode);
+	$("#imgStockId").val("");
+	$.post("/NewsInfos/findByNewsInfo", {
+		"id" : selectedNode,
+	}, function(data) {
+		$("#msg_tab_conent").html("");
+		$("#msg_tab_conent").html(data);
+	});
+});
+
+
+</script>
+</html>

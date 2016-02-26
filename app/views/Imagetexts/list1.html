@@ -1,0 +1,110 @@
+#{extends "main_list.html"/}
+<form>
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" width="100%">
+<table cellspacing="0" cellpadding="0" width="100%"><tr>
+</tr><tr height="22">
+<td valign="middle" align="left" style="padding:5px;">
+#{select "searchField",value:params.searchField}
+#{option}全部#{/option}
+#{option 'title'}标题#{/option}
+#{option 'author'}作者#{/option}
+#{option 'imgStock'}封面#{/option}
+#{option 'isshow'}显示#{/option}
+#{option 'content'}正文#{/option}
+#{option 'summary'}摘要#{/option}
+#{option 'externalurl'}外部地址#{/option}
+<!-- #{option 'uploaddate'}上传时间#{/option} -->
+#{/select}#{select "condition",value:params.condition}
+#{option 'like'}包含#{/option}
+#{option '='}=#{/option}
+#{option '>'}>#{/option}
+#{option '<'}<#{/option}
+#{/select}
+<input type="text" name="search" value="${params.search}" id="obj_keyword" class="txt01" size="40"/>
+<input type="submit" value="搜索" class="btn01"/>
+</td>
+</tr>
+</table>
+</td></tr></tbody></table>
+</form>
+<form action="@@{delete()}" method="post" onsubmit="return chk_arrayid();" id="listform">
+<table height="100%" cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" align="middle" width="100%" height="100%">
+<div style="height:${session.get("tableHeight")}px;overflow: auto;">
+<table class="t1" cellspacing="0" cellpadding="0">
+<thead>
+<tr><td colspan="13" class="title">图文模块</td></tr>
+<tr height="22">
+<td width="1%"><input type="checkbox" id="chkall"/></td>
+<td width="15%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','title').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+标题</a></td>
+<td width="5%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','author').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+作者</a></td>
+<td width="5%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','isshow').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+显示</a></td>
+<td ><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','summary').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+摘要</a></td>
+<td width="5%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','browseNumber').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+总浏览数</a></td>
+<td width="5%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','shareNumber').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+总分享数</a></td>
+<td width="6%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','isexternal').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+外部链接</a></td>
+<td width="13%">&{'option.title'}</td>
+</tr></thead>
+<tbody>
+#{list pagedList.list,as:'row'}
+<tr id="tr_${row.id}" class="row">
+<td><input type="checkbox" name="arrayid" value="${row.id}"/></td>
+<td>${row.title}&nbsp;</td>
+<td>${row.author}&nbsp;</td>
+<td>${row.isshow==0?"显示":"不显示"}&nbsp;</td>
+<td>
+	#{if row.summary!=null&&row.summary.length()>60}
+	${row.summary.substring(0,60)+"..."}&nbsp;
+	#{/if}
+	#{else}
+	${row.summary}
+	#{/else}
+</td>
+<td>${row.browseNumber}&nbsp;</td>
+<td>${row.shareNumber}&nbsp;</td>
+<td>${row.isexternal==0?"是":"否"}&nbsp;</td>
+<td>
+<a href="javascript:void(0);" onclick="open_url('/newsinfos/detailNews?id=${row.id}',1100,600)">查看</a>
+#{if row.newsinfo.type==0}
+<a href="@@{Newsinfos.blankOne(row?.newsinfo?.id)}" >修改</a>
+#{/if}
+#{else}
+<a href="@@{Newsinfos.blankMany(row?.newsinfo?.id)}" >修改</a>
+#{/else}
+
+<a href="javascript:void(0);" class="option_delete" url="@@{delete(row.id)}">删除</a>
+</td>
+</tr>
+#{/list}
+#{list 0..Integer.parseInt(session.get("pageSize"))-pagedList.list.size(),as:'i'}
+<tr id="tr0" class="row">
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+#{/list}
+</tbody>
+</table>
+</div>
+</td></tr></tbody></table>
+<div id="toolbar">
+#{if pagedList.list.size()==0}
+<input type="button" class="btn01" value="添加" onclick="open_url('@{Newsinfos.blankone(type1:1)}${params.pid?"?pid="+params.pid:""}',600,350)"/>
+#{/if}
+#{page pagedList /}
+</div>
+</form>

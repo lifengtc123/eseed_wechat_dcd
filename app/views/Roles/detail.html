@@ -1,0 +1,129 @@
+#{extends "main_list.html"/}
+#{set title:"修改权限"/}
+#{set body:"style='overflow-y:auto'"/}
+%{
+	def map = [:]
+	map['show']	  = true
+	map['fields'] = ['form_s','name','sort','menu','form_e']
+	map['type']	  = ['text','text','text','text','text']
+	map['widths'] = ['50','50','50','100','50']
+	map['input'] = [:]
+}%
+#{form @@save(object.id),onsubmit:"return submit_form();"}
+#{table.form map,model:role}
+#{table.custom 'menu'}
+<input type="hidden" id="value" name="value" value=""/>
+<p><label>&{'role.menu'}</label></p>
+<table width="100%"  cellpadding="5" cellspacing="5">
+<tr><td><input type="checkbox" class="menu" />全选</td></tr>
+#{list menu_p,as:'p'}
+<tr>
+<td style="border: 1px solid #808080" width="50px">
+<div style="float:left; width: 80px;padding-left:2px;">
+<input type="checkbox" class="p_menu" name="menus" id="${p.cid}" cid="${p.cid}" value="${p.id}"${((","+object.menu+",").indexOf(","+p.id+",")>-1)?" checked=checked":""}/>${p.name}
+</div>
+</td>
+<td style="border: 1px solid #808080">
+#{list menu_c,as:'c'}
+#{if c.pid == p.cid}
+<div style="padding-left:2px;">
+<input type="checkbox" class="c_menu" name="menus" id="${c.cid}" cid="${c.cid}" pid="${c.pid}" value="${c.id}"${((","+object.menu+",").indexOf(","+c.id+",")>-1)?" checked=checked":""}/>${c.name}
+&nbsp;&nbsp;
+#{list role_c,as:'r'}
+#{if c.id == r.menu.id}
+<input class="r_menu" cid="${r.menu.cid}" pid="${r.menu.pid}" type="checkbox" #{if role.hasVal(rolevalue,r.controller,r.value)}checked="checked"#{/if}  name="cons" value="${r.value}" controller="${r.controller}"/>${r.name}
+#{/if}
+#{/list}
+</div>
+#{/if}
+#{/list}
+</td>
+</tr>
+#{/list}
+</table>
+</table>
+#{/table.custom}
+#{/table.form}
+#{/form}
+<script>
+function submit_form(){
+	//先组合菜单
+	var map = new HashMap();
+	var value="";
+	$("input[name=cons]").each(function(){
+		if($(this).attr("checked")){
+			var controller = $(this).attr("controller");
+			var purview = map.get(controller);
+			if(purview==null) purview = 0;
+			purview = purview + Math.pow(2,$(this).val());
+			map.put(controller,purview);
+		}
+		
+	});
+	var keys = map.keys();
+	$.each(map.keys(),function(index,v){
+		if(value.length>0) value = value + "|";
+		value = value + v + ":" + map.get(v);
+	});
+	$("#value").val(value);
+	return true;
+}
+
+$(function(){
+$(".menu").click(function(){
+	checked = $(this).attr("checked");
+	$(".p_menu").each(function(){
+		$(this).attr("checked",checked);
+	});
+	$(".c_menu").each(function(){
+		$(this).attr("checked",checked);
+	});
+	$(".r_menu").each(function(){
+		$(this).attr("checked",checked);
+	});
+});
+
+$(".p_menu").click(function(){
+	cid = $(this).attr("cid");
+	checked = $(this).attr("checked");
+	$(".c_menu").each(function(){
+		if($(this).attr("pid")==cid){
+			$(this).attr("checked",checked);
+		}
+	});
+	$(".r_menu").each(function(){
+		if($(this).attr("pid")==cid){
+			$(this).attr("checked",checked);
+		}
+	});
+});
+$(".c_menu").click(function(){
+	pid = $(this).attr("pid");
+	cid = $(this).attr("cid");
+	checked = $(this).attr("checked");
+	if(checked){
+		$("#"+pid).attr("checked",checked);
+	}
+	$(".r_menu").each(function(){
+		if($(this).attr("cid")==cid){
+			$(this).attr("checked",checked);
+		}
+	});
+});
+$(".r_menu").click(function(){
+	pid = $(this).attr("pid");
+	cid = $(this).attr("cid");
+	checked = $(this).attr("checked");
+	if(checked){
+		$("#"+pid).attr("checked",checked);
+		$("#"+cid).attr("checked",checked);
+	}
+});
+$("#chkPadall").live("click",function(){
+	var checked = $(this).attr("checked");
+	$("input[name=ipads]").each(function(){
+		$(this).attr("checked",checked);
+	});
+});
+})
+</script>

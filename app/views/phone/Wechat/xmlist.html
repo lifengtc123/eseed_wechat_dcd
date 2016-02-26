@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<title>项目到岗统计</title>
+<link href="/public/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/public/js/jquery-1.10.2.min.js"></script>
+<script src="/public/js/myjq.js" type="text/javascript"></script>
+<script src="/public/js/loading.js"></script>
+</head>
+<style>
+
+</style>
+
+<div class="state_select">
+	<div class="tit" id="stateInput"><span>搜索查询</span></div>
+    <div class="list" id="stateList">
+    	<form id="signup-form">
+	<input type="hidden" name="code" value="${code}"/>
+	<input type="hidden" id="page" name="page" value="1" />
+	<input type="hidden" id="openid" name="openid" value="${openid}" />
+ 	<div class="warning_history_s" >
+	<div class="tit1">项目</div>
+    <div class="input_box">
+<select name="projectItemName" id="projectItemName" style="width: 90%;height: 100%;padding: 0 5%;border: none;background: none;">
+	<option value="">--请选择--</option>
+#{list protrees,as:'row'}
+<option value="${row.name}" #{if projectItemName==row.name}selected="selected"#{/if}>${row.selectTree.raw()}</option>
+#{/list}
+</select>  
+  </div>
+</div>
+<div class="warning_history_s">
+	<div class="tit1">单位</div>
+    <div class="input_box">
+    <select name="companyName" id="companyName" style="width: 90%;height: 100%;padding: 0 5%;border: none;background: none;">
+
+	<option value="">--请选择--</option>
+#{list comtrees,as:'row'}
+<option value="${row.name}"}  #{if companyName==row.name}selected="selected"#{/if}>${row.selectTree.raw()}</option>
+#{/list}
+</select>
+</div>
+</div>
+<div class="warning_history_s">
+	<div class="tit1">姓名</div>
+    <div class="input_box">
+    	<input type="text" name="employeeName" id="employeeName" value="${params.employeeName}"  size="20"/>
+    </div>
+</div>
+<div class="warning_history_s">
+	<div class="tit1">时间</div>
+    <div class="input_box"><input type="month" id="time" name="time" value="${time}" /></div>
+</div>
+
+<div class="warning_history_s2">
+    <input type="submit" class="input_sub" value="查询" />
+</div>
+</form>
+    </div>
+</div>
+<div class="state_blank"></div>
+	<div class="warning_history_box clear ">
+		<div class="warning_history_time clear " id="table1" style="overflow-y: scroll;">
+	    	<ul><span>时间</span></ul>
+	    	 #{list pagedList.list,as:'row'}
+	    	<ul><li>${row.yearMonth}</li></ul>
+	    	#{/list} 
+	        <!-- <ul><li><em>2015/07/16<br />14:29:56</em></li></ul>
+	        <ul><li><em>2015/07/16<br />14:29:56</em></li></ul> -->
+	    </div>
+	    <div class="warning_history_con clear " id="sourceDiv" onscroll="document.getElementById('targetDiv').scrollLeft = this.scrollLeft;">
+	    	<div class="warning_history_table clear " id="table2" style="overflow-x: scroll;">
+	        	<ul><span><i></i>所在项目/标段</span><span><i></i>实际到岗率</span><span><i></i>月度扣分</span><span><i></i>年度扣分</span></ul>
+	        	#{list pagedList.list,as:'row'}
+	            <ul><li><a href="/phone/wechat/xmlistdetail?projectItemName=${row.projectItemName}&yearMonth=${row.yearMonth}&openid=${openid}">${row.projectItemName}</a></li><li>${row.rate?.format("#.##")}</li><li>${row.alldeductionMonthScore}</li><li>${row.alldeductionYearScore}</li></ul>
+	            #{/list} 
+	            <!-- <ul><li>打开</li><li>报警ER02</li><li>打开</li><li>描述</li></ul>
+	            <ul><li>打开</li><li>报警ER02</li><li>打开</li><li>描述</li></ul> -->
+	        </div>
+	    </div>
+	    	 
+	    	 <div  onclick="nextpage()"  style="text-align: center;height: 3em;line-height: 3em;background: #BBBABA;color: #FAF7F7;">
+            <div style="visibility:hidden;float:left;padding-left: 4em;padding-top: 0.5em;position: absolute;" class="nextpage" id="pic"><img style="width: 2em;height: 2em;" src="/public/weiwang/images/loading.gif" /></div>
+            <div id="nextpage">下一页</div>
+            </div>
+	</div>
+	<!--顶部浮动-->
+<div class="warning_history_tit clear ">
+	<div class="warning_history_time clear ">
+    	<ul><span>姓名</span></ul>
+    </div>
+    <div class="warning_history_con clear " id="targetDiv"  onscroll="document.getElementById('sourceDiv').scrollLeft = this.scrollLeft;">
+    	<div class="warning_history_table clear " style="overflow-x: auto;">
+	        	<ul><span><i></i>所在项目/标段</span><span><i></i>实际到岗率</span><span><i></i>月度扣分</span><span><i></i>年度扣分</span></ul>
+        </div>
+    </div>
+</div>
+
+
+<!--nav-->
+
+<div class="mask"></div>
+</body>
+</html>
+<script>
+//判断手机横竖屏状态：
+$(function(){
+	var mql = window.matchMedia("(orientation: portrait)");
+	if(mql.matches){
+		$('.warning_history_s').css('width','100%');
+		$('.nextpage').css('padding-left','4em');
+	}else{
+		$('.warning_history_s').css('width','45%').css('float','left');
+		$('.nextpage').css('padding-left','8em');
+	}
+})
+window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
+        if (window.orientation === 180 || window.orientation === 0) { 
+            $('.warning_history_s').css('width','100%');
+            $('.nextpage').css('padding-left','4em');
+        } 
+        if (window.orientation === 90 || window.orientation === -90 ){ 
+            $('.warning_history_s').css('width','45%').css('float','left');
+            $('.nextpage').css('padding-left','8em');
+        }  
+    }, false);
+	var page;
+	function nextpage(){
+		//获取跳转的类型
+		$("#pic").css("visibility","");
+						var html = "";
+                        var html2 = "";
+                        page = $("#page").val();
+                        var projectItemName = $("#projectItemName").val();
+                        var companyName = $("#companyName").val();
+                        var employeeName = $("#employeeName").val();
+                        var time = $("#time").val();
+                        var openid = $("#openid").val();
+                        //console.log("" + keyword + "==" + type + "==" + page + "==" + pageSize);
+                        $.ajax({
+                            url: "/phone/wechat/getxmlist",
+                            dataType:"jsonp",
+                            data: {
+                                "page": page,
+                                "projectItemName": projectItemName,
+                                "companyName": companyName,
+                                "employeeName": employeeName,
+                                "time": time,
+                                "openid": openid
+                            },
+                            jsonp:"jsonpcallback",
+                            success: function (data) {
+                                if (data != null && data != "") {
+                                    for (var i = 1; i <= data.length; i++) {
+                                    	html =html+"<ul><li>"+data[i - 1].yearMonth+"</li></ul>";
+                                    	html2 = html2 + "<ul><li><a href='/phone/wechat/xmlistdetail?projectItemName="+data[i - 1].projectItemName+"&yearMonth="+data[i - 1].yearMonth+"&openid="+openid+"'>"+data[i - 1].projectItemName+"</a></li><li>"+data[i - 1].rate+"</li><li>"+data[i - 1].alldeductionMonthScore+"</li><li>"+data[i - 1].alldeductionYearScore+"</li></ul>";
+                                    }
+                                    // 为了测试，延迟1秒加载
+                                   		 $("#nextpage").html("下一页");
+                                        $('#table1').append(html);
+                                        $('#table2').append(html2);
+                                        page = parseInt(page)+ parseInt(1);
+                                        $("#page").val(page);
+                                        $("#pic").css("visibility","hidden");
+								}else{
+									$("#nextpage").html("无数据");
+									$("#pic").css("visibility","hidden");
+								}					
+	}
+	});
+	}
+	//刚进入页面
+	$(function(){
+		loadingcontent();
+		setTimeout('$("#loading").remove();',1000);
+		
+	})
+</script>

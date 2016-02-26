@@ -1,0 +1,53 @@
+#{extends "main_list.html"/}
+#{set title:"添加显示设置"/}
+<script src="/public/javascripts/common.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/loading.js" type="text/javascript" charset="utf-8"></script>
+#{form @@create(),id:'form1'}
+<div class="form">
+<fieldset>
+<legend>显示配置</legend>
+<div class="field" style="width: 99%;">
+#{field "screenSet.widthSize"}
+<label for="${field.id}">宽</label>
+<input type="text" id="${field.id}" name="${field.name}" value="0" class="txt01" onblur="checkDecimals(this);" onfocus="clearZero(this);"/>
+#{/field}
+</div>
+<div class="field" style="width: 99%;">
+#{field "screenSet.heightSize"}
+<label for="${field.id}">高</label>
+<input type="text" id="${field.id}" name="${field.name}" value="0" class="txt01" onblur="checkDecimals(this);" onfocus="clearZero(this);"/>
+#{/field}
+</div>
+<div class="field" style="width: 99%;">
+#{field "screenSet.tableHeight"}
+<label for="${field.id}">列表高度</label>
+<input type="text" id="${field.id}" name="${field.name}" value="0" class="txt01" onblur="checkDecimals(this);" onfocus="clearZero(this);"/>
+#{/field}
+</div>
+<div class="field" style="width: 99%;">
+#{field "screenSet.pageSize"}
+<label for="${field.id}">每页条数</label>
+<input type="text" id="${field.id}" name="${field.name}" value="0" class="txt01" onblur="checkDecimals(this);" onfocus="clearZero(this);"/>
+#{/field}
+</div>
+<div class="field" style="width: 99%;">
+#{field "screenSet.menuNum"}
+<label for="${field.id}">显示菜单</label>
+<input type="text" id="${field.id}" name="${field.name}" value="0" class="txt01" onblur="checkDecimals(this);" onfocus="clearZero(this);"/>
+#{/field}
+</div>
+</fieldset>
+<p class="buttons">
+<input type="submit" name="_save" value="&{'option.save'}" class="btn01"/>
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>
+#{/form}
+<script>
+function check(){
+	if(checkEmptyInfo1()){
+		loadingcontent();
+		$("#form1").submit();
+	} 
+}
+</script>

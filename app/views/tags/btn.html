@@ -1,0 +1,19 @@
+%{
+	map = _caller.roleMap;
+	id = _caller.row.id;
+}%
+
+#{if map[_arg]!=0}
+#{if _type=='open'}
+<a href="javascript:void(0);" onclick="${_onclick}('${_action}?id=${id}',${_wide},${_high})">${_arg}</a>
+#{/if}
+#{if _type=='del'}
+<a href="javascript:void(0);" class="${_class}" url="${_url}?id=${id}">${_arg}</a>
+#{/if}
+#{if _type=='print'}
+<a href="javascript:void(0);" onclick="${_onclick}('${_action}?id=${id}');">${_arg}</a>
+#{/if}
+#{if _type=='jquery'}
+<a href="javascript:void(0);" onclick="${_onclick}(${id});">${_arg}</a>
+#{/if}
+#{/if}

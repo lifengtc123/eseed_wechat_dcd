@@ -1,0 +1,67 @@
+#{extends "main_list.html"/}
+#{set title:"添加客户信息"/}
+#{form @@create()}
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+<legend>客户信息</legend>
+<div class="field" style="width: 49%;">
+#{field "customerinfo.number"}
+<label for="${field.id}">客户编号</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "customerinfo.nikename"}
+<label for="${field.id}">客户昵称</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+
+<div class="field" style="width: 49%;">
+#{field "customerinfo.buildType"}
+<label for="${field.id}">用户类型</label>
+<select id="${field.id}" name="${field.name}">
+	<option value="0">企业帐号</option>
+	<option value="1">监管帐号</option>
+	<option value="2">未绑定</option>
+</select>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "customerinfo.telephone"}
+<label for="${field.id}">手机号码</label>
+<input type="text" id="${field.id}" name="${field.name}" readonly="readonly" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "customerinfo.companyName"}
+<label for="${field.id}">单位名称</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "customerinfo.userNo"}
+<label for="${field.id}">登录帐号</label>
+<input type="text" id="${field.id}" name="${field.name}" readonly="readonly" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "customerinfo.openid"}
+<label for="${field.id}">openid</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+</fieldset>
+<p class="buttons">
+<input type="submit" name="_save" value="&{'option.save'}" class="btn01"/>
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>
+#{/form}

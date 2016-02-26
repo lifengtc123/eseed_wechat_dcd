@@ -1,0 +1,35 @@
+#{extends "main_list.html"/}
+%{
+    def map = [:]
+    map['object'] 		= "depart"
+    map['fields'] 		= ['name','sort','flag','notice']
+    map['widths'] 		= ['57','10','10','10']
+    map['width']		= 600
+    map['height']		= 260
+    map['searchFields']         = ['name']
+}%
+#{table.list map}
+#{table.custom 'flag'}
+${row.flag==1?"使用":"停用"}
+#{/table.custom}
+#{table.custom 'option'}
+&nbsp;
+#{if roleMap['detail']!=0}
+<a href="javascript:void(0);" onclick="open_dialog('/departs/detail?id=${row.id}',800,400)">查看</a>
+#{/if}
+#{if roleMap['show']!=0}
+<a href="javascript:void(0);" onclick="open_dialog('/departs/show?id=${row.id}',800,400)">修改</a>
+#{/if}
+#{if roleMap['delete']!=0}
+<a href="javascript:void(0);" class="option_delete" url="/departs/delete?id=${row.id}">删除</a>
+#{/if}
+#{/table.custom}
+#{table.custom 'buttons'}
+#{if roleMap['blank']!=0}
+<input type="button" class="btn01" value="添加" onclick="open_dialog('/departs/blank',600,260)"/>
+#{/if}
+#{if roleMap['delete']!=0}
+<input type="submit" class="btn01" value="删除"/>
+#{/if}
+#{/table.custom}
+#{/table.list}

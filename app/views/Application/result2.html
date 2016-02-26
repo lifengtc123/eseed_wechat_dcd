@@ -1,0 +1,9 @@
+#{extends 'main.html'/}
+#{set title:result.title /}
+<table width="100%" style="margin-top:50px;">
+<tr><td align="center" style="height: 30px; font-size: 16px;">${result.message.raw()}</td></tr>
+<tr><td align="center">
+#{list result.links,as:'link'}
+<a href="${link.url}">[${link.name}]</a>&nbsp;
+#{/list}
+</table>

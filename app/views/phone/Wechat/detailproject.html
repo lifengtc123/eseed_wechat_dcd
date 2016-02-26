@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<title>标段详情信息</title>
+<link href="/public/css/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="/public/weiwang/css/style.css"/>
+<script type="text/javascript" src="/public/js/jquery-1.8.0.min.js"></script>
+<script src="/public/js/loading2.js"></script>
+</head>
+<style>
+.info_list .tit {
+float: left;
+width: 7.5em;
+text-align: right;
+}
+.info_list li {
+line-height: 1em; 
+padding-bottom: 1em;
+}
+.info_list .content {
+margin-left: 7.5em;
+}
+</style>
+<div class="state_select" style="position:inherit;  left:0; right:0;top:0;  overflow:hidden; z-index:10000;">
+	<div class="tit2" id="stateInput"><span>标段详情信息</span></div>
+</div>
+	<div class="info_list" style="top: 2.8em;position: absolute;width:100%;font-size: 0.8125em;">
+	<ul>
+    	<li>
+        	<div class="tit" >项目名称：</div>
+             <div class="content" >
+             	${project.projectName}&nbsp;
+             	</div>
+        </li>
+        <li>
+        	<div class="tit" >项目标段：</div>
+            <div class="content" >
+			${project.projectItemName}&nbsp;
+            </div>
+        </li>
+        <li>
+        	<div class="tit" >编号：</div>
+            <div class="content" >
+			${project.projectNo} &nbsp;
+            </div>
+        </li>
+        <li>
+        	<div class="tit" >工期：</div>
+            <div class="content" >
+			${project.projectPeriod} &nbsp;
+            </div>
+        </li>
+        <li>
+        	<div class="tit" >建设地点：</div>
+            <div class="content" >
+			${project.projectAddress}&nbsp;
+            </div>
+        </li>
+        <li>
+        	<div class="tit" >建设单位：</div>
+            <div class="content" >
+			${project.buildCompanyName}&nbsp;
+            </div>
+        </li>
+        <li>
+        	<div class="tit" >备注：</div>
+            <div class="content" >
+			${project.remark}&nbsp;
+            </div>
+        </li>
+        <li>
+        	<div class="tit" >施工单位：</div>
+            <div class="content" >
+			${project.constructionCompanyName}&nbsp;
+            </div>
+        </li>
+        <li>
+        	<div class="tit" >监理单位：</div>
+            <div class="content" >
+			${project.supervisionCompanyName}&nbsp;
+            </div>
+        </li>
+        <li>
+        	<div class="tit" >开始考勤日期：</div>
+            <div class="content" >
+			${project.startDate?.format("yyyy-MM-dd")}&nbsp;
+            </div>
+        </li>
+        <li>
+        	<div class="tit" >考勤结束日期：</div>
+            <div class="content" >
+			${project.endDate?.format("yyyy-MM-dd")}&nbsp;
+            </div>
+        </li>
+        <li>
+        	<div class="tit" >上午有效时间：</div>
+            <div class="content" >
+			${project.morningStartTime}&nbsp; 至 ${project.morningEndTime}&nbsp;
+            </div>
+        </li>
+        <li>
+        	<div class="tit" >下午有效时间：</div>
+            <div class="content" >
+			${project.afternoonStartTime}&nbsp; 至 ${project.afternoonEndTime}&nbsp;
+            </div>
+        </li>
+        <li>
+        	<div class="tit" >状态：</div>
+            <div class="content" >
+			#{if project.projectStatus==0}在建&nbsp;#{/if}
+			#{if project.projectStatus==1}竣工&nbsp;#{/if}
+            </div>
+        </li>
+        
+    </ul>
+</div>
+
+
+<!--nav-->
+
+<div class="mask"></div>
+</body>
+</html>
+<script>
+	//刚进入页面
+	$(function(){
+		loadingcontent();
+		setTimeout('$("#loading").remove();',1000);
+		
+	})
+</script>

@@ -1,0 +1,402 @@
+﻿#You can specialize this file for each language.
+#For example,forFrenchcreateamessages.frfile
+#
+user.companyName=公司名称
+user.companyCity=所属县市
+
+hiarMaterialType.name=名称
+hiarMaterialType.sort=排序
+hiarMaterialType.flag=状态
+hiarMaterialType.notice=备注
+
+
+validation.required=必填
+validation.minSize=长度不能小于%2$d
+validation.maxSize=长度不能大于%2$d
+validation.email=必须是Email格式
+validation.range=必须大于%2$d小于%3$d
+validation.min=必须大于%2$d
+validation.max=必须小于%2$d
+validation.match=Must match %2$s
+validation.isTrue=Must be checked
+validation.equals=不相等
+validation.invalid=Incorrect value
+validation.future=Must be in the future
+validation.after=Must be after %2$s
+validation.past=Must be in the past
+validation.before=Must be before %2$s
+validation.object=验证数据错误
+validation.notFound=Object not found for id %2$s
+validation.url=必须是链接格式
+validation.telephone=电话格式错误
+validation.mobile=手机格式错误
+validation.invalid=格式错误
+
+secure.login.empty=用户名或者密码不能为空!
+secure.login.error=用户名或者密码错误!
+secure.logout=退出成功!
+secure.title=登录
+secure.username=用户名
+secure.password=密&nbsp;&nbsp;&nbsp;码
+secure.remember=记住
+secure.signin=登录
+
+option.title=操作
+option.save=保存
+option.close=关闭
+option.delete=删除
+
+menu.title=菜单列表
+menu.form=菜单信息
+menu.form1=菜单信息
+menu.id=编号
+menu.pid=上级菜单
+menu.name=菜单名
+menu.url=链接
+menu.target=打开方式
+menu.icon=显示图片
+menu.sort=排序
+menu.flag=状态
+
+ranges.title
+ranges.id=编号
+ranges.pid=上级菜单
+ranges.name=名称
+ranges.sort=排序
+ranges.flag=状态
+ranges.notice=备注
+ranges.form1=违章范围
+role.title=角色列表
+role.form=角色信息
+role.form1=角色信息
+role.name=角色名
+role.sort=排序
+role.menu=拥有菜单
+
+depart.title=用户组列表
+depart.form=用户组
+depart.form1=用户组
+depart.pid=选择上级
+depart.name=名称
+depart.sort=排序
+depart.flag=状态
+depart.notice=描述
+
+user.title=用户列表
+user.form1=员工信息
+user.username=用户名
+user.password=密码
+user.truename=真实姓名
+user.sex=性别
+user.email=电子邮件
+user.tel=联系电话
+user.mobile=移动电话
+user.cornet=短号
+user.login=登入次数
+user.status=状态
+user.depart=部门
+object.post=职位
+user.post=职位
+user.role=用户组
+user.remark=备注
+user.useIp=IP绑定
+user.usbId=电子狗
+
+wordType.title=字典类别
+wordType.form=字典类别
+wordType.form1=字典类别
+wordType.name=名称
+wordType.pid=上一级
+wordType.sort=排序
+wordType.flag=状态
+wordType.notice=备注
+
+word.title=字典数据列表
+word.form=字典数据信息
+word.form1=字典数据
+word.id=编号
+word.typeno=对应类别码
+word.wordType=字典类别
+word.word=上一级
+word.name=名称
+word.sort=排序
+word.flag=状态
+word.notice=备注
+
+supplierType.form1=供应商分类信息
+supplierType.pid=选择上级
+supplierType.title=供应商分类列表
+supplierType.name=名称
+supplierType.sort=排序
+supplierType.flag=状态
+supplierType.notice=描述
+
+materialsType.name=名称
+materialsType.sort=排序
+materialsType.flag=状态
+materialsType.notice=备注
+materialsType.title=材料分类列表
+materialsType.number=编号
+materialsType.pid=上一级
+materialsType.form1=材料分类信息
+
+initialInventory.material.number=材料编号
+initialInventory.material.productName=材料名称
+initialInventory.material.productType=材料规格
+
+materialRequisitions.sheet=单号
+materialRequisitions.depart=部门
+materialRequisitions.depart.name=部门
+materialRequisitions.requisitioner=申购人
+materialRequisitions.requisitionDate=请购日期
+materialRequisitions.approver=审批人
+materialRequisitions.approvalDate=审批日期
+materialRequisitions.summary=摘要
+materialRequisitions.purchaseStatus=采购状态
+materialRequisitions.materialRequisitionsDetails=
+
+contractInformation.form1=合同信息
+contractInformation.title=合同信息列表
+contractInformation.projectName=项目名称
+contractInformation.demandSide=需方
+contractInformation.customerName=客户名称
+contractInformation.contractNumber=合同编号
+contractInformation.signingDate=签单日期
+contractInformation.salesman=销售员
+contractInformation.totalAmount=总金额
+contractInformation.payment=付款方式
+contractInformation.otherDescription=其他说明
+contractInformation.contractAnnex=合同附件
+contractInformation.deliveryDate=交货日期
+contractInformation.total=总金额
+
+contractProductInformation.form=合同产品信息
+contractProductInformation.productName=产品名称
+contractProductInformation.brand=品牌
+contractProductInformation.specification=规格型号
+contractProductInformation.manufacturer=生产厂家
+contractProductInformation.unit=计量单位
+contractProductInformation.quantity=数量
+contractProductInformation.unitPrice=单价
+contractProductInformation.totalAmount=总金额
+
+projectMaterials.form1=项目材料清单
+projectMaterials.title=项目材料清单列表
+projectMaterials.establishment=编制
+projectMaterials.review=审核人
+projectMaterials.comment=批注
+projectMaterials.uploadDrawings=图纸上传
+projectMaterials.preparationDate=编制日期
+projectMaterials.materialDetailss=材料明细
+materialDetails.form=材料明细
+materialDetails.componentName=元器件名称
+materialDetails.specification=规格型号
+materialDetails.unit=单位
+materialDetails.brand=品牌
+materialDetails.quantity=数量
+materialDetails.remarks=备注
+materialDetails.projectMaterials=项目材料清单
+
+intoForm.title=未确认入库单列表
+intoForm.number=编号
+intoForm.storeDate =入库时间
+intoForm.storeAdmin=仓管
+intoForm.accept =验收人
+intoForm.creator =制单人
+intoForm.total_tax =含税合计
+intoForm.total=合计
+intoForm.supplierInformation = 供应商
+intoForm.updated = 更新时间
+intoForm.confirmDate = 确认时间
+intoForm.supplierInformation.companyName=供应商
+
+outForm.title=未确认出库单列表
+outForm.number=编号
+outForm.depart=领(退)用部门
+outForm.project=项目名称
+outForm.outDate=领(退)用日期
+outForm.storeAdmin=仓管
+outForm.geter=领(退)料人
+outForm.creator=制单人
+outForm.total_tax=含税合计
+outForm.total=合计
+outForm.confirmDate=确认时间
+outForm.confirm=确认人
+outForm.updated = 更新时间
+outForm.contractInformation.projectName=项目名称
+
+materialRequisitions.form1 = 物资请购单信息
+materialRequisitions.title = 物资请购单列表 
+materialRequisitions.sheet = 单号
+materialRequisitions.depart = 部门
+materialRequisitions.requisitioner = 申购人
+materialRequisitions.requisitionDate = 请购日期
+materialRequisitions.reviewer = 审核人
+materialRequisitions.reviewDate = 审核日期 
+materialRequisitions.approver = 审批人
+materialRequisitions.approvalDate  = 审批日期
+materialRequisitions.summary  = 摘要
+
+materialRequisitionsDetails.form = 物资请购单信息明细
+materialRequisitionsDetails.sheetID = 物资单ID
+materialRequisitionsDetails.materialName = 物资名称
+materialRequisitionsDetails.specification = 规格型号
+materialRequisitionsDetails.brand = 品牌
+materialRequisitionsDetails.unit = 单位
+materialRequisitionsDetails.quantity = 数量
+materialRequisitionsDetails.needDate = 需求日期
+materialRequisitionsDetails.used = 用途
+materialRequisitionsDetails.remarks = 备注
+
+orderContract.form1=产品订购合同信息
+orderContract.title=产品订购合同列表
+orderContract.singleSystem=制单人
+orderContract.signIocation=签定地点
+orderContract.totalAmount=总金额
+orderContract.otherDescription=其他说明
+orderContract.annexContract=合同附件
+orderContract.secondArticle=第二条
+orderContract.thirdArticle=第三条
+orderContract.fourthArticle=第四条
+orderContract.fifthArticle=第五条
+orderContract.sixthArticle=第六条
+orderContract.seventhArticle=第七条
+orderContract.eighthArticle=第八条
+orderContract.ninthArticle=第九条
+orderContract.tenthArticle=第十条
+orderContract.eleventhArticle=第十一条
+
+orderContractDetails.form=订购合同材料明细
+orderContractDetails.actualPrice=实际结算价
+orderContractDetails.unitPrice=单价
+orderContractDetails.amount=金额
+
+roleControl.title  = 权限控制列表
+roleControl.form  = 权限信息
+roleControl.controller = 控制器
+roleControl.name  = 模块名
+roleControl.form1  = 权限信息
+roleControl.action  = 方法
+roleControl.menu  = 菜单
+roleControl.menuStr  = 菜单
+roleControl.value  = 值
+roleControl.sort  = 排序
+
+contractInformation.created=创建时间
+
+outbox.title = 标题
+outbox.content  = 内容
+outbox.addressee = 收件人
+outbox.attachment  = 附件
+outbox.sendTime = 发送时间
+outbox.flag = 状态
+
+inbox.title = 标题
+inbox.content = 内容
+inbox.sender = 发件人
+inbox.attachment = 附件
+inbox.reader_count = 阅读次数
+inbox.last_time = 最后阅读时间
+inbox.flag = 状态
+inbox.created = 收件时间
+
+invoice.title=发货单列表
+invoice.form1=发货单
+invoice.projectName=项目名称
+invoice.receivingUnit=收货单位
+invoice.singleSystem=制单人
+invoice.note=备注
+invoice.carrierUnit=承运单位
+invoice.carNumber=车牌号
+invoice.carrierPeople=项目名称
+invoice.projectName=承运人
+invoice.tel=联系电话
+invoice.manufactureDate=出厂日期
+invoice.backStatus=回单状态
+
+invoiceDetails.form=发货单明细
+invoiceDetails.productName=产品名称
+invoiceDetails.productType=规格型号
+invoiceDetails.unit=单位
+invoiceDetails.quantity=数量
+invoiceDetails.note=备注
+
+checkForm.title = 盘点单列表
+checkForm.checkDate = 盘点日期
+checkForm.creator_man = 制单人
+checkForm.remark = 备注
+checkForm.state = 状态
+checkForm.updated = 更新时间
+
+checkformInfo.form=盘点单明细
+
+productionList.title = 生产清单列表
+productionList.contractID = 项目名称
+productionList.singleSystem = 制单人
+productionList.total = 合计
+productionList.issueDate = 制单日期
+productionList.explains = 说明
+
+classification.name  = 名称
+classification.sort = 排序
+classification.flag = 标识
+classification.notice = 备注
+classification.title = 公告分类
+classification.pid = 上一级
+classification.form1 = 通知分类信息
+
+option.entrySave = 保存
+
+newClassification.title=新闻分类
+newClassification.name=名称
+newClassification.sort=排序
+newClassification.flag=状态
+newClassification.notice=备注
+newClassification.pid=选择上一级
+newClassification.form1=新闻分类
+
+
+warningtype.title=预警分类
+warningtype.name=名称
+warningtype.sort=排序
+warningtype.flag=状态
+warningtype.notice=备注
+warningtype.pid=选择上一级
+
+platformAdTy.name=分类名称
+platformAdTy.sort=排序
+platformAdTy.flag=状态
+platformAdTy.notice=备注
+platformAdTy.title=平台广告分类列表
+platformAdTy.pid=选择上一级
+seaWave.title=列表
+seaWave.form=
+seaWave.showDate=日期
+seaWave.wavePoints=浪点
+wavePoint.lng=经度
+wavePoint.lat=维度
+wavePoint.wavePoint=海浪
+seaWave.form1=每日海浪
+
+
+
+#微信菜单
+menu.parent=上一级
+menu.menuType=类型
+menu.key=值
+menuWX.form1=微信菜单添加
+menuWX.parent=上一级
+menuWX.name=菜单名称
+menuWX.menuType=菜单类型
+menuWX.menu_key=值
+menuWX.url=url地址
+menuWX.sort=序号
+menuWX.flag=状态
+
+imggroups.title = 标题	
+imggroups.name = 名称
+imggroups.sort = 排序
+imggroups.flag= 标识
+imggroups.notice = 备注 
+imggroups.pid = 上一级
+imggroups.form1= 图文信息

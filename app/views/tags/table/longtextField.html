@@ -1,0 +1,11 @@
+#{field _object + '.' + _name}
+	#{if _label}
+	<label for="${field.id}">
+		&{_inputName + "." + _name}
+	</label>
+	#{/if}
+	<textarea id="${field.id}" cols="${_input.cols}" rows="${_input.rows}" class="txt01 ${field.errorClass}" name="${field.name}">${_value?.escape()?.raw()}</textarea>
+	#{ifError field.name}
+		<span class="error">${field.error}</span>
+	#{/ifError}
+#{/field}

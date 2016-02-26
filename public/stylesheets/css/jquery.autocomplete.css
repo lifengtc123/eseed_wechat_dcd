@@ -1,0 +1,17 @@
+.file-icon{display:inline-block;background:transparent url("/public/images/icom.png") -24px 0px;height:18px;width:22px;vertical-align:middle;}
+.doc{ background-position: 0px 0px; }
+.file{ background-position: -24px 0px;}
+.gif{ background-position: -48px 0px; }
+.xls{ background-position: -72px 0px; }
+.html{ background-position: -96px 0px; }
+.zip{ background-position: -120px 0px; }
+.jpg{ background-position: -144px 0px; }
+.mov{ background-position: -168px 0px; }
+.mp3{ background-position: -192px 0px; }
+.pdf{ background-position: -216px 0px; }
+.png{ background-position: -240px 0px; }
+.ppt{ background-position: -264px 0px; }
+.swf{ background-position: -288px 0px; }
+.tar{ background-position: -312px 0px; }
+.tgz{ background-position: -336px 0px; }
+.txt{ background-position: -360px 0px; }

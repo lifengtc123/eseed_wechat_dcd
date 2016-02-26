@@ -1,0 +1,32 @@
+%{
+	name = _input.name?_input.name:'id';
+}%
+#{field _object + '.' + _name}
+	#{if _label}
+	<label for="${field.id}">
+		&{_inputName + "." + _name}
+	</label>
+	#{/if}
+	#{if name=='id'}
+	<select id="${field.id}" name="${field.name}.id">
+	#{/if}
+	#{else}
+	<select id="${field.id}" name="${field.name}">
+	#{/else}
+	%{ 
+	play.db.jpa.JPA.entityManagerFactory.createEntityManager().createQuery(_input.sql).getResultList().each {
+		selected = false
+		if(name=="id"){
+			if(String.valueOf(_value?.id)==String.valueOf(it.id)) selected = true
+		}else{
+			if(String.valueOf(_value)==String.valueOf(it[name])) selected = true
+		}
+		
+	}%
+	<option value="${it[_input.name?_input.name:'id']}"${selected ? ' selected="true"'.raw() : ''}>${it}</option>
+	%{ } }%
+	</select>
+	#{ifError field.name}
+		<span class="error">${field.error}</span>
+	#{/ifError}
+#{/field}

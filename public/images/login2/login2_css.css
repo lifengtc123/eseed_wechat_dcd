@@ -1,0 +1,176 @@
+/*css  */
+* { margin:0px;padding:0px;	}
+body{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 0;
+  font-family:"宋体",serif,sans-serif; 
+  font-size:12px;  
+  background-color: #2084D3;
+}
+#main {
+	position: absolute; 
+	top:40%;
+	margin-top:-180px;
+	padding-top:0px;
+	float:left;
+	width:100%;
+	height:40%;
+	/*
+	height:300px;
+	width:100%;
+	height:400px;	
+	width:1000px;	
+	background-image:url(../images/login2/logo_03.gif);
+	*/
+	z-index: 2;
+}
+#left {	
+	/*border:1px dotted black;*/
+	float:right;
+	width:40%;		
+	margin:0px 15% 0px 0px; 
+	z-index: 5;
+}
+#main img#img{  	
+	position:absolute;
+	float:left;
+	left:32%;
+	width: 340%;
+	height: 270px;	
+	
+}
+/*
+#main #left img#login{
+   border: 1px solid blue;
+   float: left;
+   position:absolute;
+   margin: -40px 0;
+   left: 45px; 
+   z-index: 3;  
+}
+*/
+#rightLogin{	
+	/*border:3px dotted black;*/
+	width:212px;
+	height:266px;
+	/*margin-right:157px;
+	margin-top:50px;*/
+	margin-left:0px;
+	margin-top:0px;
+	position:static;
+	/*position:absolute;*/
+	/*top:5%;*/
+	/*float:right;*/
+	right:lie;
+	background-image:url(/public/images/login2/logo_06_2.gif);
+	/*z-index: 6;*/
+}
+#username{		
+	/*padding-top:-100px;*/
+	width:132px;
+	height:18px;
+	margin-right:44px;
+	margin-top:105px;
+	float:right;	
+}
+#password{	
+	width:132px;
+	height:18px;
+	margin-right:44px;
+	margin-top:38px;
+	float:right;
+}
+.longin_input{
+  color:#2084D3;
+  padding:auto auto;
+}
+#submit{
+	margin:20px;
+	margin-left:36px;
+	padding:2px 0 1px 2px;    
+	float:left;	
+	 
+}
+#reset{
+    margin:20px -2px 1px -6px;
+    padding:2px 0 1px 2px;    
+    float:left; 
+}
+img.versionImg{		
+	position:absolute;
+	height:85%;	
+	max-height:100px; 
+	width:100%;
+	top:65%;
+	filter:flipv;
+	z-index: 0;		
+}
+img.versionImg2{	
+	/*border:1px solid red;*/
+	position:absolute;
+	height:57%;
+	/*height:300px;*/
+	width:100%;	/**/
+	top:15%;
+	max-height:100px; 	
+	z-index: 1;		
+}
+ul#versionUI{	
+	position:absolute;
+	width:100%;
+	top:75%;
+	text-align: center;
+	margin: 0 auto 50px auto;
+	
+}
+#versionUI li{
+   list-style: none;
+   top:65%;
+   height:5px;
+   font-weight:10px; 
+}
+ul span{	
+   /** font-weight:bold;*/
+}
+li span.versionHttp{
+	font-size: 16px; 	
+	margin: 10px;
+	padding: 10px;
+}
+ul li.versionLiTel{	
+   height:10px; 
+   margin: 5px;   
+   text-align: 50px;
+}
+a:link{
+	color: black;
+}
+a:VISITED{
+	color: black;
+}
+#version{  	
+   position:absolute;
+   font-weight:bold;
+   width:100%;
+   font-size:13px;
+   text-align:center;
+   top:75%;
+   margin:50px center; 
+   z-index:3;   
+}
+
+
+#usb{  	
+   position:absolute;
+   	
+   width:100%;
+   font-size:13px;
+   text-align:center;
+   /*top:80%;*/
+   margin:50px center; 
+   z-index:3;   
+}
+
+	

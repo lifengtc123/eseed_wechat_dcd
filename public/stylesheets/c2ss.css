@@ -1,0 +1,772 @@
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+body {
+	margin:0px auto;
+	width:1004px;
+	color:#464646;
+}
+a:link {color: #525252;text-decoration: none;}
+a:visited {text-decoration: none;color: #525252;}
+a:hover {text-decoration: none;color: #1c4f82;}
+a:active {text-decoration: none;color: #1c4f82;}
+
+.header {
+	float:left;
+	width:1004px;
+	height:30px;
+	background-image:url(/public/images/imagess/hefeng_01.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.header_site {
+	float:left;
+	width:280px;
+	height:30px;
+	line-height:30px;
+	color:#FFFFFF;
+	font-size:14px;
+	font-weight:bold;
+	padding-left:52px;
+}
+
+.header_nav {
+	float:right;
+	width:550px;
+	padding-right:25px;
+}
+.header_nav ul {list-style:none; padding:0px; margin:0px;}
+.header_nav li {
+	float:right;
+	width:70px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	background-image:url(/public/images/imagess/hefeng_03.png);
+	background-repeat:no-repeat;
+	background-position:left center;
+}
+.header_nav a:link {color: #3e6e86;text-decoration: none;}
+.header_nav a:visited {text-decoration: none;color: #3e6e86;}
+.header_nav a:hover {text-decoration: none;color: #1c4f82;}
+.header_nav a:active {text-decoration: none;color: #1c4f82;}
+
+.banner {
+	float:left;
+	width:1004px;
+	height:270px;
+	background-image:url(/public/images/imagess/hefeng_02.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.nav {
+	float:left;
+	width:984px;
+	height:44px;
+	padding-left:20px;
+	margin-bottom:10px;
+	background-image:url(/public/images/imagess/hefeng_04.jpg);
+	background-repeat:repeat-x;
+	background-position:left top;
+	border-bottom-width: 6px;
+	border-bottom-style: solid;
+	border-bottom-color: #818587;
+}
+.nav ul {list-style:none; padding:0px; margin:0px;}
+.nav li {
+	float:left;
+	width:90px;
+	height:44px;
+	line-height:44px;
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+	background-image:url(/public/images/imagess/hefeng_07.jpg);
+	background-repeat:no-repeat;
+	background-position:center bottom;
+}
+.nav a:link {color: #f3f3f3;text-decoration: none;}
+.nav a:visited {text-decoration: none;color: #f3f3f3;}
+.nav a:hover {text-decoration: none;color: #d2d2d2;}
+.nav a:active {text-decoration: none;color: #d2d2d2;}
+
+.line_left {
+	float:left;
+	width:650px;
+	padding-left:25px;
+}
+
+.focusmap_line {
+	float:left;
+	width:294px;
+}
+
+.focusmap_bg {
+	float:left;
+	width:294px;
+	height:194px;
+	background-image:url(/public/images/imagess/hefeng_14.jpg);
+	background-repeat: repeat;
+	background-position: left top;
+}
+
+.focusmap {
+	float:left;
+	width:278px;
+	height:178px;
+	margin:8px 0px 0px 8px;*margin:8px 0px 0px 8px!important;_margin:8px 0px 0px 4px;
+}
+
+.focusmap_text {
+	float:left;
+	width:294px;
+	height:26px;
+	line-height:26px;
+	text-align:center;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+
+.news_line {
+	float:left;
+	width:336px;
+	padding-left:15px;
+}
+
+.news_l {
+	float:left;
+	width:5px;
+	height:24px;
+	background-image:url(/public/images/imagess/hefeng_16.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.news_c {
+	float:left;
+	width:326px;
+	height:24px;
+	background-image:url(/public/images/imagess/hefeng_18.jpg);
+	background-repeat:repeat-x;
+	background-position:left top;
+}
+
+.news_r {
+	float:left;
+	width:5px;
+	height:24px;
+	background-image:url(/public/images/imagess/hefeng_20.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.news_tit {
+	float:left;
+	width:225px;
+	height:20px;
+	line-height:20px;
+	margin-top:4px;
+	color:#FFFFFF;
+	background-image:url(/public/images/imagess/hefeng_22.jpg);
+	background-repeat:no-repeat;
+	background-position:left bottom;
+	padding-left:10px;
+}
+.news_tit span {
+	font-size:14px;
+	font-weight:bold;
+	color:#1d5187;
+	padding-right:15px;
+}
+
+.news_more a {
+	float:right;
+	width:45px;
+	height:12px;
+	background-image:url(/public/images/imagess/hefeng_27.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+	margin:6px 10px 0px 0px;*margin:6px 10px 0px 0px!important;_margin:6px 5px 0px 0px;
+	display:block;
+}
+
+.news_content {
+	float:right;
+	width:330px;
+	padding:10px 0px 16px 0px;
+}
+.news_content ul {list-style:none; padding:0px; margin:0px;}
+.news_content li {
+	float:left;
+	width:330px;
+}
+
+.news_name {
+	float:left;
+	width:220px;
+	height:24px;
+	line-height:24px;
+	background-image:url(/public/images/imagess/hefeng_40.jpg);
+	background-repeat:no-repeat;
+	background-position:left center;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+	padding-left:15px;
+}
+.news_name a:link {color: #3e6e86;text-decoration: none;}
+.news_name a:visited {text-decoration: none;color: #3e6e86;}
+.news_name a:hover {text-decoration: none;color: #1c4f82;}
+.news_name a:active {text-decoration: none;color: #1c4f82;}
+
+.news_date {
+	float:right;
+	width:80px;
+	height:24px;
+	line-height:24px;
+}
+
+.search_line {
+	float:left;
+	width:336px;
+	margin-left:15px;
+	background-color:#f1f2f2;
+}
+
+.search_tit {
+	float:left;
+	width:90px;
+	height:36px;
+	line-height:36px;
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+	color:#6992af;
+}
+
+.search_content {
+	float:left;
+	width:170px;
+	height:28px;
+	padding-top:7px;
+}
+
+.input_1 {
+	width:160px;
+	height:16px;
+	background-color:#FFFFFF;
+	border: 1px solid #7f9db9;
+}
+
+.search_ok a {
+	float:left;
+	width:56px;
+	height:20px;
+	background-image:url(/public/images/imagess/hefeng_45.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+	margin-top:7px;*margin-top:7px!important;_margin-top:8px;
+}
+
+.product_line {
+	float:left;
+	width:650px;
+	padding:10px 0px 20px 0px;
+}
+
+.product_l {
+	float:left;
+	width:6px;
+	height:24px;
+	background-image:url(/public/images/imagess/hefeng_52.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.product_c {
+	float:left;
+	width:639px;
+	height:24px;
+	background-image:url(/public/images/imagess/hefeng_18.jpg);
+	background-repeat:repeat-x;
+	background-position:left top;
+}
+
+.product_r {
+	float:left;
+	width:5px;
+	height:24px;
+	background-image:url(/public/images/imagess/hefeng_54.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.product_content_l {
+	float:left;
+	width:33px;
+	height:138px;
+	background-image:url(/public/images/imagess/hefeng_55.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.product_content_r {
+	float:left;
+	width:33px;
+	height:138px;
+	background-image:url(/public/images/imagess/hefeng_56.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.product{
+	float:left;
+	width:580px;
+}
+.product ul {list-style:none; padding:0px; margin:0px;}
+.product li {
+	float:left;
+	width:145px;
+	padding-top:7px;
+}
+
+.product_pic {
+	float:left;
+	width:145px;
+	text-align:center;
+}
+.product_pic img {
+	padding:2px;
+	border: 1px solid #9fc2d8;
+}
+.product_pic a:link {color: #9fc2d8;text-decoration: none;}
+.product_pic a:visited {text-decoration: none;color: #9fc2d8;}
+.product_pic a:hover {text-decoration: none;color: #9fc2d8;}
+.product_pic a:active {text-decoration: none;color: #9fc2d8;}
+
+.product_text {
+	float:left;
+	width:145px;
+	height:24px;
+	line-height:24px;
+	text-align:center;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+
+.service_line {
+	float:left;
+	width:305px;
+	padding-right:10px;
+}
+
+.service_more a {
+	float:right;
+	width:45px;
+	height:12px;
+	background-image:url(/public/images/imagess/hefeng_27.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+	margin:8px 10px 0px 0px;*margin:8px 10px 0px 0px!important;_margin:8px 5px 0px 0px;
+	display:block;
+}
+
+.service_text {
+	float:left;
+	width:100%;
+	padding-top:5px;
+}
+.service_text ul {list-style:none; padding:0px; margin:0px;}
+.service_text li {
+	float:left;
+	width:100%;
+	height:24px;
+	line-height:24px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #c8c8c8;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+.service_text li a {
+	background-image:url(/public/images/imagess/hefeng_79.jpg);
+	background-repeat:no-repeat;
+	background-position:left center;
+	margin-left:10px;
+	padding-left:10px;
+}
+
+.line_right {
+	float:left;
+	width:280px;
+	margin-left:25px;
+	padding-left:1px;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #dfdede;
+}
+
+.aboutus_tit_line {
+	float:left;
+	width:280px;
+	height:24px;
+	background-image:url(/public/images/imagess/hefeng_18.jpg);
+	background-repeat:repeat-x;
+	background-position:left top;
+}
+
+.aboutus_tit {
+	float:left;
+	width:120px;
+	height:24px;
+	line-height:24px;
+	background-image: url(/public/images/imagess/hefeng_24.jpg);
+	background-repeat: no-repeat;
+	background-position: left center;
+	margin-left:5px;
+	padding-left:20px;
+	font-size:14px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+
+.aboutus_tit_bg {
+	float:right;
+	width:50px;
+	height:24px;
+	background-image:url(/public/images/imagess/hefeng_20.jpg);
+	background-repeat:no-repeat;
+	background-position:right top;
+}
+
+.aboutus_pic {
+	float:left;
+	width:280px;
+	padding:7px 0px;
+	text-align:center;
+}
+
+.aboutus_text {
+	float:left;
+	width:256px;
+	line-height:18px;
+	color:#3e6e86;
+	padding:7px 0px 14px 12px;
+}
+
+.contact_tit {
+	float:left;
+	width:120px;
+	height:24px;
+	line-height:24px;
+	background-image: url(/public/images/imagess/hefeng_64.jpg);
+	background-repeat: no-repeat;
+	background-position: left center;
+	margin-left:5px;
+	padding-left:20px;
+	font-size:14px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+
+.contact_text {
+	float:left;
+	width:256px;
+	line-height:24px;
+	color:#3e6e86;
+	padding:7px 0px 14px 12px;
+}
+
+.foot {
+	float:left;
+	width:1004px;
+	line-height:22px;
+	padding:10px 0px;
+	margin-top:20px;
+	margin-left:0px;
+	text-align:left;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #dfdede;
+	color:#6f6f6f;
+}
+.foot a:link {color: #84A24A;text-decoration: none;}
+.foot a:visited {text-decoration: none;color: #9a0000;}
+.foot a:hover {text-decoration: none;color: #1c4f82;}
+.foot a:active {text-decoration: none;color: #1c4f82;}
+
+
+
+/*___________content_____________*/
+
+.content_left {
+	float:left;
+	width:264px;
+	padding-top:20px;
+}
+
+.content_nav_t {
+	float:right;
+	width:218px;
+	height:64px;
+	background-image:url(/public/images/imagess/inside_03.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.content_nav_tit {
+	float:left;
+	width:110px;
+	height:31px;
+	line-height:31px;
+	text-align:center;
+	color:#FFFFFF;
+	font-size:14px;
+	font-weight:bold;
+}
+
+.content_nav {
+	float:right;
+	width:216px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #3f567c;
+	border-left-color: #3f567c;
+}
+.content_nav ul {list-style:none; padding:0px; margin:0px;}
+.content_nav li {
+	float:right;
+	width:170px;
+	height:32px;
+	line-height:32px;
+	background-image:url(/public/images/imagess/inside_11.jpg);
+	background-repeat:no-repeat;
+	background-position:left bottom;
+	font-weight:bold;
+	padding-left:30px;
+}
+.content_nav a:link {color: #335875;text-decoration: none;}
+.content_nav a:visited {text-decoration: none;color: #335875;}
+.content_nav a:hover {text-decoration: none;color: #525252;}
+.content_nav a:active {text-decoration: none;color: #525252;}
+
+.content_nav_pic {
+	float:right;
+	width:218px;
+	padding:10px 0px 5px 0px;
+	text-align:right;
+}
+
+.content_nav_d {
+	float:right;
+	width:218px;
+	height:15px;
+	line-height:15px;
+	background-image:url(/public/images/imagess/inside_14.jpg);
+	background-repeat:no-repeat;
+	background-position:left top;
+}
+
+.content_bg {
+	float:left;
+	width:100%;
+	height:28px;
+	background-image:url(/public/images/imagess/hefeng_99.jpg);
+	background-repeat:repeat-x;
+	background-position:left bottom;
+}
+
+.content_tit_bg {
+	float:left;
+	height:28px;
+	background-image:url(/public/images/imagess/hefeng_98.jpg);
+	background-repeat:repeat-x;
+	background-position:left bottom;
+}
+.content_tit_tag {
+	float:left;
+	width:30px;
+	height:28px;
+	background-image:url(/public/images/imagess/hefeng_74.jpg);
+	background-repeat:no-repeat;
+	background-position:center center;
+}
+.content_tit_name {
+	float:left;
+	height:28px;
+	line-height:28px;
+	font-size:14px;
+	font-weight:bold;
+	color:#1d5187;
+	padding-right:15px;
+}
+
+.content_right {
+	float:left;
+	width:635px;
+	padding-left:50px;
+	padding-top:20px;
+}
+
+.content_right_all {
+	float:left;
+	width:900px;
+	padding-left:50px;
+	padding-top:20px;
+}
+
+.content_text {
+	float:left;
+	width:100%;
+	padding-top:5px;
+}
+.content_text ul {list-style:none; padding:0px; margin:0px;}
+.content_text li {
+	float:left;
+	width:100%;
+	height:30px;
+	line-height:30px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #c8c8c8;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+.content_text li a {
+	background-image:url(/public/images/imagess/hefeng_79.jpg);
+	background-repeat:no-repeat;
+	background-position:left center;
+	margin-left:15px;
+	padding-left:15px;
+}
+
+.products{
+	float:left;
+	width:635px;
+	padding-top:10px;
+}
+.products ul {list-style:none; padding:0px; margin:0px;}
+.products li {
+	float:left;
+	width:158px;
+	padding-top:7px;
+}
+
+.products_pic {
+	float:left;
+	width:158px;
+	text-align:center;
+}
+.products_pic img {
+	padding:2px;
+	border: 1px solid #9fc2d8;
+}
+.products_pic a:link {color: #9fc2d8;text-decoration: none;}
+.products_pic a:visited {text-decoration: none;color: #9fc2d8;}
+.products_pic a:hover {text-decoration: none;color: #9fc2d8;}
+.products_pic a:active {text-decoration: none;color: #9fc2d8;}
+
+.products_text {
+	float:left;
+	width:158px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+
+.text_bg {
+	float:left;
+	width:100%;
+	background-image:url(/public/images/hefeng_99.jpg);
+	background-repeat:repeat-x;
+	background-position:left bottom;
+}
+
+.text_tit {
+	float:left;
+	width:100%;
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+	font-weight:bold;
+	color:#1d5187;
+	text-align:center;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+
+.text_date {
+	float:left;
+	width:100%;
+	height:30px;
+	line-height:20px;
+	text-align:center;
+	color:#a3a3a3;
+}
+
+.text_text{
+	float:left;
+	width:595px;
+	line-height:24px;
+	padding:10px 20px 20px 20px;
+}
+
+.text_text_all{
+	float:left;
+	width:860px;
+	line-height:24px;
+	padding:10px 20px 20px 20px;
+}
+
+.message {
+	float:left;
+	width:580px;
+	padding-top:10px;
+}
+.message ul {list-style:none; padding:0px; margin:0px;}
+.message li {
+	float:left;
+	width:580px;
+}
+.message_tit {
+	float:left;
+	width:100px;
+	height:35px;
+	line-height:30px;
+	text-align:right;
+	padding-right:10px;
+}
+.message_text {
+	float:left;
+	width:400px;
+}
+
+
+
+#demo {
+overflow:hidden;
+width:584px;*width:584px!important;_width:581px;
+}
+#indemo {
+float: left;
+width: 800%;
+}
+#demo1 {
+float: left;
+}
+#demo2 {
+float: left;
+}

@@ -1,0 +1,48 @@
+#{extends "main_list.html"/}
+#{set title:"添加字典数据"/}
+%{
+map = [:]
+map['fields']		=	['form_s','wordType','word','name','typeno','sort','flag','notice','form_e']
+map['type']			=	['text','relationTree','text','text','text','text','select','text','text']
+map['widths']		=	['100','100','100','100','100','100','100','100']
+map['input']  		= 	[:]
+map['input']['wordType']	=	['sql':'from WordType where flag=1 order by sort','name':'id']
+map['input']['flag']	=	['1':'使用','2':'停用']
+map['input']['notice']	=	350
+
+}%
+#{form @@create()}
+#{table.form map}
+#{table.custom 'word'}
+<div class="field" style="width: 100%;">
+#{field 'object.word'}
+<label for="${field.id}">&{'word.word'}</label>
+<select id="${field.id}" name="${field.name}.id">
+<option value="">--请选择--</option>
+#{if words}
+#{list words,as:'word'}
+<option value="${word.id}">${word.name}</option>
+#{/list}
+#{/if}
+</select>
+#{/field}	
+</div>
+#{/table.custom}
+#{/table.form}
+#{/form}
+<script>
+$(function(){
+	$("#object_wordType").change(function(){
+		var change_value = $(this).val();
+		$("#object_word").empty();
+		$("#object_word").append('<option value="">--请选择--</option>');
+		if(change_value!=""){
+			$.getJSON("get_change_value",{id:change_value,t:Math.random()},function(data){
+				$(data).each(function(i,row){
+				$("#object_word").append('<option value="'+row.id+'">'+row.name+'</option>');
+				});
+			});
+		}
+	});
+})
+</script>

@@ -1,0 +1,19 @@
+%{
+ name = _name;
+ id = _id;
+ value = _value;
+ width = _width ? _width: "100%";
+ height= _height ? _height:"250px";
+}%
+
+<script type="text/javascript">
+KindEditor.ready(function(K) {
+   var editor = K.create('#${id}', {
+    		uploadJson : '/Kindeditor/upload',
+			fileManagerJson : '/Kindeditor/file_manager',
+			allowFileManager : true,
+			afterBlur: function(){this.sync();}
+        });
+});
+</script>
+<textarea id="${id}" name="${name}" style="width: ${width};height: ${height};" cols="45" rows="5" class="sms_count" emptyInfo="请填写邮件内容!" >${value}</textarea>

@@ -1,0 +1,16 @@
+#{field _object + '.' + _name}
+	#{if _label}
+	<label for="${field.id}">
+		&{_inputName + "." + _name}
+	</label>
+	#{/if}
+	#{if _input}
+	<input id="${field.id}" onfocus="WdatePicker()"  readonly="readonly" class="txt01 Wdate ${field.errorClass}" type="text" name="${field.name}" value="${_value?.format(_input)}"/>
+	#{/if}
+	#{else}
+	<input id="${field.id}" onfocus="WdatePicker()" readonly="readonly" class="txt01 Wdate ${field.errorClass}" type="text" name="${field.name}" value="${_value?.format('yyyy-MM-dd')}"/>
+	#{/else}
+	#{ifError field.name}
+		<span class="error">${field.error}</span>
+	#{/ifError}
+#{/field}

@@ -1,0 +1,261 @@
+<div class="dialog_media_container appmsg_media_dialog">
+	<div class="sub_title_bar in_dialog">
+		<div class="search_bar">
+			<span class="frm_input_box search with_del append">
+				<a class="del_btn" href="javascript:" id="searchCloseBt">
+					<i class="icon_search_del"></i>&nbsp;
+				</a>
+				<a id="msgSearchBtn" href="javascript:search()" class="frm_input_append"><i class="icon16_common search_gray">搜索</i>&nbsp;</a>
+				<input id="msgSearchInput" type="text" placeholder="标题/作者/摘要" value="" class="frm_input">
+			</span>
+		</div>
+		<div class="appmsg_create tr">
+			<a class="" target="_blank" href="/newsinfos/blankone" target="main">
+				<i class="icon_appmsg_small"></i><strong>新建单图文消息</strong>
+			</a> <a class="" target="_blank" href="/newsinfos/blankone">
+				<i class="icon_appmsg_small multi"></i><strong>新建多图文消息</strong>
+			</a>
+
+		</div>
+	</div>
+	<div class="dialog_media_inner" id="newsInfos">
+		<div class="js_appmsg_list appmsg_list media_dialog" style="height:400px;padding: 28px 40px;">
+			#{set size=list.size() /}
+			
+			<div class="appmsg_col">
+				<div class="inner">
+					#{list list,as:"newsInfo"}
+					#{if newsInfo_index<=size/2}
+					#{if newsInfo.imagetext.size()==1}<!-- 单图文 -->
+					<div id="appmsg${newsInfo.id}">
+						<div class="appmsg multi " data-id="${newsInfo.id}" data-fileid="${newsInfo.id}">
+							<div class="appmsg_content">
+								#{list newsInfo.imagetext,as:"imagetext"}
+								#{if imagetext_index==1}
+								<h4 class="appmsg_title">
+									<a href="" target="_blank">${imagetext.title}</a>
+								</h4>
+								<div class="appmsg_info">
+                					<em class="appmsg_date">${newsInfo.updated?.format("yyyy年MM月dd日")}</em>
+            					</div>
+								<div class="appmsg_thumb_wrp">
+									<img src="${imagetext.imgStock?.path}" alt="${imagetext.imgStock?.name}" class="appmsg_thumb" />
+								</div>
+								<p class="appmsg_desc">
+									#{if imagetext.summary!=null&&imagetext.summary.length()>50}
+										${imagetext.summary.substring(0,50)}
+									#{/if}
+									#{else}
+									${imagetext.summary}
+									#{/else}
+								</p>
+								#{/if}
+								#{else}
+								<div class="appmsg_item">
+									<img src="${imagetext.imgStock?.path}" alt="${imagetext.imgStock?.name}" class="appmsg_thumb">
+									<h4 class="appmsg_title">
+										<a href="/newsinfos/detail?id=${imagetext.id}" target="_blank">${imagetext.title}</a>
+									</h4>
+								</div>
+								#{/else}
+								#{/list}
+							</div>
+							<div class="appmsg_mask"></div>
+							<i class="icon_card_selected">已选择</i>
+
+						</div>
+					</div>
+					#{/if}
+					#{else}<!-- 多图文 -->
+					<div id="appmsg${newsInfo.id}">
+						<div class="appmsg multi " data-id="${newsInfo.id}" data-fileid="${newsInfo.id}">
+							<div class="appmsg_content">
+							
+								<div class="appmsg_info">
+									<em class="appmsg_date">${newsInfo.created?.format("MM月dd日")}</em>
+								</div>
+								
+								#{list newsInfo.imagetext,as:"imagetext"}
+								#{if imagetext_index==1}
+								<div class="cover_appmsg_item">
+									<h4 class="appmsg_title">
+										<a href="/newsinfos/detail?id=${imagetext.id}" target="_blank">${imagetext.title}</a>
+									</h4>
+									<div class="appmsg_thumb_wrp">
+										<img src="${imagetext.imgStock?.path}" alt="${imagetext.imgStock?.name}" class="appmsg_thumb" />
+									</div>
+								</div>
+								#{/if}
+								#{else}
+								<div class="appmsg_item">
+									<img src="${imagetext.imgStock?.path}" alt="${imagetext.imgStock?.name}" class="appmsg_thumb">
+									<h4 class="appmsg_title">
+										<a href="/newsinfos/detail?id=${imagetext.id}" target="_blank">${imagetext.title}</a>
+									</h4>
+								</div>
+								#{/else}
+								#{/list}
+							</div>
+							<div class="appmsg_mask"></div>
+							<i class="icon_card_selected">已选择</i>
+
+						</div>
+					</div>
+					#{/else}
+					#{/if}
+					#{/list}
+				</div>
+			</div>
+			
+			
+			&nbsp;
+			
+			<div class="appmsg_col">
+				<div class="inner">
+					#{list list,as:"newsInfo"}
+					#{if newsInfo_index>size/2}
+					#{if newsInfo.imagetext.size()==1}<!-- 单图文 -->
+					<div id="appmsg${newsInfo.id}">
+						<div class="appmsg multi " data-id="${newsInfo.id}" data-fileid="${newsInfo.id}">
+							<div class="appmsg_content">
+								#{list newsInfo.imagetext,as:"imagetext"}
+								#{if imagetext_index==1}
+								<h4 class="appmsg_title">
+									<a href="" target="_blank">${imagetext.title}</a>
+								</h4>
+								<div class="appmsg_info">
+                					<em class="appmsg_date">${newsInfo.updated?.format("yyyy年MM月dd日")}</em>
+            					</div>
+								<div class="appmsg_thumb_wrp">
+									<img src="${imagetext.imgStock?.path}" alt="${imagetext.imgStock?.name}" class="appmsg_thumb" />
+								</div>
+								<p class="appmsg_desc">
+									#{if imagetext.summary!=null&&imagetext.summary.length()>50}
+									${imagetext.summary.subString(0,50)}
+									#{/if}
+									#{else}
+									${imagetext.summary}
+									#{/else}
+								</p>
+								#{/if}
+								#{else}
+								<div class="appmsg_item">
+									<img src="${imagetext.imgStock?.path}" alt="${imagetext.imgStock?.name}" class="appmsg_thumb">
+									<h4 class="appmsg_title">
+										<a href="/newsinfos/detail?id=${imagetext.id}" target="_blank">${imagetext.title}</a>
+									</h4>
+								</div>
+								#{/else}
+								#{/list}
+							</div>
+							<div class="appmsg_mask"></div>
+							<i class="icon_card_selected">已选择</i>
+
+						</div>
+					</div>
+					#{/if}
+					#{else}<!-- 多图文 -->
+					<div id="appmsg${newsInfo.id}">
+						<div class="appmsg multi " data-id="${newsInfo.id}" data-fileid="${newsInfo.id}">
+							<div class="appmsg_content">
+							
+								<div class="appmsg_info">
+									<em class="appmsg_date">${newsInfo.created?.format("MM月dd日")}</em>
+								</div>
+								
+								#{list newsInfo.imagetext,as:"imagetext"}
+								#{if imagetext_index==1}
+								<div class="cover_appmsg_item">
+									<h4 class="appmsg_title">
+										<a href="/newsinfos/detail?id=${imagetext.id}" target="_blank">${imagetext.title}</a>
+									</h4>
+									<div class="appmsg_thumb_wrp">
+										<img src="${imagetext.imgStock?.path}" alt="${imagetext.imgStock?.name}" class="appmsg_thumb" />
+									</div>
+								</div>
+								#{/if}
+								#{else}
+								<div class="appmsg_item">
+									<img src="${imagetext.imgStock?.path}" alt="${imagetext.imgStock?.name}" class="appmsg_thumb">
+									<h4 class="appmsg_title">
+										<a href="/newsinfos/detail?id=${imagetext.id}" target="_blank">${imagetext.title}</a>
+									</h4>
+								</div>
+								#{/else}
+								#{/list}
+							</div>
+							<div class="appmsg_mask"></div>
+							<i class="icon_card_selected">已选择</i>
+
+						</div>
+					</div>
+					#{/else}
+					#{/if}
+					#{/list}
+				</div>
+			</div>
+			
+		</div>
+
+	</div>
+</div>
+<script>
+	function showImgStock(){
+		var groupid = $("#newsInfos").find(".selected").attr("data-id");
+		$.post("/NewsInfos/findByNewsInfo", {
+			"id" : groupid
+		}, function(data) {
+			if($("#okBtn").hasClass("disabled")){
+				
+			}else{
+				$("#okBtn").addClass("disabled");
+			}
+			
+			
+			$("#imgList").html("");
+			$("#imgList").html(data);
+		});
+	}
+	
+	$("div[id^='appmsg']").click(function(){
+		$this = $(this);
+		
+		var selectedNode = $("#newsInfos").find(".selected");
+		for (var i = 0; i < selectedNode.length; i++) {
+			$(selectedNode[i]).removeClass("selected");
+		}
+
+		var firstChild = $this.children("div:first-child")
+		if($(firstChild).hasClass("selected")){
+			
+		}else{
+			$(firstChild).addClass('selected');
+		}
+		
+		var selectedNode = $("#newsInfos").find(".selected").length;
+		
+		if(selectedNode>0){
+			if($("#addNewsInf").hasClass("disabled")){
+				$("#addNewsInf").removeClass("disabled");
+			}else{
+				
+			}
+		}else{
+			if($("#addNewsInf").hasClass("disabled")){
+			}else{
+				$("#addNewsInf").addClass("disabled");
+			}
+		}
+		
+		showImgStock();
+	});
+	
+	function search(){
+		$.post("/MenuWxs/selectNewsInfos", {
+			"condition" : $("#msgSearchInput").val(),
+		}, function(data) {
+			$("#newsInfos").html("");
+			$("#newsInfos").html(data);
+		});
+	}
+</script>

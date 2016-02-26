@@ -1,0 +1,96 @@
+#{extends "main_list.html"/}
+#{set title:"添加新闻资讯"/}
+<style type="text/css" media="screen">
+	body{overflow-y: auto;}
+</style>
+<script src="/public/javascripts/ejohn-templating.js" type="text/javascript" charset="utf-8"></script>
+#{form @@create()}
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+<legend>新闻资讯</legend>
+<div class="field" style="width: 49%;">
+#{field "newsinfo.name"}
+<label for="${field.id}">名称</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "newsinfo.state"}
+<label for="${field.id}">状态</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+</fieldset>
+<fieldset style="border: 1px solid #808080;" >
+<legend>图文信息</legend>
+<div style="height:200px;overflow: auto;">
+<table width="100%" align="center" id="imagetext_table" border="0" cellpadding="0" cellspacing="1" class="t2" >
+<thead>
+<tr>
+<td width="80">编号</td>
+<td>标题</td>
+<td>图片</td>
+<td>Url</td>
+<td><a href="javascript:void('0')" onclick="add_imagetext();"><img src="/public/images/add.png"/></a></td></tr></thead>
+<tbody id="imagetext_tbody" class="imagetexts">
+<tr><td style="border-bottom:1px solid #596E83;">1</td>
+<td style="border-bottom:1px solid #596E83;">
+<input id="imagetext_title" class="txt01 txt02" type="text" name="imagetext.title" value="" />
+<span class="info"></span>
+</td>
+<td style="border-bottom:1px solid #596E83;">
+<input id="imagetext_imageurl" class="txt01 txt02" type="text" name="imagetext.imageurl" value="" />
+<span class="info"></span>
+</td>
+<td style="border-bottom:1px solid #596E83;">
+<input id="imagetext_url" class="txt01 txt02" type="text" name="imagetext.url" value="" />
+<span class="info"></span>
+</td>
+<td>
+<input type="hidden" name="imagetext.id" value=""/>
+<a href="javascript:void(0)" onclick="del_imagetext(this,'0');">
+<img src="/public/images/del.png"/></a></td>
+</tr>
+</tbody></table></div>
+</fieldset>
+<p class="buttons">
+<input type="submit" name="_save" value="&{'option.save'}" class="btn01"/>
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>
+#{/form}
+<script type="text/html" id="imagetext_tmpl">
+<tr class="intoFormInfo"><td>2</td>
+<td><input id="imagetext_title" class="txt01 txt02" type="text" name="imagetext.title" value="" />
+<span class="info"></span></td>
+ <td><input id="imagetext_imageurl" class="txt01 txt02" type="text" name="imagetext.imageurl" value="" />
+<span class="info"></span></td>
+ <td><input id="imagetext_url" class="txt01 txt02" type="text" name="imagetext.url" value="" />
+<span class="info"></span></td>
+ <td><input type="hidden" value="" name="imagetext.id"/><a href="javascript:void(0)" onclick="del_imagetext(this,0);"><img src="/public/images/del.png"/></a></td></tr>
+</script><script>
+var url = '';
+function add_imagetext(){
+$('#imagetext_tbody').append(tmpl('imagetext_tmpl')); 
+func_table_sort("imagetext_tbody"); 
+}
+function del_imagetext(obj,id){
+if(id>0&&url!=""){
+if(!confirm("确定删除你选择的数据,删除之后将不能恢复?")) return false;
+var result = delete_form(url,id);
+$(obj).parent().parent().remove();
+if($("#imagetext_tbody>tr").length==0){
+add_imagetext();
+}
+}else{
+if($("#imagetext_tbody>tr").length==1){
+alert("最后一行不能删除!");
+return;
+}
+$(obj).parent().parent().remove();
+}
+func_table_sort("imagetext_tbody");
+}
+</script>

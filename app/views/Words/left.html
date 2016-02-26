@@ -1,0 +1,10 @@
+#{extends 'main_tree.html'/}
+<script> 
+d = new dTree('d');
+d.init("/public/images");
+d.add("0","ROOT",'字典类别列表','/words/list','','listframe');
+#{list list,as:'row'}
+d.add('${row.cid}','${row.pid}','${row.name}','/words/list?pid=${row.id}','','listframe');
+#{/list}
+document.write(d);
+</script>

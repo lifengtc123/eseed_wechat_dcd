@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!-- saved from url=(0124)https://mp.weixin.qq.com/cgi-bin/appmsg?begin=0&count=10&t=media/appmsg_list&type=10&action=list&lang=zh_CN&token=1515587834 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="renderer" content="webkit"><meta charset="utf-8">
+<title></title>
+<style type="text/css" media="screen">
+body {
+	overflow-y: auto;
+}
+</style>
+<link onerror="wx_loaderror(this)" rel="stylesheet" type="text/css"
+	href="/public/weixin/css/base25404f.css">
+<link onerror="wx_loaderror(this)" rel="stylesheet" type="text/css"
+	href="/public/weixin/css/lib22f1a9.css">
+<link onerror="wx_loaderror(this)" rel="stylesheet"
+	href="/public/weixin/css/media_list238f6d.css">
+<link onerror="wx_loaderror(this)" rel="stylesheet"
+	href="/public/weixin/css/media_list_img25404f.css">
+<body class="zh_CN">
+	<div class="head" id="header">
+		<div class="head_box"></div>
+	</div>
+	<div id="body" class="body page_media_list">
+		<div id="js_container_box" class="container_box cell_layout side_l">
+			<div class="col_main">
+				<div class="main_hd">
+					<h2>素材管理</h2>
+					<div class="title_tab" id="topTab">
+						<ul class="tab_navs title_tab" data-index="0">
+
+
+
+
+							<li data-index="0" class="tab_nav first js_top" data-id="media10"><a
+								href="@@{Newsinfos.listblank()}">图文消息</a></li>
+
+
+
+							<li data-index="1" class="tab_nav  js_top selected"
+								data-id="media2"><a href="@@{listimg()}">图片库</a></li>
+
+						</ul>
+					</div>
+				</div>
+				<div class="main_bd">
+					<div class="img_pick_panel">
+						<div class="inner_container_box side_r cell_layout">
+							<div class="inner_main">
+								<div class="bd">
+									<div class="media_list">
+										<div class="global_mod float_layout">
+											<p class="global_info">
+												<span class="group_name global_info_ele" data-id=""
+													id="js_currentgroup">未分组</span>
+											</p>
+											<div class="global_extra">
+												<div class="bubble_tips bubble_right warn">
+													<div class="bubble_tips_inner">大小:
+														不超过2M,&nbsp;&nbsp;&nbsp;&nbsp;格式: bmp, png, jpeg, jpg, gif</div>
+													<i class="bubble_tips_arrow out"></i> <i
+														class="bubble_tips_arrow in"></i>
+												</div>
+												<div class="upload_box align_right">
+													<span class="upload_area webuploader-container"><a
+														id="js_upload" class="btn btn_primary webuploader-pick"
+														data-gid="">上传</a>
+													<ul class="upload_file_box" style="display:none"></ul>
+														<div id="rt_rt_19klteja01s13dhn15tibuk1bmj1"
+															style="position: absolute; top: 0px; left: 0px; width: 106px; height: 32px; overflow: hidden; bottom: auto; right: auto;">
+															<input type="file" multiple="multiple" accept="image/*"
+																style="display: none;"><label
+																style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+														</div></span>
+												</div>
+											</div>
+										</div>
+										<div class="oper_group group">
+											<div class="frm_controls oper_ele l">
+												<label class="frm_checkbox_label selected" for="js_all"><input
+													id="js_all" type="checkbox" class="frm_checkbox"
+													data-label="全选" checked="checked"><i
+													class="icon_checkbox"></i><span class="lbl_content">全选</span></label>
+											</div>
+											<a id="js_batchmove"
+												class="btn btn_default oper_ele l js_popover"
+												href="javascript:;">移动分组</a><a id="js_batchdel"
+												class="btn btn_default oper_ele l js_popover"
+												href="javascript:;">删除</a>
+										</div>
+										<div class="group img_pick" id="js_imglist">
+											<ul class="group">
+												#{list imgStocks,as:'row'}
+												<li class="img_item js_imgitem" data-id="206614124">
+													<div class="img_item_bd">
+														<img class="pic wxmImg Zoomin" src="${row?.path}"
+															data-previewsrc="https://mmbiz.qlogo.cn/mmbiz/Hic6pAUxV2wCruOFYaPLmCMygpTHcONpWJObCWu2O7TicISJiaNS01IWWVkeJtoGnWxPRK9XhcxP4ulVdJp0cxppQ/0?wx_fmt=jpeg"
+															data-id="206614124"> <span class="check_content">
+															<label class="frm_checkbox_label selected"
+															for="checkbox1"><input type="checkbox"
+																class="frm_checkbox" data-label="报告.jpg"
+																data-id="206614124" id="checkbox1" checked="checked"><i
+																class="icon_checkbox"></i><span class="lbl_content">${row?.name}</span></label>
+														</span>
+													</div>
+													<div class="msg_card_ft">
+														<ul class="grid_line msg_card_opr_list">
+															<li class="grid_item size1of3 msg_card_opr_item"><a
+																class="js_edit js_tooltip js_popover"
+																data-id="206614124" data-name="报告.jpg"
+																href="javascript:;" data-tooltip="编辑名称"> <span
+																	class="msg_card_opr_item_inner"> <i
+																		class="icon18_common edit_gray">编辑</i>
+																</span> <span class="vm_box"></span>
+															</a></li>
+															<li class="grid_item size1of3 msg_card_opr_item"><a
+																class="js_move js_tooltip js_popover"
+																href="javascript:;" data-id="206614124"
+																data-tooltip="移动分组"> <span
+																	class="msg_card_opr_item_inner"> <i
+																		class="icon18_common move_gray">移动分组</i>
+																</span> <span class="vm_box"></span>
+															</a></li>
+															<li class="grid_item size1of3 no_extra msg_card_opr_item">
+																<a class="js_del js_tooltip js_popover"
+																data-id="206614124" href="javascript:;"
+																data-tooltip="删除"> <span
+																	class="msg_card_opr_item_inner"> <i
+																		class="icon18_common del_gray">删除</i>
+																</span> <span class="vm_box"></span>
+															</a>
+															</li>
+														</ul>
+													</div>
+												</li>
+												#{/list}
+											</ul>
+										</div>
+										<div class="pagination_wrp pageNavigator" id="js_pagebar"
+											style="display: none;">
+											<div class="pagination" id="wxPagebar_1430959639848">
+												<span class="page_nav_area"> <a
+													href="javascript:void(0);" class="btn page_first"
+													style="display: none;"></a> <a href="javascript:void(0);"
+													class="btn page_prev" style="display: none;"><i
+														class="arrow"></i></a> <span class="page_num"> <label>1</label>
+														<span class="num_gap">/</span> <label>1</label>
+												</span> <a href="javascript:void(0);" class="btn page_next"
+													style="display: none;"><i class="arrow"></i></a> <a
+													href="javascript:void(0);" class="btn page_last"
+													style="display: none;"></a>
+												</span>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="inner_side">
+								<div class="bd">
+									<div class="group_list">
+										<div class="inner_menu_box" id="js_group">
+											<dl class="inner_menu">
+
+												#{list imggroupss,as:'row1'}
+												#{if row1_index==1}
+												<dd class="inner_menu_item selected js_groupitem"
+													data-id="1">
+													<a
+														href="@@{ImgStocks.listimg()}"
+														class="inner_menu_link" title="未分组"> <strong>未分组</strong><em
+														class="num">(${imgStocks==null?"0":"${row1?.counts}"})</em>
+													</a>
+												</dd>
+												#{/if}
+												#{else}
+												<dd class="inner_menu_item js_groupitem" data-id="2">
+													<a
+														href="/ImgStocks/listimg?pid=${row1.id}"
+														class="inner_menu_link" title="${row1?.name}"> <strong>${row1?.name}</strong><em
+														class="num">(${row1?.imgStocks?.size()})</em>
+													</a>
+												</dd>
+												#{/else}
+												#{/list}
+											</dl>
+										</div>
+										<div class="inner_menu_item">
+											<a href="javascript:;" class="inner_menu_link js_popover"
+												id="js_creategroup"><i class="icon14_common add_gray">新建分组</i>新建分组</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<script type="text/html" id="tpl_list">
+{if list.length <= 0}
+<div class="empty_tips">该分组暂时没有图片素材</div>
+{else}
+<ul class="group">
+{each list as item}
+<li class="img_item js_imgitem" data-id="{item.file_id}">
+<div class="img_item_bd">
+                <img class="pic wxmImg Zoomin" src="{item.img_src}" data-previewsrc="{item.imgsrc}" data-id="{item.file_id}" />
+<span class="check_content">
+<input type="checkbox" class="frm_checkbox" data-label="{item.name}" data-id="{item.file_id}">
+</span>
+</div>
+<div class="msg_card_ft">
+                <ul class="grid_line msg_card_opr_list">
+<li class="grid_item size1of3 msg_card_opr_item">
+                        <a class="js_edit js_tooltip js_popover" data-id="{item.file_id}" data-name="{item.name}" href="javascript:;" data-tooltip="编辑名称">
+<span class="msg_card_opr_item_inner">
+<i class="icon18_common edit_gray">编辑</i>
+</span>
+<span class="vm_box"></span>
+</a>
+</li>
+<li class="grid_item size1of3 msg_card_opr_item">
+<a class="js_move js_tooltip js_popover" href="javascript:;" data-id="{item.file_id}" data-tooltip="移动分组">
+<span class="msg_card_opr_item_inner">
+<i class="icon18_common move_gray">移动分组</i>
+</span>
+<span class="vm_box"></span>
+</a>
+                    </li>
+<li class="grid_item size1of3 no_extra msg_card_opr_item">
+<a class="js_del js_tooltip js_popover" data-id="{item.file_id}" href="javascript:;" data-tooltip="删除">
+<span class="msg_card_opr_item_inner">
+<i class="icon18_common del_gray">删除</i>
+</span>
+<span class="vm_box"></span>
+</a>
+</li>
+</ul>
+</div>
+</li>
+{/each}
+</ul>
+{/if}
+</script>
+				<script type="text/html" id="tpl_group">
+<dl class="inner_menu">
+    
+    {each list as item}
+    <dd class="inner_menu_item{if item.selected} selected{/if} js_groupitem" data-id="{item.id}">
+    <a href="/cgi-bin/filepage?type=2&begin=0&count=12&group_id={item.id}&t=media/img_list&token=1475531190&lang=zh_CN" class="inner_menu_link" title="{item.name}">
+            <strong>{item.name}</strong><em class="num">({item.count})</em>
+</a>
+    </dd>
+    {/each}
+</dl>
+</script>
+				<script type="text/html" id="tpl_edit">
+<div class="popover_edit">
+<label for="" class="frm_label">编辑名称</label>
+<div class="frm_controls">
+<span class="frm_input_box">
+<input type="text" class="frm_input js_name" value="{name}" data-id="{id}">
+</span>
+<p class="frm_tips"></p>
+<p class="frm_msg fail">
+<span class="frm_msg_content">填错了！！！！</span>
+</p>
+</div>
+</div>
+</script>
+				<script type="text/html" id="tpl_create">
+<div class="popover_edit">
+<label for="" class="frm_label">创建分组</label>
+<div class="frm_controls">
+<span class="frm_input_box">
+<input type="text" class="frm_input js_name" value="">
+</span>
+<p class="frm_tips"></p>
+<p class="frm_msg fail">
+<span class="frm_msg_content">填错了！！！！</span>
+</p>
+</div>
+</div>
+</script>
+				<script type="text/html" id="tpl_del">
+<p class="tl">确定删除此素材吗？</p>
+</script>
+				<script type="text/html" id="tpl_move">
+<div class="frm_control group_select">
+    {each list as item}
+    {if item.id != current}
+    <input type="radio" class="frm_radio" data-id="{item.id}" data-label="{item.name}">
+    {/if}
+    {/each}
+</div>
+</script>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="scale_tips" id="zoom_tips" style="display: none;">
+		<div class="scale_tips_inner">
+			<i class="icon_scale_tips"></i>
+			<p class="scale_tips_content">
+				<span id="zoom_msg"></span><a href="javascript:;" id="zoom_prompt">不再提示</a>
+			</p>
+		</div>
+	</div>
+	<div
+		style="position: absolute; right: 0px; bottom: 0px; visibility: visible;">
+		<object type="application/x-shockwave-flash"
+			data="https://res.wx.qq.com/mpres/zh_CN/htmledition/plprecorder/biz_web/zoom230dc3.swf"
+			width="10" height="10" id="ZoomFlash">
+			<param name="movie"
+				value="https://res.wx.qq.com/mpres/zh_CN/htmledition/plprecorder/biz_web/zoom230dc3.swf">
+			<param name="allowscriptaccess" value="always">
+			<param name="wmode" value="transparent">
+			<param name="scale" value="noScale">
+		</object>
+	</div>
+	<div class="tooltip" style="top: 530px; left: 330.5px; display: none;">
+		<div class="tooltip_inner">编辑名称</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip"
+		style="top: 530px; left: 386.8125px; display: none;">
+		<div class="tooltip_inner">移动分组</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip"
+		style="top: 530px; left: 455.125px; display: none;">
+		<div class="tooltip_inner">删除</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">编辑名称</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip"
+		style="top: 530px; left: 572.8125px; display: none;">
+		<div class="tooltip_inner">移动分组</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip"
+		style="top: 530px; left: 641.125px; display: none;">
+		<div class="tooltip_inner">删除</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">编辑名称</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">移动分组</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">删除</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">编辑名称</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">移动分组</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">删除</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">编辑名称</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">移动分组</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">删除</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">编辑名称</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">移动分组</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">删除</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">编辑名称</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">移动分组</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">删除</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">编辑名称</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">移动分组</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">删除</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">编辑名称</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">移动分组</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	<div class="tooltip" style="display: none;">
+		<div class="tooltip_inner">删除</div>
+		<i class="tooltip_arrow"></i>
+	</div>
+	
+	
+	<!-- 小窗操作 -->
+	<div class="popover  pos_center" style="top: 319px; left: 319.5px;display: none">
+		<div class="popover_inner">
+			<div class="popover_content jsPopOverContent">
+				<div class="frm_control group_select">
+
+
+
+
+					<label class="frm_radio_label" for="checkbox16"><input
+						type="radio" class="frm_radio" data-id="2" data-label="微信小店"
+						id="checkbox16"><i class="icon_radio"></i><span
+						class="lbl_content">微信小店</span></label>
+
+
+				</div>
+			</div>
+			<!--#0001#-->
+
+			<!--%0001%-->
+
+			<div class="popover_bar">
+				<a href="javascript:;" class="btn btn_primary jsPopoverBt">确定</a>&nbsp;<a
+					href="javascript:;" class="btn btn_default jsPopoverBt">取消</a>
+			</div>
+		</div>
+		<i class="popover_arrow popover_arrow_out"></i> <i
+			class="popover_arrow popover_arrow_in"></i>
+	</div>
+</body>
+</html>

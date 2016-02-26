@@ -1,0 +1,54 @@
+#{extends "main_list.html"/}
+#{set title:"修改微信配置"/}
+<style type="text/css" media="screen">
+	body{overflow-y: auto;}
+</style>
+<script src="/public/javascripts/ejohn-templating.js" type="text/javascript" charset="utf-8"></script>
+#{form @@save(wXConfig?.id)}
+<div class="form">
+<fieldset style="height:200px;width:99%;">
+	<legend>修改微信配置</legend>
+<div class="field" style="width: 49%;">
+#{field "wXConfig.wXName"}
+<label for="${field.id}">服务号名称</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${wXConfig.wXName}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "wXConfig.token"}
+<label for="${field.id}">token</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "wXConfig.appid"}
+<label for="${field.id}">appid</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "wXConfig.secret"}
+<label for="${field.id}">secret</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 99%;">
+#{field "wXConfig.access_token"}
+<label for="${field.id}">access_token</label>
+<textarea name="${field.name}" class="txt01" rows="4" readonly="readyonly" style="margin-left:5px;" cols="57" readonly="readonly">${field.value}</textarea>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+
+</fieldset>
+<p class="buttons" style="padding-right:20px;">
+<input type="hidden" name="wXConfig.id" value="${wXConfig?.id}"/>
+<input type="submit" name="_save" value="&{'option.save'}" class="btn01"/>
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>
+#{/form}

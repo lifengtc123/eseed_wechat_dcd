@@ -1,0 +1,45 @@
+#{extends "main_list.html"/}
+#{set title:"查看token记录"/}
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+<legend>token记录</legend>
+<div class="field" style="width: 49%;">
+#{field "tokenRecord.date"}
+<label for="${field.id}">更新时间</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "tokenRecord.beforetoken"}
+<label for="${field.id}">更新前token</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "tokenRecord.token"}
+<label for="${field.id}">实时token</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "tokenRecord.xmlstring"}
+<label for="${field.id}">返回xml</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "tokenRecord.actionString"}
+<label for="${field.id}">调用方法</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+</fieldset>
+<p class="buttons">
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>

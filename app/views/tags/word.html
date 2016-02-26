@@ -1,0 +1,13 @@
+%{
+	type = _type?_type:0
+	words = models.Word.findWordByWordType(type)
+	name = _name
+	to = _to
+	field = _field?_field:'id'
+}%
+<select id="word_${name}" name="${name}"${to?' onchange="func_change_word(this);"'.raw():''} to="${to}">
+<option value="">--请选择--</option>
+%{words.eachWithIndex() { object, k ->}%
+<option value="${object[field]}"${(object[field]==_value)?' selected="selected"':''}>${object.name}</option>
+%{}}%
+</select>

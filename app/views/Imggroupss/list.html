@@ -1,0 +1,16 @@
+#{extends "main_list.html"/}
+%{
+    def map = [:]
+    map['object'] 		= "imggroups"
+    map['fields'] 		= ['name','sort','flag','notice']
+    map['widths'] 		= ['25','25','25','15']
+    map['width']		= 600
+    map['height']		= 260
+    map['searchFields']         = ['name','sort','flag','notice']
+}%
+#{table.search map}#{/table.search}
+#{table.list map}
+#{table.custom 'flag'}
+${row.flag==1?"使用":"停用"}
+#{/table.custom}
+#{/table.list}

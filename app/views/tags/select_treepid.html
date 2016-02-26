@@ -1,0 +1,5 @@
+#{select _name,value:_value}
+#{list _arg,as:'row'}
+#{option row.cid}${row.selectTree.raw()}#{/option}
+#{/list}
+#{/select}

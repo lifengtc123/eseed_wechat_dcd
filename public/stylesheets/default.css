@@ -1,0 +1,91 @@
+/* CSS Document */
+
+body {
+	color: #333333;
+	font-family: "宋体", "Arial";
+	font-size: 9pt;
+	margin: 0,0,0,0;
+	padding:0,0,0,0;
+}
+iframe{
+	margin: 0,0,0,0;
+	padding:0,0,0,0;
+}
+
+td {
+	color: #333333;
+	font-family: "宋体", "Arial";
+	font-size: 9pt;
+}
+
+form{
+	margin: 0px;
+}
+.STYLE4 {
+	font-size: 12px;
+	color: #1F4A65;
+	font-weight: bold;
+}
+input{     
+	BORDER-RIGHT: #cfffff 1px solid; 
+	BORDER-TOP: #cfffff 1px solid; 
+	height:15pt;
+	FONT-SIZE: 9pt; 
+	BORDER-LEFT: #cfffff 1px solid; 
+	BORDER-BOTTOM: #cfffff 1px solid; 
+	FONT-FAMILY: Verdana, "����"
+}
+textarea{
+	BORDER-RIGHT: #cfffff 1px solid; 
+	BORDER-TOP: #cfffff 1px solid; 
+	FONT-SIZE: 9pt; 
+	BORDER-LEFT: #cfffff 1px solid; 
+	BORDER-BOTTOM: #cfffff 1px solid; 
+	FONT-FAMILY: Verdana, "����"
+}
+.chkbox, .radio {
+	BORDER-RIGHT: buttonface 0px solid; 
+	BORDER-TOP: buttonface 0px solid; 
+	FONT-SIZE: 9pt; 
+	BORDER-LEFT: buttonface 0px solid; 
+	BORDER-BOTTOM: buttonface 0px solid; 
+	background: none;
+	vertical-align: middle !important;
+	vertical-align: baseline;
+	margin-bottom: 5px !important;
+	margin-bottom: 0;
+	height: 16px;
+
+}
+
+.lineattr{
+	border-bottom:1px solid #c0de98;
+	height:18px;	
+}
+
+a {
+	color: #336699;
+}
+
+TD {
+	FONT-SIZE: 12px
+}
+a:link {
+	font-size: 12px;
+	color: #336699;
+	text-decoration: none;
+}
+a:visited {
+	font-size: 12px;
+	color: #336699;
+	text-decoration: none;
+}
+a:hover {
+	font-size: 12px;
+	color: #336699;
+	text-decoration: none;
+}
+#side_left{width:7px;}
+#side_right{width:7px;}
+#bottom_left{width:7px;}
+#bottom_right{width:7px;align:right;}

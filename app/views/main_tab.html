@@ -1,0 +1,40 @@
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<base target="_self"/>
+<title>#{get 'title'/}</title> 
+<script src="@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
+<script src="@{'/public/javascripts/fast.js'}" type="text/javascript" charset="utf-8"></script>
+<script src="@{'/public/javascripts/tab.js'}" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/list_style.css'}">
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/tab.css'}">
+<script type="text/javascript">
+$(function(){
+	$(".row").mouseover(function(){
+		$(this).attr("bgColor","#FFD74E");
+	});
+	$(".row").mouseout(function(){
+		$(this).attr("bgColor","#ffffff");
+	});
+});
+
+</script>
+</head> 
+<body>
+#{if flash.success}
+<div id="message">
+<center>
+<div id="success">${flash.success}</div>
+</center>
+</div>
+#{/if}
+#{if flash.error}
+<div id="message">
+<center>
+<div id="error">${flash.error}</div>
+</center>
+</div>
+#{/if}
+#{doLayout /}
+</body> 
+</html>

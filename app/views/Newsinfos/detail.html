@@ -1,0 +1,56 @@
+#{extends "main_list.html"/}
+#{set title:"查看新闻资讯"/}
+<style type="text/css" media="screen">
+	body{overflow-y: auto;}
+</style>
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+<legend>新闻资讯</legend>
+<div class="field" style="width: 49%;">
+#{field "newsinfo.name"}
+<label for="${field.id}">名称</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "newsinfo.state"}
+<label for="${field.id}">状态</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+</fieldset>
+<fieldset style="border: 1px solid #808080;" >
+<legend>图文信息</legend>
+<div style="height:200px;overflow: auto;">
+<table width="100%" align="center" id="imagetext_table" border="0" cellpadding="0" cellspacing="1" class="t2" >
+<thead>
+<tr>
+<td width="80">编号</td>
+<td>标题</td>
+<td>图片</td>
+<td>Url</td>
+</tr></thead>
+<tbody id="imagetext_tbody" class="imagetexts">
+#{list newsinfo.imagetext,as:'row'}
+<tr><td style="border-bottom:1px solid #596E83;">1</td>
+<td style="border-bottom:1px solid #596E83;">
+<input id="imagetext_title" class="txt01 txt02" type="text" name="imagetext.title" value="${row.title}" />
+<span class="info"></span>
+</td>
+<td style="border-bottom:1px solid #596E83;">
+<input id="imagetext_imageurl" class="txt01 txt02" type="text" name="imagetext.imageurl" value="${row.imageurl}" />
+<span class="info"></span>
+</td>
+<td style="border-bottom:1px solid #596E83;">
+<input id="imagetext_url" class="txt01 txt02" type="text" name="imagetext.url" value="${row.url}" />
+<span class="info"></span>
+</td>
+</tr>
+#{/list}</tbody></table></div>
+</fieldset>
+<p class="buttons">
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>

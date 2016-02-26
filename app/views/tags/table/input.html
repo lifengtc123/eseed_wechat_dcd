@@ -1,0 +1,63 @@
+%{
+	i=_i;
+	objectName=_objectName;
+	if(_inputName) inputName = _inputName;
+	else inputName = objectName;
+	currentObject = _currentObject;
+	field=_field;
+	label=(_label==null)?true:_label;
+}%
+		#{if _arg.type}
+		#{if _arg.type[i] == 'text'}
+		#{table.textField object:objectName,inputName:inputName,name:field,value:(currentObject ? currentObject[field] : null),input:(_arg.input[field]?_arg.input[field] : null),label:label/}
+		#{/if}
+		#{if _arg.type[i] == 'readonlytext'}
+		#{table.textReadonlyField object:objectName,inputName:inputName,name:field,value:(currentObject ? currentObject[field] : null),input:(_arg.input[field]?_arg.input[field] : null),label:label/}
+		#{/if}
+		#{if _arg.type[i] == 'password'}
+		#{table.passwordField object:objectName,inputName:inputName,name:field,value:(currentObject ? currentObject[field] : null),input:(_arg.input[field]?_arg.input[field] : null),label:label/}
+		#{/if}
+		#{if _arg.type[i] == 'relation'}
+		#{table.relationField object:objectName,inputName:inputName,name:field,value:(currentObject ? currentObject[field] : null),input:(_arg.input[field]?_arg.input[field] : null),label:label/}
+		#{/if}
+		#{if _arg.type[i] == 'relationTree'}
+		#{table.relationTreeField object:objectName,inputName:inputName,name:field,value:(currentObject ? currentObject[field] : null),input:(_arg.input[field]?_arg.input[field] : null),label:label/}
+		#{/if}
+		#{if _arg.type[i] == 'boolean'}
+		#{table.checkField object:objectName,inputName:inputName,name:field,value:(currentObject ? currentObject[field] : null),label:label/}
+		#{/if}
+		#{if _arg.type[i] == 'select'}
+		#{table.selectField object:objectName,inputName:inputName,name:field,value:(currentObject ? currentObject[field] : null),input:(_arg.input[field]?_arg.input[field] : null),label:label/}
+		#{/if}
+		#{if _arg.type[i] == 'date'}
+		#{table.dateField object:objectName,inputName:inputName,name:field,value:(currentObject ? currentObject[field] : null),input:(_arg.input[field]?_arg.input[field] : null),label:label/}
+		#{/if}
+		#{if _arg.type[i] == 'longtext'}
+		#{table.longtextField object:objectName,inputName:inputName,name:field,value:(currentObject ? currentObject[field] : null),input:(_arg.input[field]?_arg.input[field] : null),label:label/}
+		#{/if}
+		#{if _arg.type[i] == 'word'}
+		<label>
+		&{objectName + "." + field}
+		</label>
+		#{word name:'object.' + field,value:(currentObject ? currentObject[field] : null),field:(_arg.input[field]['field']?_arg.input[field]['field'] : null),to:(_arg.input[field]['to']?_arg.input[field]['to'] : null),type:(_arg.input[field]['type']?_arg.input[field]['type'] : null),label:label/}
+		#{/if}
+		#{if _arg.type[i] == 'user'}
+		<label>
+		&{inputName + "." + field}
+		</label>
+		#{select_user id:field,value:(currentObject ? currentObject[field] : null),input:(_arg.input[field]?_arg.input[field] : null),label:label/}
+		#{/if}
+		#{if _arg.type[i] == 'store'}
+		<label>
+		&{inputName + "." + field}
+		</label>
+		#{select_store id:field,value:(currentObject ? currentObject[field] : null),input:(_arg.input[field]?_arg.input[field] : null),label:label/}
+		#{/if}
+		#{if _arg.type[i] == 'autocomplete'}
+		#{table.autocomplete object:objectName,inputName:inputName,name:field,value:(currentObject ? currentObject[field] : null),input:(_arg.input[field]?_arg.input[field] : null),label:label/}
+		#{/if}
+		#{/if}
+		#{else}
+		<input type="text" class="txt01" name="${_arg.object}.${field}" value="${(currentObject ? currentObject[field] : '')}"/>
+		#{/else}
+		<span class="info">${_arg['notices']?_arg['notices'][i]:""}</span>

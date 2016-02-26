@@ -1,0 +1,36 @@
+<div class="sub_title_bar light js_second_title_bar dn" style="display: block;">
+	<h4>
+		<!-- 根据点击不同的菜单，显示不同的提示信息 -->
+		#{if menuWx.parent==null}一级菜单#{/if}
+		#{else}二级菜单#{/else}：${menuWx.name}
+	</h4>
+	<a id="jsDelBt" class="btn_ctrl" href="javascript:delBt(${menuWx.id});">删除</a>
+	<a id="jsChangeBt" class="btn_ctrl" href="javascript:changeBt(${menuWx.id});">重命名</a>
+</div>
+
+<div class="action_content init jsMain" style="display: block;" id="index">
+	#{if menuWx.parent==null}<!-- 一级菜单 -->
+		#{if  menuWx.children==null||menuWx.children.size()==0}<!-- 没有二级菜单 -->
+			<p class="action_tips">请选择订阅者点击“${menuWx.name}”菜单后，公众号做出的响应动作</p>
+		#{/if}
+		#{elseif menuWx.children.size()<5}<!-- 有二级菜单并且还可以添加二级菜单 -->
+			<p class="action_tips">已经为“${menuWx.name}”添加了二级菜单，无法设置其他动作。<br>你还可以添加${5-menuWx.children.size()}个二级菜单</p>
+		#{/elseif}
+		#{else}<!-- 不能够添加二级菜单 -->
+			<p class="action_tips">你已添加满5个二级菜单</p>
+		#{/else}
+	#{/if}
+	#{else}<!-- 二级菜单 -->
+		<p class="action_tips">请选择订阅者点击“${menuWx.name}”菜单后，公众号做出的响应动作</p>
+	#{/else}
+	
+	<!-- 如果一级菜单没有二级菜单 显示下面三个链接，如果有一个二级菜单了 只能显示第一个  对于二级菜单 显示前面两个 -->
+	#{if menuWx.parent==null&&menuWx.children.size()<5}<!-- 是一级菜单 才可以出现这个添加二级菜单的功能 -->
+		<a href="javascript:add(${menuWx.id},${menuWx.children.size()});" id="initialCreate" class="initialCreate"><i class="icon_menu_action add"></i><strong>添加二级菜单</strong></a>
+	#{/if}
+	
+	#{if menuWx.children==null||menuWx.children.size()==0}<!-- 如果是二级菜单那么这个条件肯定成 如果是一级菜单，子菜单不存在 就可以添加下面两个事件 -->
+		<a href="javascript:sendMsg(${menuWx.id},1);" id="sendMsg"><i class="icon_menu_action send"></i><strong>发送信息</strong></a>
+		<a href="javascript:sendMsg(${menuWx.id},2);" id="goPage"><i class="icon_menu_action url"></i><strong>跳转到网页</strong></a>
+	#{/if}
+</div>

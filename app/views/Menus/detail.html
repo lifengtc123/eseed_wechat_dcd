@@ -1,0 +1,50 @@
+#{extends "main_list.html"/}
+#{set title:"查看菜单信息"/}
+<div class="form">
+<fieldset>
+<legend>菜单信息</legend>
+<div class="field" style="width: 90%;">
+<label>上一级</label>
+<input type="text" readonly="readonly" class="txt01" value="${parent.name}"/>
+</div>
+<div class="field" style="width: 90%;">
+#{field "menu.name"}
+<label for="${field.id}">菜单名</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01" readonly="readonly"/>
+#{/field}
+</div>
+<div class="field" style="width: 90%;">
+#{field "menu.url"}
+<label for="${field.id}">链接</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01" readonly="readonly"/>
+#{/field}
+</div>
+<div class="field" style="width: 90%;">
+#{field "menu.target"}
+<label for="${field.id}">打开方式</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01" readonly="readonly"/>
+#{/field}
+</div>
+<div class="field" style="width: 90%;">
+#{field "menu.icon"}
+<label for="${field.id}">图片</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01" readonly="readonly"/>
+#{/field}
+</div>
+<div class="field" style="width: 90%;">
+#{field "menu.sort"}
+<label for="${field.id}">排序</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01" readonly="readonly"/>
+#{/field}
+</div>
+<div class="field" style="width: 90%;">
+#{field "menu.flag"}
+<label for="${field.id}">状态</label>
+<input type="text" #{if menu.flag==1}value="使用"#{/if}#{if menu.flag==0}value="停用"#{/if} readonly="readonly">
+#{/field}
+</div>
+</fieldset>
+<p class="buttons">
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>

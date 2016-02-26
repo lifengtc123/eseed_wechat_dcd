@@ -1,0 +1,22 @@
+#{extends "main_list.html"/}
+#{set title:"添加部门信息"/}
+%{
+map = [:]
+map['fields']		=	['form_s','pid','name','sort','flag','notice','form_e']
+map['type']			=	['text','text','text','text','select','text','text']
+map['widths']		=	['100','100','50','100','100','100','100']
+map['input']  		= 	[:]
+map['input']['flag']	=	['1':'使用','2':'停用']
+map['input']['notice']	=	300
+
+}%
+#{form @@create()}
+#{table.form map}
+#{table.custom 'pid'}
+<div class="field" style="width: 100%;">
+<label for="object_pid">&{'depart.pid'}</label>
+#{select_tree trees,name:"object.pid",value:params.pid/}
+</div>
+#{/table.custom}
+#{/table.form}
+#{/form}

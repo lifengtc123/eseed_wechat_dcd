@@ -1,0 +1,84 @@
+#{extends "main_list.html"/}
+<form>
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" width="100%">
+<table cellspacing="0" cellpadding="0" width="100%"><tr>
+</tr><tr height="22">
+<td valign="middle" align="left" style="padding:5px;">
+#{select "searchField",value:params.searchField}
+#{option}全部#{/option}
+#{option 'openid'}openid#{/option}
+#{/select}#{select "condition",value:params.condition}
+#{option 'like'}包含#{/option}
+#{option '='}=#{/option}
+#{option '>'}>#{/option}
+#{option '<'}<#{/option}
+#{/select}
+<input type="text" name="search" value="${params.search}" id="obj_keyword" class="txt01" size="40"/>
+<input type="submit" value="搜索" class="btn01"/>
+</td>
+</tr>
+</table>
+</td></tr></tbody></table>
+</form>
+<form action="@@{delete()}" method="post" onsubmit="return chk_arrayid();" id="listform">
+<table height="100%" cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" align="middle" width="100%" height="100%">
+<div style="height:400px;overflow: auto;">
+<table class="t1" cellspacing="0" cellpadding="0">
+<thead>
+<tr><td colspan="8" class="title">群发记录</td></tr>
+<tr height="22">
+<td width="1%"><input type="checkbox" id="chkall"/></td>
+<td width="4%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','created').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+发送时间</a></td>
+<td width="10%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','content').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+群发内容</a></td>
+<td width="5%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','openid').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+openID</a></td>
+<td width="5%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','type').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+类型</a></td>
+<td width="10%">&{'option.title'}</td>
+</tr></thead>
+<tbody>
+#{list pagedList.list,as:'row'}
+<tr id="tr_${row.id}" class="row">
+<td><input type="checkbox" name="arrayid" value="${row.id}"/></td>
+<td>${row.created?.format('yyyy-MM-dd hh:mm')}&nbsp;</td>
+<td>
+	#{if row.type==0}${row.content}#{/if}
+	#{elseif row.type==1}${row.imgStock?.name}#{/elseif}
+	#{elseif row.type==2}${row.newsinfo?.name}#{/elseif}
+	&nbsp;
+</td>
+<td>${row.openid}</td>
+<td>
+	#{if row.type==0}文本#{/if}
+	#{elseif row.type==1}图片#{/elseif}
+	#{elseif row.type==2}图文#{/elseif}
+</td>
+<td>
+<a href="javascript:void(0);" class="option_delete" url="@@{delete(row.id)}">删除</a>
+</td>
+</tr>
+#{/list}
+#{list 0..14-pagedList.list.size(),as:'i'}
+<tr id="tr0" class="row">
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+#{/list}
+</tbody>
+</table>
+</div>
+</td></tr></tbody></table>
+<div id="toolbar">
+<input type="button" class="btn01" value="添加" onclick="window.location.href='/MenuWxs/list2'"/>
+<input type="submit" class="btn01" value="删除"/>
+#{page pagedList /}
+</div>
+</form>

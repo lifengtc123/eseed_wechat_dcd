@@ -1,0 +1,9 @@
+#{if filepath}
+<script>
+parent.$("${fieldID}").val("${imgstock.id}");
+parent.$("${preImgID}").attr("src","${filepath}");
+parent.$("${preImgtwoID}").attr("src","${filepath}");
+parent.$("${preImgtwoID}").css("display","block");
+parent.$("${preImgtwoID}").parent().find(".default").css("display","none");
+</script>
+#{/if}

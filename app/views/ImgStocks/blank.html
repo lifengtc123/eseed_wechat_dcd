@@ -1,0 +1,48 @@
+#{extends "main_list.html"/}
+#{set title:"添加图片库"/}
+#{form @@create()}
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+<legend>图片库</legend>
+<div class="field" style="width: 49%;">
+#{field "imgStock.name"}
+<label for="${field.id}">名称</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "imgStock.path"}
+<label for="${field.id}">地址</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "imgStock.imggroups"}
+<label for="${field.id}">图片分组</label>
+#{relation_tree oid:field.id,oname:field.name,ovalue:field.value ,name:'id' ,sql:'from Imggroups where flag=1 order by sort' /}
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "imgStock.uploador"}
+<label for="${field.id}">上传人</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "imgStock.uploaddate"}
+<label for="${field.id}">上传时间</label>
+<input type="text" id="${field.id}" name="${field.name}" readonly="readonly" class="txt01 Wdate ${field.errorClass}" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" value="${field.value?.format('yyyy-MM-dd')}" />
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+</fieldset>
+<p class="buttons">
+<input type="submit" name="_save" value="&{'option.save'}" class="btn01"/>
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>
+#{/form}

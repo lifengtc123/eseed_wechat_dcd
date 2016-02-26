@@ -1,0 +1,20 @@
+#{extends "main_list.html"/}
+#{set title:"查看图片分组"/}
+%{
+map = [:]
+map['show']		=	true
+map['fields']		=	['form_s','pid','name','sort','flag','notice','form_e']
+map['type']			=	['text','text','text','text','select','text','text']
+map['widths']		=	['10','100','50','100','100','100','100']
+map['input']  		= 	[:]
+map['input']['flag']	=	['1':'使用','2':'停用']
+map['input']['notice']	=	300
+}%
+#{table.form map}
+#{table.custom 'pid'}
+<div class="field" style="width: 100%;">
+<label for="object_pid">&{'imggroups.pid'}</label>
+#{select_tree trees,name:"object.pid",value:object.pid/}
+</div>
+#{/table.custom}
+#{/table.form}

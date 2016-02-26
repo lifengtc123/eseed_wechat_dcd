@@ -1,0 +1,16 @@
+%{
+ name = _arg;
+ id = _id;
+ value = _value;
+ width = _width ? _width: "100%";
+ height= _height ? _height:"250px";
+}%
+
+<script type="text/javascript">
+KindEditor.ready(function(K) {
+   var editor = K.create('#${id}', {
+			readonlyMode : true
+        });
+});
+</script>
+<textarea name="${name}" id="${id}" style="width: ${width};height: ${height};">${value}</textarea>

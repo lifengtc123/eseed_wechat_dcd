@@ -1,0 +1,6 @@
+#{select _name,value:_value}
+#{option 0}--请选择--#{/option}
+#{list _arg,as:'row'}
+#{option row.id}${row.selectTree.raw()}#{/option}
+#{/list}
+#{/select}

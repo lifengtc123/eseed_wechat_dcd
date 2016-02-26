@@ -1,0 +1,89 @@
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<base target="_self"/>
+<title>修改项目材料清单</title> 
+<script src="/public/javascripts/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/fast.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="/public/javascripts/jquery.uploadify.v2.1.4.js"></script>
+<script src="/public/javascripts/ejohn-templating.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/autocomplete.js" type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/My97DatePicker/WdatePicker.js" type="text/javascript" charset="gb2312"></script>
+<script type="text/javascript" src="/public/javascripts/ProjectMaterials.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/list_style.css">
+<link rel="stylesheet" href="/public/stylesheets/jquery.autocomplete.css" type="text/css"></link>
+<style type="text/css">
+table{
+border-collapse: collapse;
+}
+table td{
+border: 1px solid #CAD9EA;
+}
+</style>
+    <script type="text/javascript">
+		    function sub() {
+		    	if(checkIP()){
+		    		var ip = $("#address").val();
+		    		var flag = $("#use").val();
+		    		if (ip  == "" && flag == "1") {
+		    			alert("未填写IP，启用将导致无论如何不能登陆。");
+		    			$("#address").focus();
+		    			return false;
+		    		}
+		    		document.form1.submit();
+		    	} else {
+		    		alert("您输入的IP地址不合法.");
+		    		$("#address").focus();
+		    	}
+		    }
+		    
+		    function checkIP() {
+		    	var b = true;
+				var obj=$("#address").val() + ",";
+				var ips = obj.split(",");
+				var exp=/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/; 				var reg = obj.match(exp); 
+				for(x in ips) {
+					if(ips[x] != "") {
+						var reg = ips[x].match(exp); 
+						if(reg==null) { 
+							b = false;
+						} 
+					}
+				}
+				return b;
+			} 
+    </script>
+  </head>
+  
+  <body>
+    <form action="/users/doIpEdit?id=${user.id}" method="post" name="form1" id="ipform" >
+    <div class="form" >
+    <fieldset style="border: 1px solid #808080;">
+	<legend>合同信息</legend>
+    	<div id="useip" style="width: 49%;">
+    		<label for="object_establishment">
+				状态：
+			</label>
+			<select name="useIp" id="use">
+				<option value="1" #{if user.useIp == true}selected="selected"#{/if}>启用</option>
+				<option value="0" #{if user.useIp != true}selected="selected"#{/if}>停用</option>
+			</select>
+    	</div>
+    	<br/>
+    	<div id="ips" style="width: 49%;">
+    		<label for="object_establishment">
+				IP地址：
+			</label>
+    		<textarea style="margin-left: 10px;" name="ip_address" id="address" class="txt01" rows="7" cols="50">${user.ip_address}</textarea>
+    		<div style="font-size:14px; margin-left: 10px;">IP地址间以 , 隔开。</div>
+    	</div>
+    	</fieldset>
+    	<br />
+    	<div align="center">
+	    	<input name="button" type="button" id="subbutton" value="确定" onclick="sub()" class="btn01"/>&nbsp;&nbsp;
+	    	<input type="button" name="_close" value="关闭" class="btn01 option_close"/> 
+    	</div>
+    </div>
+    </form>
+  </body>
+</html>

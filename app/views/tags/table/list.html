@@ -1,0 +1,113 @@
+%{
+	map = _caller.roleMap;
+	def fieldsHandler = [:]
+	showpage = _arg.showpage?_arg.showpage : true
+	if(_body) {
+		_body.setProperty('fieldsHandler', fieldsHandler);
+}%
+		#{doBody as:'skip' /}
+%{
+	}
+}%
+#{set "title"}
+&{_arg.object+".title"}
+#{/set}
+<form action="@@{delete()}" method="post" onsubmit="return chk_arrayid();">
+<table height="100%" cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" align="middle" width="100%" height="100%">
+<div style="height:400px;overflow: auto;">
+<table class="t1" cellspacing="0" cellpadding="0">
+%{ if(fieldsHandler['thread']) { }%
+%{
+	def handler = fieldsHandler['thread'];
+}%
+#{doBody body:handler /}
+%{ } else { }%	
+<thead>
+<tr><td colspan="${_arg.fields.size+2}" class="title">${_arg.title?_arg.title:title}</td></tr>
+<tr height="22">
+<td width="50"><input type="checkbox" id="chkall"/></td>
+%{ _arg.fields.eachWithIndex() { row,i -> }%
+<td width="${_arg.widths[i]}%">
+<a class="${_caller.order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (_caller.order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy',row).add('search', params.search).add('condition',params.condition).add('field',params.field).add('pid',params.pid)}">
+&{_arg.object+"."+row}
+</a>
+</td>
+%{}}%
+<td width="${_arg.option_width?_arg.option_width:10}%">&{'option.title'}</td>
+</tr> 
+</thead>
+%{}}%
+<tbody>
+
+%{ _caller.pagedList.list.eachWithIndex() { object, k -> }%
+<tr id="tr_${object.id}" class="row">
+<td><input type="checkbox" name="arrayid" value="${object.id}"/></td>
+%{ _arg.fields.eachWithIndex() { row, i -> }%
+<td>
+	%{ if(fieldsHandler[row]) { }%
+		%{
+			def handler = fieldsHandler[row];
+			handler.setProperty('row', object);
+		}%
+		#{doBody body:handler /}
+		%{
+			handler.setProperty('row', null);
+		}%
+	%{ } else { }%
+		${object[row]?object[row].escape()?.raw():"&nbsp;".raw()}
+	%{}}%
+</td>
+%{ } }%
+<td>
+%{ if (fieldsHandler['option']) { }%
+	%{
+		def handler = fieldsHandler['option'];
+		handler.setProperty('row', object);
+	}%
+	#{doBody body:handler /}
+	%{
+		handler.setProperty('row', null);
+	}%
+%{ } else { }%
+#{if map['查看']!=0}
+<a href="javascript:void(0);" onclick="open_dialog('@@{detail(object.id)}',${_arg.width},${_arg.height})">查看</a>
+#{/if}
+#{if map['修改']!=0}
+<a href="javascript:void(0);" onclick="open_dialog('@@{show(object.id)}',${_arg.width},${_arg.height})">修改</a>
+#{/if}
+#{if map['删除']!=0}
+<a href="javascript:void(0);" class="option_delete" url="@@{delete(object.id)}">删除</a>
+#{/if}
+%{ } }%
+</td>
+</tr>
+%{ } }%
+#{list 0..14-_caller.pagedList.list.size(),as:"i"}
+<tr id="tr0" class="row">
+<td>&nbsp;</td>
+%{ _arg.fields.eachWithIndex() { row, i -> }%
+<td>&nbsp;</td>
+%{ } }%
+<td>&nbsp;</td>
+</tr>
+#{/list}
+</tbody>
+</table>
+</div>
+</td></tr></tbody></table>
+<div id="toolbar">
+%{ if (fieldsHandler['buttons']) { }%
+	%{
+		def handler = fieldsHandler['buttons'];
+	}%
+	#{doBody body:handler /}
+%{ }else{ }%
+<input type="button" class="btn01" value="添加" onclick="open_dialog('@@{blank()}${params.pid?"?pid="+params.pid:""}',${_arg.width},${_arg.height})"/>
+<input type="submit" class="btn01" value="删除"/>
+%{ } }%
+#{if showpage}
+#{page _caller.pagedList/}
+#{/if}
+</div>
+</form>

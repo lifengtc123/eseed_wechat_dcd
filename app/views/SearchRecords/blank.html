@@ -1,0 +1,48 @@
+#{extends "main_list.html"/}
+#{set title:"添加查询记录"/}
+#{form @@create()}
+<div class="form">
+<fieldset style="border: 1px solid #808080;">
+<legend>查询记录</legend>
+<div class="field" style="width: 49%;">
+#{field "searchRecord.buildType"}
+<label for="${field.id}">用户类型</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "searchRecord.companyName"}
+<label for="${field.id}">单位名称</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "searchRecord.userNo"}
+<label for="${field.id}">用户帐号</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "searchRecord.name"}
+<label for="${field.id}">查询模块</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "searchRecord.stime"}
+<label for="${field.id}">查询时间</label>
+<input type="text" id="${field.id}" name="${field.name}" readonly="readonly" class="txt01 Wdate ${field.errorClass}" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" value="${field.value?.format('yyyy-MM-dd')}" />
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+</fieldset>
+<p class="buttons">
+<input type="submit" name="_save" value="&{'option.save'}" class="btn01"/>
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>
+#{/form}

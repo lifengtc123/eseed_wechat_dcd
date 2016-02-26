@@ -1,0 +1,172 @@
+#{extends "main_list.html"/}
+<style type="text/css" media="screen">
+/*body {
+	overflow-y: auto;
+}*/
+</style>
+ <script src="/public/javascripts/builds/esl.js"></script>
+  <div style="text-align: center;"><span style="font-size: 30;font-weight:bold">${imagetext?.title}</span></div>
+
+  <div><span style="float: right;font-size: 20;font-weight:bold;margin: 0 20px 0 0;">总浏览数:<font style="color: red;">${imagetext?.browseNumber}</font>&nbsp;总分享数:<font style="color: red;">${imagetext?.shareNumber}</font><span></div>
+ <div id="mainMap" style="clear:right;height:85%;border:1px solid #ccc;width:98.5%;margin: 0 10px 10px 10px;"></div>
+
+  <script type="text/javascript">
+ var option = {
+		    title : {
+		        text: '浏览排行榜',
+		       // subtext: 'From ExcelHome',
+		       // sublink: 'http://e.weibo.com/1341556070/AizJXrAEa'
+		    },
+		    tooltip : {
+		        trigger: 'axis',
+		        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+		            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+		        },
+		        formatter: function (params){
+		            return params[0].name + '<br/>'
+		                   + params[0].seriesName + ' : ' + params[0].value + '<br/>'
+		                   + params[1].seriesName + ' : ' + (params[1].value );
+		        }
+		    },
+		    legend: {
+		        selectedMode:true,
+		        data:[ '总浏览','自身浏览']
+		    },
+		    toolbox: {
+		        show : true,
+		        feature : {
+		            mark : {show: true},
+		            dataView : {show: true, readOnly: false},
+		            magicType: {show: true, type: ['line', 'bar']},
+		            restore : {show: true},
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    calculable : true,
+		    xAxis : [
+		        {
+		            type : 'category',
+		            data : [
+			                  #{list shareinfos,as:'row1'}
+			                  '${row1?.customerinfo?.getstr()}',
+			                  #{/list}
+		                    ]
+		        }
+		    ],
+		    yAxis : [
+		        {
+		            type : 'value',
+		            boundaryGap: [0, 0.1]
+		        }
+		    ],
+		    series : [
+		        {
+		            name:'总浏览',
+		            type:'bar',
+		            stack: 'sum',
+		            barCategoryGap: '40%',
+		            itemStyle: {
+		                normal: {
+		                    color: 'tomato',
+		                    barBorderColor: 'tomato',
+		                    barBorderWidth: 6,
+		                    barBorderRadius:0,
+		                    label : {
+		                    	 show: true, 
+			                        position: 'insideTop',
+			                        formatter: function (params) {
+			                            for (var i = 0, l = option.xAxis[0].data.length; i < l; i++) {
+			                                if (option.xAxis[0].data[i] == params.name) {
+			                                    return option.series[0].data[i]-option.series[1].data[i] ;
+			                                }
+			                            }
+			                        },
+			                        textStyle: {
+			                            color: 'blue'
+			                        }
+		                    }
+		                }
+		            },
+		            data:[
+		                  #{list shareinfos,as:'row'}
+		                  '${row?.countNumber}',
+		                  #{/list}
+		                  ]
+		        },
+		        {
+		            name:'自身浏览',
+		            type:'bar',
+		            stack: 'sum',
+		            itemStyle: {
+		                normal: {
+		                    color: '#fff',
+		                    barBorderColor: 'tomato',
+		                    barBorderWidth: 6,
+		                    barBorderRadius:0,
+		                    label : {
+		                        show: true, 
+		                        position: 'top',
+		                        formatter: function (params) {
+		                            for (var i = 0, l = option.xAxis[0].data.length; i < l; i++) {
+		                                if (option.xAxis[0].data[i] == params.name) {
+		                                    return option.series[0].data[i] ;
+		                                }
+		                            }
+		                        },
+		                        textStyle: {
+		                            color: 'tomato'
+		                        }
+		                    }
+		                }
+		            },
+		            data:[
+	                  #{list shareinfos,as:'row2'}
+	                  '${row2?.browseNumber}',
+	                  #{/list}
+		                  ]
+		        },
+
+		    ]
+		};
+		                    
+    // Step:3 conifg ECharts's path, link to echarts.js from current page.
+    // Step:3 为模块加载器配置echarts的路径，从当前页面链接到echarts.js，定义所需图表路径
+     require.config({
+        paths:{ 
+        	  echarts:'/public/javascripts/builds/source/echarts',
+            'echarts/chart/bar' : '/public/javascripts/builds/source/chart/bar',
+            'echarts/chart/line' : '/public/javascripts/builds/source/chart/line'
+        }
+    });
+
+    // Step:4 require echarts and use it in the callback.
+    // Step:4 动态加载echarts然后在回调函数中开始使用，注意保持按需加载结构定义图表路径
+    require(
+        [
+            'echarts',
+            'echarts/chart/bar',
+            'echarts/chart/line'
+        ],
+
+        function(ec) {
+            // --- 地图 ---
+            var myChart2 = ec.init(document.getElementById('mainMap'));
+           // var opetion=$("#code").val();
+            myChart2.setOption(option);
+            var ecConfig = require('echarts/config');
+            myChart2.on(ecConfig.EVENT.MAP_SELECTED, function(param){
+                var selected = param.selected;
+                var str = '当前选择： ';
+                for (var p in selected) {
+                    if (selected[p]) {
+                        str += p + ' ';
+                    }
+                }
+                document.getElementById('varchare').innerHTML = str;
+            });
+            	                    
+        }
+
+       
+    );
+    </script>

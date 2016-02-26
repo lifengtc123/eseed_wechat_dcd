@@ -1,0 +1,40 @@
+#{extends "main_list.html"/}
+#{set title:"查看显示设置"/}
+<div class="form">
+<fieldset>
+<legend>显示配置</legend>
+<div class="field" style="width: 99%;">
+#{field "screenSet.widthSize"}
+<label for="${field.id}">宽</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('#')}" class="txt01" readonly="readonly"/>
+#{/field}
+</div>
+<div class="field" style="width: 99%;">
+#{field "screenSet.heightSize"}
+<label for="${field.id}">高</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('#')}" class="txt01" readonly="readonly"/>
+#{/field}
+</div>
+<div class="field" style="width: 99%;">
+#{field "screenSet.tableHeight"}
+<label for="${field.id}">列表高度</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('#.##')}" class="txt01" readonly="readonly"/>
+#{/field}
+</div>
+<div class="field" style="width: 99%;">
+#{field "screenSet.pageSize"}
+<label for="${field.id}">每页条数</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('#.##')}" class="txt01" readonly="readonly"/>
+#{/field}
+</div>
+<div class="field" style="width: 99%;">
+#{field "screenSet.menuNum"}
+<label for="${field.id}">菜单显示</label>
+<input type="text" id="${field.id}" name="${field.name}" value="${field.value?.format('#.##')}" class="txt01" readonly="readonly"/>
+#{/field}
+</div>
+</fieldset>
+<p class="buttons">
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>

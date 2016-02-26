@@ -1,0 +1,38 @@
+%{
+	def fieldsHandler = [:]
+	if(_body) {
+		_body.setProperty('fieldsHandler', fieldsHandler);
+}%
+		#{doBody as:'skip' /}
+%{
+	}
+}%
+<form>
+<table cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" width="100%">
+<table cellspacing="0" cellpadding="0" width="100%"><tr>
+ </tr><tr height="22">
+  <td valign="middle" align="left" style="padding:5px;">
+  #{select "field",value:params.field}
+  #{option}全部#{/option}
+  %{ _arg.searchFields.eachWithIndex() { row, i -> }%
+  #{option row}&{_arg.object+"."+row}#{/option}
+  %{}}%
+  #{/select}
+  #{select "condition",value:params.condition}
+  #{option 'like'}包含#{/option}
+  #{option '='}=#{/option}
+  #{option '>'}>#{/option}
+  #{option '<'}<#{/option}
+  #{/select}
+  <input type="text" name="search" value="${params.search}" id="obj_keyword" class="txt01" size="40"/>
+  <input type="submit" value="搜索" class="btn01"/>
+  %{ if (fieldsHandler['option']) { }%
+  %{ def handler = fieldsHandler['option']; }%
+  #{doBody body:handler /}
+  %{ } }%
+  </td>
+ </tr>
+</table>
+</td></tr></tbody></table>
+</form>

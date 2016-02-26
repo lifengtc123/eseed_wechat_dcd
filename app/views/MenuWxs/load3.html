@@ -1,0 +1,58 @@
+<div class="sub_title_bar light js_second_title_bar dn" style="display: block;">
+	<h4>#{if menuWx.parent==null}一级菜单#{/if}#{else}二级菜单#{/else}：${menuWx.name}</h4>
+	<a id="jsDelBt" class="btn_ctrl" href="javascript:delBt(${menuWx.id})">删除</a>
+	<a id="jsChangeBt" class="btn_ctrl" href="javascript:changeBt(${menuWx.id});">重命名</a>
+</div>
+<div class="action_content sended jsMain" id="view" style="display: block;">
+	<p class="action_tips">订阅者点击该子菜单会收到以下消息</p>
+	<div class="msg_wrp" id="viewDiv">
+		<div class="appmsg multi" data-id="${menuWx.newsinfo?.id}" data-fileid="${menuWx.newsinfo?.id}">
+	    	<div class="appmsg_content">
+		        <div class="appmsg_info">
+		           <em class="appmsg_date">${menuWx.updated?.format("yyyy-MM-dd")}</em>
+		        </div>
+		        #{list menuWx.newsinfo.imagetext,as:"imagetext"}
+		        	#{if imagetext_index==1}
+		        	<div class="cover_appmsg_item">
+			        	<h4 class="appmsg_title">
+			        		<a href="/newsinfos/detailnews?id=${imagetext.id}" target="_blank">${imagetext.title}</a>
+			        	</h4>
+						<div class="appmsg_thumb_wrp"><img src="${imagetext.imgStock?.path}" alt="${imagetext.title}" class="appmsg_thumb"></div>
+					</div>
+					#{/if}
+					#{else}
+						<div class="appmsg_item">
+							<img src="${imagetext.imgStock?.path}" alt="${imagetext.title}" class="appmsg_thumb">
+							<h4 class="appmsg_title"><a href="/newsinfos/detailnews?id=${imagetext.id}" target="_blank">${imagetext.title}</a></h4>
+						</div>
+					#{/else}
+				#{/list}
+	   	 	</div>
+		</div>
+	</div>
+	<div class="btn_wrp">
+		<a href="javascript:sendMsg(${menuWx.id},1);" class="btn btn_default btn_editing" id="changeBt" style="display: inline-block;">修改</a>
+	</div>
+</div>
+<script>
+//重设动作
+function reset(id){
+	$.post("/MenuWxs/editLoad1", {
+		"id" : id,
+		"type":0
+	}, function(data) {
+		$("div[class='action_setting']").html("");
+		$("div[class='action_setting']").html(data);
+	});
+}
+
+//返回
+function back(id){
+	$.post("/MenuWxs/editLoad1", {
+		"id" : id
+	}, function(data) {
+		$("div[class='action_setting']").html("");
+		$("div[class='action_setting']").html(data);
+	});
+}
+</script>

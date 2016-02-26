@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>行为统计</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/easyui/themes/default/easyui.css'}">
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/easyui/themes/icon.css'}">
+        <script src="@{'/public/easyui/jquery-1.6.min.js'}" type="text/javascript" charset="utf-8"></script>
+        <script src="@{'/public/easyui/jquery.easyui.min.js'}" type="text/javascript" charset="utf-8"></script>
+        <script src="@{'/public/easyui/easyui-lang-zh_CN.js'}" type="text/javascript" charset="utf-8"></script>
+        <script>
+        	var datetime = "";
+        	function formatHour(val,row){
+        		if(val > 0){
+        			var h = val / row.max * 50;
+        			return '<img src="/public/images/1.jpg" height="'+h+'" width="18" title="'+val+'"/>' + row.max;
+        		}
+        		return "";
+        	}
+        	
+        	function formatLink(val,row){
+        		return '<a href="@{list()}?datetime='+datetime+'&uid='+row.id+'" target="_blank">'+val+'</a>';
+        	}
+        	
+        	function normalQuery(){
+        		var value = $("input[name=datebox]").val();
+        		datetime = value;	
+        		$('#list').datagrid('load',{		
+        			datetime: value	
+        		});
+        	}
+
+        </script>
+    </head>
+    <body class="easyui-layout">
+    	<div region="center" title="行为统计" icon="icon-save">
+    		<table id="list" class="easyui-datagrid" fit="true" url="@{getItems()}" toolbar="#tb" border="false">
+    		<thead frozen="true">  
+		        <tr>  
+		        <th field="truename" width="80" frozenColumn="true">姓名</th>
+		        <th field="links" width="50" frozenColumn="true" formatter="formatLink">点击数</th>
+    				<th field="posts" width="50">提交数</th>
+    				<th field="errors" width="50">错误数</th>  
+		        </tr>  
+		    </thead>  
+    			<thead>
+    				<tr>
+    				#{list items:0..9,as:'i'}
+    				<th field="hour_0${i}" width="20" formatter="formatHour">${i}</th>
+    				#{/list}
+    				#{list items:10..23,as:'i'}
+    				<th field="hour_${i}" width="20" formatter="formatHour">${i}</th>
+    				#{/list}
+    				</tr>
+    			</thead>
+    		</table>
+    	</div>
+
+		<div id="tb"> 		
+	    <span style="float:right">    
+		<input id="datebox" class="easyui-datebox" style="width:200px" name="datebox"></input>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true" onclick="normalQuery();">刷新</a>    
+		 </span>
+		</div>
+
+    	  
+    </body>
+</html>

@@ -1,0 +1,22 @@
+#{field _object + '.' + _name}
+	#{if _label}
+	<label for="${field.id}">
+		&{_inputName + "." + _name}
+	</label>
+	#{/if}
+	<select id="${field.id}" name="${field.name}.id">
+	%{ 
+		list = play.db.jpa.JPA.entityManagerFactory.createEntityManager().createQuery(_input.sql).getResultList()
+		list = utils.SelectTreeUtils.setTree(list)
+		list.each {
+			selected = false
+			pid = _value ? _value['id'] : params.pid
+			if(String.valueOf(pid)==String.valueOf(it.id)) selected = true
+	}%
+	<option value="${it[_input.name?_input.name:'id']}"${selected ? ' selected="true"'.raw() : ''}>${it.selectTree.raw()}</option>
+	%{ } }%
+	</select>
+	#{ifError field.name}
+		<span class="error">${field.error}</span>
+	#{/ifError}
+#{/field}

@@ -1,0 +1,53 @@
+#{extends "main_list.html"/}
+<table height="100%" cellspacing="0" cellpadding="0" width="100%" border="0" class="t0">
+<tbody><tr><td valign="top" align="middle" width="100%" height="100%">
+<div style="height:${session.get("tableHeight")}px;overflow: auto;">
+<table class="t1" cellspacing="0" cellpadding="0">
+<thead>
+<tr><td colspan="12" class="title">${yearMonth}-${projectItemName}到岗详情</td></tr>
+<tr height="22">
+<td width="6%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','name').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+人员姓名</a></td>
+<td width="12%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+所在单位</a></td>
+<td width="8%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+岗位</a></td>
+<td width="6%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+时间</a></td>
+<td width="6%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+请假天数</a></td>
+<td width="6%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+停工天数</a></td>
+<td width="8%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+实际到岗天数</a></td>
+<td width="8%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+要求到岗天数</a></td>
+<td width="6%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+缺勤天数</a></td>
+<td width="6%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+月度扣分</a></td>
+<td width="6%"><a class="${order == 'DESC' ? 'sortedDesc' : 'sortedAsc'}" href="@{list().remove('page').add('order', (order == 'DESC' ? 'ASC' : 'DESC')).add('orderBy','imagetext').add('search', params.search).add('condition',params.condition).add('field',params.field)}">
+年度扣分</a></td>
+</tr></thead>
+<tbody>
+#{list pagedList.list,as:'row'}
+<tr id="tr_${row.id}" class="row">
+<td>${row.employeeName}&nbsp;</td>
+<td>${row.companyName}&nbsp;</td>
+<td>${row.jobName}&nbsp;</td>
+<td>${row.yearMonth}&nbsp;</td>
+<td>${row.leaveDay}&nbsp;</td>
+<td>${row.pauseDay}&nbsp;</td>
+<td>${row.attendanceRate}&nbsp;</td>
+<td>${row.requireAttendanceRate}&nbsp;</td>
+<td>${row.absenceDay}&nbsp;</td>
+<td>${row.deductionMonthScore}&nbsp;</td>
+<td><a href="/AttendanceRecords/rylistdetail?employeeName=${row.employeeName}&yearMonth=${row.yearMonth}">${row.deductionYearScore}&nbsp;</a></td>
+</tr>
+#{/list}
+</tbody>
+</table>
+</div>
+</td></tr></tbody></table>
+<div id="toolbar">
+</div>

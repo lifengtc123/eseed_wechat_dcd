@@ -1,0 +1,23 @@
+#{extends "main_list.html"/}
+#{set title:"查看权限信息"/}
+%{
+map = [:]
+map['show']	  = true
+map['fields']		=	['form_s','menu','name','controller','action','sort','form_e']
+map['type']			=	['text','text','text','text','text','text','text']
+map['widths']		=	['100','100','50','100','100','100','100']
+map['input']  		= 	[:]
+map['input']['flag']	=	['1':'使用','2':'停用']
+map['input']['notice']	=	300
+
+}%
+#{form @@save(object.id)}
+#{table.form map}
+#{table.custom 'menu'}
+<div class="field" style="width: 100%;">
+<label for="object_pid">&{'roleControl.menu'}</label>
+#{select_menu trees,name:"object.menu.id",value:object.menu.id/}
+</div>
+#{/table.custom}
+#{/table.form}
+#{/form}

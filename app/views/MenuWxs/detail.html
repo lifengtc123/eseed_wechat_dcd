@@ -1,0 +1,86 @@
+#{extends "main_list.html"/}
+#{set title:"微信菜单查看"/}
+<style type="text/css" media="screen">
+	body{overflow-y: auto;}
+</style>
+<script src="/public/javascripts/ejohn-templating.js" type="text/javascript" charset="utf-8"></script>
+
+<div class="form">
+<fieldset style="height:550px;width:99%;">
+	<legend>微信菜单的查看</legend>
+<div class="field" style="width: 49%;">
+#{field "menuWx.parent"}
+<label for="${field.id}">上一级菜单</label>
+<input type="text" readonly="readonly" id="${field.id}" name="${field.name}" value='${menuWx.parent!=null?"${menuWx.parent?.name}":"上一级"}' class="txt01 ${field.errorClass}"/>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "menuWx.name"}
+<label for="${field.id}">菜单名称</label>
+<input type="text" readonly="readonly" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "menuWx.menuType"}
+<label for="${field.id}">菜单类型</label>
+<input type="text" readonly="readonly" id="${field.id}" name="${field.name}" value='${field.value==0?"click":"view"}' class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "menuWx.menu_key"}
+<label for="${field.id}">值</label>
+<input type="text" readonly="readonly" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+#{if menuWx.parent.id==17}
+<div class="field" id="activitieinfoDiv" style="width: 49%;">
+#{field "menuWx.activitieinfo"}
+<label for="${field.id}">对应活动</label>
+<input type="text" readonly="readonly" id="${field.id}" name="${field.name}" value="${field.value?.name}" class="txt01 ${field.errorClass}"/>
+#{/field}
+</div>
+#{/if}
+<div class="field" style="width: 49%;">
+#{field "menuWx.url"}
+<label for="${field.id}">url路径</label>
+<input type="text" readonly="readonly" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 49%;">
+#{field "menuWx.sort"}
+<label for="${field.id}">排序</label>
+<input type="text" readonly="readonly" id="${field.id}" name="${field.name}" value="${field.value}" class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+<div class="field" style="width: 99%;">
+#{field "menuWx.image"}
+<label for="${field.id}">图片</label>
+<img id="preImg0" alt="预览区" style="background-color:#CCCCCC;border:0px solid #333;width: 360px;height: 200px" src="${field.value}"/> 
+#{/field}
+</div>
+
+<div class="field" style="width: 99%;">
+#{field "menuWx.summary"}
+<label for="${field.id}">菜单描述</label>
+<textarea rows="8" cols="70" id="${field.id}" name="${field.name}">${field.value}</textarea>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+
+<div class="field" style="width: 49%;">
+#{field "menuWx.flag"}
+<label for="${field.id}">状态</label>
+<input type="text" readonly="readonly" style="width: 60px;" id="${field.id}" name="${field.name}" value='${field.value==1?"使用":"停用"}' class="txt01 ${field.errorClass}"/>
+<span class="error">${field.error}</span>
+#{/field}
+</div>
+
+</fieldset>
+<p class="buttons">
+<input type="button" name="_close" value="&{'option.close'}" class="btn01 option_close"/>
+</p>
+</div>

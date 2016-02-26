@@ -1,0 +1,14 @@
+%{
+randomID = controllers.Application.genRandomId();
+}%
+<input type="captcha" id="captcha" name="captcha" emptyInfo="请输入验证码"  maxLen="4" lengthInfo="最多不超过4个字符"/>
+<img id="captchaImg" style="margin-left: 130px;" src="@{Application.captcha(randomID)}"><br/>
+<input type="hidden" name="randomID" id="random_ID" value="${randomID}" />
+<script>
+$(function(){
+	$('#captchaImg').click(function(){
+        $(this).attr('src','@{Application.captcha(randomID)}&t='+ Math.random());
+    });
+	
+});
+</script>

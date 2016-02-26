@@ -1,0 +1,10 @@
+#{extends 'main_tree.html'/}
+<script> 
+d = new dTree('d');
+d.init("/public/images");
+d.add("0","ROOT",'菜单','/menus/listAll','','listframe');
+#{list list,as:'menu'}
+d.add('${menu.cid}','${menu.pid}','${menu.name}','/menus/list_pid?pid=${menu.cid}','','listframe');
+#{/list}
+document.write(d);
+</script> 

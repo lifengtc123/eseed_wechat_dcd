@@ -1,0 +1,71 @@
+<div class="select_list_container">
+	<div class="select_list_hd global_mod float_layout">
+		<div class="global_info">
+			<span class="frm_input_box search append"> <a
+				href="javascript:;" class="frm_input_append" id="a_search"><i
+					class="icon16_common search_gray">搜索</i>&nbsp; </a> <input type="text"
+				placeholder="搜索相关文章" value="" class="frm_input js_search">
+			</span>
+		</div>
+		<div class="global_extra" style="display: none;">
+			你还可以勾选<span id="remaincnt">1</span>篇文章
+			<!--<a href="javascript:;" class="btn btn_add btn_primary">-->
+			<!--<i class="icon14_common add_white"></i>新建文章-->
+			<!--</a>-->
+		</div>
+	</div>
+	<div class="select_list_bd">
+		<!--BEGIN loading-->
+		<div class="loading_area js_loading" style="display: none;">
+			<span class="vm_box"></span> <i class="icon_loading_small white"></i>
+		</div>
+		<!--END loading-->
+		<div id="listContainer" style="">
+			<div class="select_list">
+				#{list list,as:"imagetext"}
+				<label class="select_list_item frm_radio_label" for="checkbox${imagetext.id}">
+					<span class="lbl_content list_item_date ">${imagetext.created?.format("yyyy年MM月dd日")} </span>
+					<i class="icon_radio"></i> 
+					<span class="lbl_content list_item_title ">${imagetext.title}</span> 
+					<input type="radio" name="appmsgid" value="${imagetext.id}" class="frm_radio js_appmsgid" id="checkbox${imagetext.id}">
+				</label>
+				#{/list}
+			</div>
+
+		</div>
+	</div>
+	<div class="select_list_ft">
+		<div class="pagination_wrp js_pager" style="display: none;">
+			<div class="pagination" id="wxPagebar_1431514159617">
+				<span class="page_nav_area"> <a href="javascript:void(0);"
+					class="btn page_first" style="display: none;"></a> <a
+					href="javascript:void(0);" class="btn page_prev"
+					style="display: none;"><i class="arrow"></i></a> <span
+					class="page_num"> <label>1</label> <span class="num_gap">/</span>
+						<label>1</label>
+				</span> <a href="javascript:void(0);" class="btn page_next"
+					style="display: none;"><i class="arrow"></i></a> <a
+					href="javascript:void(0);" class="btn page_last"
+					style="display: none;"></a>
+				</span>
+
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(".select_list_item").click(function(){
+		$this = $(this);
+		
+		$(".select_list_item").each(function(){
+			if($(this).hasClass("selected")){
+				$(this).removeClass("selected");
+			}
+		});
+		
+		$this.addClass("selected");
+		$("#addUrl").removeClass("disabled");
+		
+		var selectId = $this.find("input[type='radio']").val();
+	});
+</script>

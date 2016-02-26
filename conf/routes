@@ -1,0 +1,18 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /cpanel                                       Application.index
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /phone/{controller}/{action}             phone.{controller}.{action}
+*       /{controller}/{action}                  {controller}.{action}
+*       /client/{controller}/{action}          client.{controller}.{action}
+*      /checkInfo								weixin.Application.checkInfo
+*      /wzcx								phone.Application.payables2
+*      /binding								phone.Application.payables
+*      /detailNewsinfo	                    phone.Application.payablesdetail
+*      /showCustomerinfo                    phone.Application.payablesshowCustomerinfo
